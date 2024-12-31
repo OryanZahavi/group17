@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: Gisha, sans-serif;
+    background-color: #b6dcb8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    direction: rtl; /* כיוון מימין לשמאל */
+    text-align: right; /* יישור טקסט לימין */
+}
+
+/* כותרת */
+h1 {
+    color: rosybrown;
+    font-family: Gisha, sans-serif;
+    font-size: 3rem; /* הגדלת גודל הכותרת */
+    margin-bottom: 20px;
+}
+
+/* לוגו */
+img {
+    margin-bottom: 20px;
+    width: 300px; /* הגדלת התמונה */
+    margin-bottom: 20px;
+}
+
+/* עיצוב קונטיינר שדות הטקסט */
+.grid_Container_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    text-align: right;
+    gap: 10px;
+    width: 350px; /* מתן רוחב קבוע לשדות */
+}
+
+.grid_Container_1 p {
+    color: rosybrown;
+    margin: 0;
+    font-size: 20px;
+}
+
+.grid_Container_1 input {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid rosybrown;
+    border-radius: 10px;
+    background-color: #eafbea;
+    font-size: 14px;
+    color: rosybrown;
+}
+
+/* עיצוב הכפתורים */
+span.button {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: Gisha, sans-serif;
+    color: rosybrown;
+    background-color: #eafbea;
+    border: 2px solid rosybrown;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d9b1a2;
+    color: white; /* שינוי צבע הטקסט */
+}
