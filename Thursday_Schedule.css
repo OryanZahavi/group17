@@ -90,6 +90,24 @@ body {
     text-align: center;
 }
 
+.btn { /* עיצוב כפתור חזרה למסך הבית */
+        padding: 10px 20px;
+        font-size: 14px;
+        font-family: Gisha, sans-serif;
+        color: rosybrown;
+        background-color: #eafbea;
+        border: 2px solid rosybrown;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+ .btn:hover {
+        background-color: #d9b1a2;
+        color: white; /* שינוי צבע הטקסט */
+    }
+
+
 .schedule .session .details {
     font-size: 16px;
     flex: 1; /* תופס את כל המרחב */
