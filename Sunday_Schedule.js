@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             day: '2-digit',
             month: '2-digit',
         });
+
         button.innerHTML = `${formattedDate}<br>${days[index]}`; // עדכון שם היום והתאריך
 
         // הדגשה ליום ראשון
