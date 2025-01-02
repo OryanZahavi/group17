@@ -5,7 +5,7 @@ body {
     background-color: #b6dcb8;
     color: rosybrown;
     text-align: center;
-    direction: rtl;
+/*    direction: rtl;*/
 }
 
 /* כותרת ולוגו */
@@ -29,6 +29,8 @@ body {
 /* כפתורי התאריכים */
 .dates {
     display: flex;
+    text-decoration: none;
+    font-family: Gisha, sans-serif;
     flex-direction: row-reverse; /* סדר מימין לשמאל */
     justify-content: center;
     gap: 10px;
@@ -89,6 +91,23 @@ body {
     flex: 0 0 70px; /* רוחב קבוע לשעה */
     text-align: center;
 }
+
+.btn { /* עיצוב כפתור חזרה למסך הבית */
+        padding: 10px 20px;
+        font-size: 14px;
+        font-family: Gisha, sans-serif;
+        color: rosybrown;
+        background-color: #eafbea;
+        border: 2px solid rosybrown;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+ .btn:hover {
+        background-color: #d9b1a2;
+        color: white; /* שינוי צבע הטקסט */
+    }
 
 .schedule .session .details {
     font-size: 16px;
