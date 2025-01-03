@@ -30,4 +30,43 @@ document.addEventListener("DOMContentLoaded", function () {
             button.classList.add('active');
         }
     });
+
+     // --- חלק 2: טיפול ב-popup ---
+    const sessions = document.querySelectorAll('.session'); // כל כפתורי השיעורים
+    const popups = document.querySelectorAll('.popup'); // כל החלונות
+    const closeButtons = document.querySelectorAll('.close-popup'); // כל כפתורי הסגירה
+    const overlay = document.querySelector('.overlay'); // ה-overlay
+
+
+    // הצגת ה-popup כאשר לוחצים על שיעור
+    sessions.forEach(session => {
+        session.addEventListener('click', () => {
+            const popupId = session.getAttribute('data-popup'); // מזהה ה-popup המתאים
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.style.display = 'block'; // הצגת ה-popup
+                overlay.style.display = 'block'; // הצגת ה-overlay
+            } else {
+                console.error(`Popup with ID '${popupId}' not found.`); // הודעת שגיאה אם ה-popup לא נמצא
+            }
+        });
+    });
+
+     // סגירת ה-popup וה-overlay כאשר לוחצים על כפתור "סגור"
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.parentElement.style.display = 'none'; // הסתרת ה-popup של הכפתור
+            overlay.style.display = 'none'; // הסתרת ה-overlay
+        });
+    });
+
+   // סגירת ה-popup וה-overlay בלחיצה על ה-overlay
+    overlay.addEventListener('click', () => {
+        const popups = document.querySelectorAll('.popup');
+        popups.forEach(popup => {
+            popup.style.display = 'none'; // הסתרת כל ה-popupים
+        });
+        overlay.style.display = 'none'; // הסתרת ה-overlay
+    });
+
 });
