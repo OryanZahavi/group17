@@ -18,7 +18,7 @@ body {
     gap: 20px; /* רווח בין הכותרת לתמונה */
     margin-bottom: 20px; /* רווח מתחת לקונטיינר */
     width: 100%; /* מבטיח שהקונטיינר יתפוס את כל הרוחב */
-   direction: rtl; /* כיוון ימין לשמאל */
+    direction: rtl; /* כיוון ימין לשמאל */
 }
 
 /* עיצוב הכותרת */
@@ -48,6 +48,7 @@ img {
     margin-bottom: 20px;
     direction: rtl; /* כיוון מימין לשמאל */
 }
+
 .grid-container_1 p {
     text-align: right; /* יישור לימין לטקסט */
     margin: 0;
@@ -66,9 +67,9 @@ img {
     color: rosybrown;
 }
 
-    /* עיצוב הכפתורים */
+/* עיצוב הכפתורים */
 
-   span.button {
+span.button {
     grid-column: span 2; /* הכפתורים יתפרסו על שתי העמודות */
     display: flex; /* שימוש ב-flexbox */
     justify-content: left; /* ממרכז את הכפתורים אופקית */
@@ -78,19 +79,19 @@ img {
     width: 25.3%; /* התאמת רוחב הקונטיינר */
 }
 
-    .btn {
-        padding: 10px 20px;
-        font-size: 14px;
-        font-family: Gisha, sans-serif;
-        color: rosybrown;
-        background-color: #eafbea;
-        border: 2px solid rosybrown;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: Gisha, sans-serif;
+    color: rosybrown;
+    background-color: #eafbea;
+    border: 2px solid rosybrown;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    .btn:hover {
-        background-color: #d9b1a2;
-        color: white; /* שינוי צבע הטקסט */
-    }
+.btn:hover {
+    background-color: #d9b1a2;
+    color: white; /* שינוי צבע הטקסט */
+}
