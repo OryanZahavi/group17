@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>New_User_Account</title>
-    <link rel="stylesheet" href="New_Usser_Acount.css">
+    <link rel="stylesheet" href=Account_Details.css>
 </head>
 <body>
 <div class="header-container">
@@ -35,10 +35,23 @@
     <input type="file" name="user_Health">
 </div>
 
-<span class="button">
-    <button class="btn">חזרה למסך הבית</button>
-    <button class="btn">מאשרת רישום</button>
-</span>
-<script src=New_Usser_Acount.js></script>
+<!-- כפתורים למסך הירוק -->
+<div class="green-screen-buttons">
+    <a href="Home_Page.html">
+        <button class="btn">חזרה למסך הבית</button>
+    </a>
+    <button id="submit-button" class="btn">מאשרת פרטים</button>
+</div>
+
+
+<!-- חלון פופ-אפ -->
+<div id="popup" class="popup">
+    <p>השינויים נקלטו בהצלחה!</p>
+    <a href="Home_Page.html">
+        <button class="btn">חזרה לדף הבית</button>
+    </a>
+</div>
+
+<script src=Account_Details.js></script>
 </body>
 </html>
