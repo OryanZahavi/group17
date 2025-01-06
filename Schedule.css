@@ -92,6 +92,11 @@ body {
     text-align: center;
 }
 
+.return-home {
+    text-align: center;
+    margin: 20px 0;
+}
+
 .btn { /* עיצוב כפתור חזרה למסך הבית */
     padding: 10px 20px;
     font-size: 14px;
