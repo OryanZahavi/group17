@@ -32,7 +32,7 @@ body {
     flex-direction: row-reverse; /* סדר מימין לשמאל */
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .dates button {
