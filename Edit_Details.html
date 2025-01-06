@@ -35,10 +35,22 @@
     <input type="file" name="user_Health">
 </div>
 
-<span class="button">
-    <button class="btn">חזרה למסך הבית</button>
-    <button class="btn">מאשרת שינויים</button>
-</span>
-<script src= Edit_Details.js></script>
+<!-- כפתורים למסך הירוק -->
+<div class="green-screen-buttons">
+    <a href="Home_Page.html">
+        <button class="btn">חזרה למסך הבית</button>
+    </a>
+    <button id="submit-button" class="btn">מאשרת שינויים</button>
+</div>
+
+<!-- חלון פופ-אפ -->
+<div id="popup" class="popup">
+    <p>השינויים בוצעו בהצלחה!</p>
+    <a href="Home_Page.html">
+        <button class="btn">חזרה לדף הבית</button>
+    </a>
+</div>
+
+<script src="Edit_Details.js"></script>
 </body>
 </html>
