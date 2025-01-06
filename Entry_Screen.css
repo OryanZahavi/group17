@@ -76,3 +76,20 @@ span.button {
     background-color: #d9b1a2;
     color: white; /* שינוי צבע הטקסט */
 }
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    display: none; /* מוסתר ברירת מחדל */
+    margin-top: 5px;
+}
+a.register-link {
+    font-weight: bold; /* הדגשה */
+    text-decoration: underline; /* קו תחתון */
+    color: rosybrown; /* צבע */
+    cursor: pointer; /* סמן יד */
+}
+
+a.register-link:hover {
+    color: #d9b1a2; /* שינוי צבע בעת ריחוף */
+}
