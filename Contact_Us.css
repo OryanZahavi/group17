@@ -34,6 +34,7 @@ img {
     height: auto;
     display: block;
 }
+
 .grid-container_1 {
     display: flex;
     gap: 20px; /* רווח בין זוגות של תווית ושדה */
@@ -56,6 +57,7 @@ img {
 .grid-container_1 .field-container:nth-child(1) p {
     margin-inside: 10px; /* רווח בין התווית לתיבה */
 }
+
 /* שליטה ברווח בין התווית לתיבה של "שם משפחה" */
 .grid-container_1 .field-container:nth-child(2) {
     display: flex;
@@ -71,6 +73,7 @@ img {
 .grid-container_1 .field-container:nth-child(2) input {
     margin-left: 0px; /* ביטול רווח נוסף משמאל לתיבה */
 }
+
 .grid-container_1 p {
     margin: 0;
     font-size: 18px;
@@ -98,10 +101,7 @@ img {
     max-width: 600px;
     margin: 0 auto;
     direction: rtl;
- }
-
-
-
+}
 
 
 .grid-container_2 p {
