@@ -1,7 +1,39 @@
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
 
-body{
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* שקיפות התחלתית */
+        transform: translateY(-20px); /* זזת מעט למעלה */
+    }
+    to {
+        opacity: 1; /* שקיפות מלאה */
+        transform: translateY(0); /* חזרה למקום המקורי */
+    }
+}
 
+
+body {
     display: flex;
     justify-content: center; /* מרכז אופקית */
     align-items: center; /* מרכז אנכית */
@@ -13,19 +45,23 @@ body{
 
 }
 
-   h1 {
-       text-align: center;
-       background-color: #b6dcb8;
-       color: rosybrown;
-       font-family: "Footlight MT Light";
-   }
+h1 {
 
-   .container{
-       display: flex;
+    text-align: center;
+    background-color: #b6dcb8;
+    color: rosybrown;
+    font-family: Gisha, sans-serif;
+    font-size: 70px;
+    animation: fadeIn 1s ease-in; /* אנימציה עבור הכותרת */
+}
+
+
+.container {
+    display: flex;
     flex-direction: column; /* מסדר את התוכן בעמודה */
     align-items: center; /* מרכז אופקית */
     justify-content: center; /* מרכז אנכית */
-   }
+}
 
 .grid-container {
     display: grid;
@@ -50,6 +86,9 @@ body{
     transition: background-color 0.3s ease;
     position: relative; /* מבטיח שאין בעיות בשכבות */
     z-index: 10; /* מבטיח שהכפתור מעל אלמנטים אחרים */
+    opacity: 0; /* שקיפות התחלתית */
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 .btn:hover {
@@ -57,17 +96,17 @@ body{
     color: white; /* שינוי צבע הטקסט */
 }
 
-.btn:nth-child(1){
-grid-column: 1/2;
-    grid-row: 1/2;
-}
-.btn:nth-child(2){
-grid-column: 2/3;
-    grid-row: 1/2;
+
+.btn:nth-child(1) {
+    animation-name: slideInFromLeft;
+    animation-delay: 0s;
 }
 
+
 .btn:nth-child(5) {
-  grid-column: 1 / span 2; /* הכפתור מתפרס על שתי העמודות */
+    animation-name: slideInFromRight;
+    animation-delay: 0s; /* עיכוב נוסף */
+    grid-column: 1 / span 2; /* הכפתור מתפרס על שתי העמודות */
     justify-self: center; /* ממקם את הכפתור במרכז אופקית */
 
 }
