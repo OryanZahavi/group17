@@ -1,11 +1,9 @@
 /* עיצוב כללי */
 body {
-    margin: 0;
     font-family: Gisha, sans-serif;
     background-color: #b6dcb8;
     color: rosybrown;
     text-align: center;
-
 }
 
 /* כותרת ולוגו */
@@ -13,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
+    margin: 5px ;
 }
 
 .header img {
@@ -22,8 +20,7 @@ body {
 }
 
 .header h1 {
-    font-size: 2rem;
-    margin: 10px 0;
+    margin: 10px;
 }
 
 /* כפתורי התאריכים */
@@ -32,8 +29,7 @@ body {
     flex-direction: row-reverse; /* סדר מימין לשמאל */
     justify-content: center;
     gap: 10px;
-    margin-bottom: 5px;
-}
+   }
 
 .dates button {
     padding: 10px 15px;
@@ -47,7 +43,7 @@ body {
 }
 
 .dates button.active {
-    background-color: rosybrown; /* הדגשה ליום ראשון */
+    background-color: rosybrown; /* הדגשה ליום הנוכחי */
     color: #fff;
 }
 
@@ -61,8 +57,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 0px;
 }
 
 .schedule .session {
@@ -71,7 +67,7 @@ body {
     justify-content: space-between; /* מסדר את התוכן */
     width: 90%;
     max-width: 500px;
-    padding: 10px;
+    padding: 5px;
     border: 2px solid rosybrown;
     border-radius: 10px;
     background-color: #eafbea;
@@ -145,8 +141,8 @@ body {
 
 /* כיתוב תחתון */
 .footer {
-    margin-top: 5px;
-    font-size: 25px;
+    margin-top: 0px;
+    font-size: 15px;
     color: #393434;
 }
 
