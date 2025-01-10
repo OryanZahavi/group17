@@ -17,41 +17,51 @@ document.addEventListener("DOMContentLoaded", function () {
         let isValid = true;
 
         // אימות שם פרטי
+        const firstNameInput = document.getElementById('firstName');
+
+        // אימות שם פרטי
         if (!formInputs.firstName.value.trim()) {
-            alert("יש להזין שם פרטי.");
+            formInputs.firstName.classList.add('error');
             isValid = false;
+        } else {
+            formInputs.firstName.classList.remove('error');
         }
 
-        // אימות שם משפחה
-        if (!formInputs.lastName.value.trim()) {
-            alert("יש להזין שם משפחה.");
-            isValid = false;
-        }
-
-        // אימות תאריך לידה
-        if (!formInputs.birthDate.value) {
-            alert("יש להזין תאריך לידה.");
-            isValid = false;
-        }
-
-        // אימות מייל
-        if (!validateEmail(formInputs.email.value)) {
-            alert("נא להכניס כתובת מייל תקינה.");
-            isValid = false;
-        }
-
-        // אימות מספר פלאפון
-        if (!validatePhone(formInputs.phone.value)) {
-            alert("נא להכניס מספר פלאפון תקין.");
-            isValid = false;
-        }
-
-        // אימות סיסמה
-        const passwordValidationResult = validatePassword(formInputs.password.value);
-        if (!passwordValidationResult.valid) {
-            alert(passwordValidationResult.errorMessage);
-            isValid = false;
-        }
+        //
+        // // אימות שם משפחה
+        // if (!formInputs.lastName.value.trim()) {
+        //     alert("יש להזין שם משפחה.");
+        //     isValid = false;
+        // }
+        //
+        // // אימות תאריך לידה
+        // if (!formInputs.birthDate.value) {
+        //     alert("יש להזין תאריך לידה.");
+        //     isValid = false;
+        // } else if (!validateAge(formInputs.birthDate.value)){
+        //     alert("מצטערים, ההצטרפות הינה מגיל 18 ומעלה.");
+        //     isValid = false;
+        // }
+        //
+        //
+        // // אימות מייל
+        // if (!validateEmail(formInputs.email.value)) {
+        //     alert("נא להכניס כתובת מייל תקינה.");
+        //     isValid = false;
+        // }
+        //
+        // // אימות מספר פלאפון
+        // if (!validatePhone(formInputs.phone.value)) {
+        //     alert("נא להכניס מספר פלאפון תקין.");
+        //     isValid = false;
+        // }
+        //
+        // // אימות סיסמה
+        // const passwordValidationResult = validatePassword(formInputs.password.value);
+        // if (!passwordValidationResult.valid) {
+        //     alert(passwordValidationResult.errorMessage);
+        //     isValid = false;
+        // }
 
         // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
@@ -67,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // פונקציה לאימות פלאפון
     function validatePhone(phone) {
-        const re = /^[0-9]{10}$/; // 10 ספרות בלבד
+        const re = /^0[0-9]{9}$/; // חייב להתחיל באפס ואחריו 9 ספרות
         return re.test(phone);
     }
 
@@ -88,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return { valid: true, errorMessage: "" };
     }
 
-    // פונקציה לאימות גיל (מעל 18)
+//    פונקציה לאימות גיל (מעל 18)
     function validateAge(birthDate) {
         const today = new Date();
         const birthDateObj = new Date(birthDate);
@@ -101,4 +111,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return age >= 18;
     }
+    // function validateAge(birthDate) {
+    // const today = new Date();
+    // const birthDateObj = new Date(birthDate);
+    //
+    // // בדיקת תאריך תקין
+    // if (isNaN(birthDateObj.getTime())) {
+    //     throw new Error("Invalid date format. Please use YYYY-MM-DD.");
+    // }
+    //
+    // const age = today.getFullYear() - birthDateObj.getFullYear();
+    // const monthDifference = today.getMonth() - birthDateObj.getMonth();
+    //
+    // // בודק אם היום בשנה לפני תאריך הלידה
+    // if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDateObj.getDate())) {
+    //     return age - 1 >= 18; // פחות מגיל 18
+    // }
+    // return age >= 18;
+    // }
+
 });
