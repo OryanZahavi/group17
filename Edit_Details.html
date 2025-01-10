@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Edit_Details</title>
     <link rel="stylesheet" href=Account_Details.css>
+    <script src="Account_Details.js"></script>
 </head>
 <body>
 <div class="header-container">
@@ -14,25 +15,27 @@
 
 <div class="grid-container_1">
     <p>שם פרטי</p>
-    <input type="text" name="user_FirstName">
+    <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזן שם פרטי">
 
     <p>שם משפחה</p>
-    <input type="text" name="user_LastName">
+    <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזן שם משפחה">
 
     <p>תאריך לידה</p>
-    <input type="date" name="user_Date">
+    <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזן תאריך">
 
     <p>דואר אלקטרוני</p>
-    <input type="text" name="user_Email">
+    <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזן דואל תקין">
 
     <p>מס' פלאפון</p>
-    <input type="number" name="user_Phone">
+    <input type="number" id="phone" name="user_Phone" class="input-field" placeholder="הזן מספר פלאפון תקין">
 
     <p>סיסמה</p>
-    <input type="password" name="user_Password" placeholder="הכניסי סיסמה חדשה">
+    <input type="password" id="password" name="user_Password" class="input-field" placeholder="הכניסי סיסמה חדשה על פי הנהלים">
 
     <p>טופס הצהרת בריאות</p>
-    <input type="file" name="user_Health">
+
+    <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזן שם פרטי">
+
 </div>
 
 <!-- כפתורים למסך הירוק -->
@@ -50,7 +53,5 @@
         <button class="btn">חזרה לדף הבית</button>
     </a>
 </div>
-
-<script src="Account_Details.js"></script>
 </body>
 </html>
