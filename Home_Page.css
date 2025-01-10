@@ -99,14 +99,11 @@ h1 {
 
 .btn:nth-child(1) {
     animation-name: slideInFromLeft;
-    animation-delay: 0s;
 }
 
 
 .btn:nth-child(5) {
     animation-name: slideInFromRight;
-    animation-delay: 0s; /* עיכוב נוסף */
-    grid-column: 1 / span 2; /* הכפתור מתפרס על שתי העמודות */
-    justify-self: center; /* ממקם את הכפתור במרכז אופקית */
-
+    grid-column: 1/2; /* הכפתור מתפרס על שתי העמודות */
+    justify-self: center; /* ממקם את הכפתור במרכז  */
 }
