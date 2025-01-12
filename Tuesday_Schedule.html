@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuesday_Schedule</title>
     <link rel="stylesheet" href="Schedule.css">
+    <script src=Schedule.js></script>
+
 
 </head>
 <body>
@@ -21,7 +23,7 @@
         <button id='3'></button>
     </a>
     <a href="Tuesday_Schedule.html">
-        <button id='2'></button>
+        <button id='2' class="active"></button>
     </a>
     <a href="Monday_Schedule.html">
         <button id='1'></button>
@@ -62,8 +64,6 @@
     </button>
 </div>
 
-
-
 <!-- חלון פופ-אפ -->
 <div id="popup" class="popup">
     <h2>פרטי שיעור</h2>
@@ -79,7 +79,7 @@
     <a href="Home_Page.html">
         <button class="popup-btn">חזרי למסך הבית</button>
     </a>
-    <a href=Tuesday_Schedule.html>
+    <a href="Sunday_Schedule.html">
         <button class="popup-btn">חזרי ללוח השיעורים</button>
     </a>
 </div>
@@ -91,7 +91,7 @@
     <a href="Home_Page.html">
         <button class="popup-btn">חזרי למסך הבית</button>
     </a>
-    <a href=Tuesday_Schedule.html>
+    <a href="Sunday_Schedule.html">
         <button class="popup-btn">חזרי ללוח השיעורים</button>
     </a>
 </div>
@@ -101,10 +101,11 @@
     <a href="Home_Page.html">
         <button class="popup-btn">חזרי למסך הבית</button>
     </a>
-    <a href=Tuesday_Schedule.html>
+    <a href="Sunday_Schedule.html">
         <button class="popup-btn">חזרי ללוח השיעורים</button>
     </a>
 </div>
+
 
 <!-- כפתור חזרה למסך הבית -->
 <div class="return-home">
@@ -113,8 +114,14 @@
     </a>
 </div>
 
+<div id="cancel-popup" class="popup hidden">
+    <h2>ביטול הרשמה</h2>
+    <p id="cancel-timer"></p>
+    <p id="cancel-warning">זמן הביטול המינימלי עבר, אם תבטלי עכשיו תאלצי לשלם.</p>
+    <button id="confirm-cancel-btn" class="popup-btn">ביטול ההרשמה שלי</button>
+    <button id="close-cancel-popup" class="popup-btn">סגור</button>
+</div>
+
 <div class="overlay"></div>
-<script src=Tuesday_Schedule.js></script>
 </body>
 </html>
-
