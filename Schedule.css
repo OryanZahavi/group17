@@ -243,7 +243,14 @@ body {
 #cancel-warning {
     color: red;
     font-weight: bold;
+    display: none;
+}
+#cancel-warning.visible {
+    display: inline; /* Show the warning when this class is added */
 }
 
+#cancel-warning.hidden {
+    display: none; /* Hide the warning when this class is added */
+}
 
 

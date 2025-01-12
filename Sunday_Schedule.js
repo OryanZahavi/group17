@@ -44,13 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             button.innerHTML = `${formattedDate}<br>${days[index]}`;
             button.dataset.date = reversedWeekDates[index].toISOString().split('T')[0]; // שמירת תאריך כ-ID
-
-            // הדגשה ליום ראשון
-            if (days[index] === 'ראשון') {
-                button.classList.add('active'); // הוספת מחלקה ליום ראשון
-            } else {
-                button.classList.remove('active'); // הסרת מחלקה מימים אחרים
-            }
         });
 
     }
@@ -118,21 +111,6 @@ function generateDateFromAttributes(element) {
 
     // לחיצה על כפתור הרשמה
     registerBtn.addEventListener('click', () => {
-        const spotsText = selectedSession.querySelector('.spots');
-        const [current, max] = spotsText.textContent.split('/').map(Number);
-
-        // תיקון התנאי להרשמה
-        if (current < max) {
-            spotsText.textContent = `${current + 1}/${max} רשומות`;
-            alert('הרשמתך לשיעור אושרה!');
-            closePopupHandler();
-        } else {
-            alert('לא ניתן להירשם, השיעור מלא.');
-        }
-    });
-
-    // לחיצה על כפתור הרשמה
-    registerBtn.addEventListener('click', () => {
         if (!selectedSession) return; // וודא שנבחר שיעור
 
         const spotsText = selectedSession.querySelector('.spots');
@@ -167,18 +145,26 @@ function generateDateFromAttributes(element) {
         button.addEventListener('click', () => {
             const sessionDate = generateDateFromAttributes(button);
             const now = new Date();
+            const spotsText = button.querySelector('.spots');
+            const current = parseInt(spotsText.textContent.split('/')[0], 10); // מספר הרשומות הנוכחי
+
             selectedSession = button; // שמירת השיעור שנבחר
+            popupContent.innerText = button.dataset.popup;
+            registerBtn.style.display = 'block';
+            waitlistBtn.style.display = 'block';
+            cancelBtn.style.display = 'block';
 
             if (sessionDate < now) {
                 popupContent.innerText = 'זמן השיעור עבר.';
                 registerBtn.style.display = 'none';
+                waitlistBtn.style.display = 'none';
                 cancelBtn.style.display = 'none';
+            }
+
+            if (current < 10) { // אם יש פחות מ-10 משתתפות
                 waitlistBtn.style.display = 'none';
             } else {
-                popupContent.innerText = button.dataset.popup;
-                registerBtn.style.display = 'block';
-                waitlistBtn.style.display = 'block';
-                cancelBtn.style.display = 'block';
+                registerBtn.style.display = 'none';
             }
 
             popup.style.display = 'block';
@@ -200,8 +186,6 @@ function generateDateFromAttributes(element) {
         }
 // סגירת הפופ-אפ הקודם
         closePopupHandler();
-
-
         // הצגת פופ-אפ ביטול הרשמה
         cancelPopup.style.display = 'block';
         overlay.style.display = 'block';
@@ -232,12 +216,14 @@ function generateDateFromAttributes(element) {
 
         cancelTimer.innerText = `נותרו ${hours} שעות, ${minutes} דקות, ו-${seconds} שניות לשיעור.`;
 
-        // הצגת אזהרה אם נותרו פחות מ-7 שעות
-        if (hours > 7) {
-            cancelWarning.classList.remove('hidden'); // הצגת ההודעה
-        } else {
-            cancelWarning.classList.add('hidden'); // הסתרת ההודעה
-        }
+    if (hours > 7) {
+        cancelWarning.classList.remove('visible'); // Ensure it's not visible
+        cancelWarning.classList.add('hidden');    // Explicitly hide the warning
+    } else {
+        cancelWarning.classList.remove('hidden'); // Ensure it's not hidden
+        cancelWarning.classList.add('visible');   // Explicitly show the warning
+    }
+
     }
 
     // לחיצה על כפתור "סגור" בפופ-אפ ביטול הרשמה
