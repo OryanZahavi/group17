@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const submitButton = document.getElementById("submit-button");
-    const popup = document.getElementById("popup");
+    // Regular expression to allow only English letters
+    const englishNamePattern = /^[A-Za-z\s]+$/;
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל
@@ -18,26 +19,50 @@ document.addEventListener("DOMContentLoaded", function () {
         // אימות שם פרטי
         const firstNameInput = document.getElementById("firstName");
         const firstNameError = document.getElementById("firstNameError");
+
+        // Regular expression to allow only English letters
+
         if (!firstNameInput.value.trim()) {
+            // Case: Input is empty
+            firstNameError.textContent = "יש להזין שם פרטי.";
+            firstNameError.classList.add("visible"); // Show the error message
+            firstNameInput.classList.add("error"); // Add error style to input
+            isValid = false;
+        } else if (!englishNamePattern.test(firstNameInput.value.trim())) {
+            // Case: Invalid characters (not only English letters)
+            firstNameError.textContent = "שם פרטי חייב להכיל אותיות באנגלית בלבד.";
             firstNameError.classList.add("visible"); // Show the error message
             firstNameInput.classList.add("error"); // Add error style to input
             isValid = false;
         } else {
+            // Case: Valid input
             firstNameError.classList.remove("visible"); // Hide the error message
             firstNameInput.classList.remove("error"); // Remove error style
         }
-
         // אימות שם משפחה
         const lastNameInput = document.getElementById("lastName");
         const lastNameError = document.getElementById("lastNameError");
+
+
+
         if (!lastNameInput.value.trim()) {
+            // Case: Input is empty
+            lastNameError.textContent = "יש להזין שם משפחה.";
+            lastNameError.classList.add("visible"); // Show the error message
+            lastNameInput.classList.add("error"); // Add error style to input
+            isValid = false;
+        } else if (!englishNamePattern.test(lastNameInput.value.trim())) {
+            // Case: Invalid characters (not only English letters)
+            lastNameError.textContent = "שם משפחה חייב להכיל אותיות באנגלית בלבד.";
             lastNameError.classList.add("visible"); // Show the error message
             lastNameInput.classList.add("error"); // Add error style to input
             isValid = false;
         } else {
+            // Case: Valid input
             lastNameError.classList.remove("visible"); // Hide the error message
             lastNameInput.classList.remove("error"); // Remove error style
-        }
+}
+
 
 
          // אימות תאריך לידה
