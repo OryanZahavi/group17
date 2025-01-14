@@ -35,33 +35,32 @@
 </div>
 
 <div class="schedule">
-    <button class="session" id="2025-01-05T07:00" data-popup="יוגה אשטנגה - מתחילות שעה 7:00">
+    <button class="session" data-time="07:00" data-day-offset="3" data-popup="יוגה אשטנגה - מתחילות שעה 7:00">
         <p class="time">07:00</p>
         <p class="details">יוגה אשטנגה - מתחילות</p>
         <p class="spots">7/10 רשומות</p>
     </button>
-    <button class="session" id="2025-01-05T08:00" data-popup="יוגה אשטנגה - מתקדמות שעה 8:00">
+    <button class="session" data-time="08:00" data-day-offset="0" data-popup="יוגה אשטנגה - מתקדמות שעה 8:00">
         <p class="time">08:00</p>
         <p class="details">יוגה אשטנגה - מתקדמות</p>
         <p class="spots">3/10 רשומות</p>
     </button>
-        <button class="session" id="2025-01-05T18:00" data-popup="יוגה אשטנגה - מתקדמות שעה 18:00">
+    <button class="session" data-time="18:00" data-day-offset="0" data-popup="יוגה אשטנגה - מתקדמות שעה 18:00">
         <p class="time">18:00</p>
         <p class="details">יוגה אשטנגה - מתקדמות</p>
         <p class="spots">10/10 רשומות</p>
     </button>
-    <button class="session" id="2025-01-05T19:00" data-popup="Power yoga שעה 19:00">
+    <button class="session" data-time="19:00" data-day-offset="0" data-popup="Power yoga שעה 19:00">
         <p class="time">19:00</p>
         <p class="details">Power yoga</p>
         <p class="spots">9/10 רשומות</p>
     </button>
-    <button class="session" id="2025-01-05T20:00" data-popup="יוגה ויניאסה - כל הרמות שעה 20:00">
+    <button class="session" data-time="20:00" data-day-offset="2" data-popup="יוגה ויניאסה - כל הרמות שעה 20:00">
         <p class="time">20:00</p>
         <p class="details">יוגה ויניאסה - כל הרמות</p>
         <p class="spots">5/10 רשומות</p>
     </button>
 </div>
-
 <!-- חלון פופ-אפ -->
 <div id="popup" class="popup">
     <h2>פרטי שיעור</h2>
@@ -104,6 +103,7 @@
     </a>
 </div>
 
+
 <!-- כפתור חזרה למסך הבית -->
 <div class="return-home">
     <a href="Home_Page.html">
@@ -111,8 +111,16 @@
     </a>
 </div>
 
+<div id="cancel-popup" class="popup hidden">
+    <h2>ביטול הרשמה</h2>
+    <p id="cancel-timer"></p>
+    <p id="cancel-warning" class="hidden">זמן הביטול המינימלי עבר, אם תבטלי עכשיו תאלצי לשלם.</p>
+    <button id="confirm-cancel-btn" class="popup-btn">ביטול ההרשמה שלי</button>
+    <button id="close-cancel-popup" class="popup-btn">סגור</button>
+</div>
+
 <div class="overlay"></div>
-<script src="Sunday_Schedule.js"></script>
+<script src=Sunday_Schedule.js></script>
 </body>
 </html>
 
