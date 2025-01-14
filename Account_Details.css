@@ -37,13 +37,14 @@ img {
 /* קונטיינר הטופס */
 .grid-container_1 {
     display: grid;
-    grid-template-columns: 1fr 2fr 3fr;
-    gap: 10px 20px;
+    grid-template-columns: 2fr 2fr 3fr;
+    gap: 10px 50px;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 800px;
     margin-bottom: 20px;
     direction: rtl;
+    box-sizing: border-box;
 }
 
 .grid-container_1 p {
@@ -128,30 +129,19 @@ img {
     background-color: #d9b1a2;
 }
 
-.error {
-    border: 1px solid red;
+.error-message {
+    color: red;
+    visibility: hidden; /* Reserve space for the error message */
+    margin-left: 14px; /* Add spacing between input and error message */
+    font-size: 0.9em; /* Slightly smaller text */
+    white-space: nowrap; /* Prevent line breaks in the error message */
 }
 
-.input-field.get::placeholder {
-  color: #999;
-    opacity: 100;
-
+.error-message.visible {
+    visibility: visible;
 }
 
-.input-field::placeholder {
-  color: #999;
-    opacity: 0;
-
-}
-
-.input-field.error::placeholder {
-  color: red;
-    opacity: 100;
-
-}
-
-.input-field.errorMessage::placeholder {
-  color: red;
-    opacity: 100;
-
+input.error {
+    border-color: red;
+    outline: none;
 }
