@@ -13,22 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל
-
         let isValid = true;
 
         // אימות שם פרטי
-        //const firstNameInput = document.getElementById('firstName');
-        //
-        //        // אימות שם פרטי
-        //        if (!formInputs.firstName.value.trim()) {
-        //            formInputs.firstName.classList.add('error');
-        //            isValid = false;
-        //        } else {
-        //            formInputs.firstName.classList.remove('error');
-        //        }
-
-        //
-        // אימות שם משפחה
         const firstNameInput = document.getElementById("firstName");
         const firstNameError = document.getElementById("firstNameError");
         if (!firstNameInput.value.trim()) {
@@ -79,15 +66,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailInput = document.getElementById("email");
         const emailError = document.getElementById("emailError");
         const emailValue = emailInput.value.trim();
+
+        // Detect language or define it (e.g., from user settings or page attribute)
+        const language = document.documentElement.lang || "he"; // Default to Hebrew
+
         if (!emailValue) {
             // Case: No input
-            emailError.textContent = "יש להזין כתובת דוא\"ל.";
+            emailError.textContent = language === "en"
+                ? "Please enter an email address."
+                : "יש להזין כתובת דוא\"ל.";
             emailError.classList.add("visible");
             emailInput.classList.add("error");
             isValid = false;
         } else if (!isValidEmail(emailValue)) {
             // Case: Invalid email
-            emailError.textContent = "כתובת הדוא\"ל אינה תקינה.";
+            emailError.textContent = language === "en"
+                ? "The email address is invalid."
+                : "כתובת הדוא\"ל אינה תקינה.";
             emailError.classList.add("visible");
             emailInput.classList.add("error");
             isValid = false;
@@ -141,23 +136,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         //אימות קובץ
-//        const fileInput = document.getElementById("Hfile");
-//        const fileError = document.getElementById("fileError");
-//        let isValid = true;
-//
-//        fileInput.addEventListener("change", function() {
-//            fileError.textContent = ""; // Clear previous error message
-//            fileInput.classList.remove("error"); // Remove previous error styling
-//
-//            if (!fileInput.files || fileInput.files.length === 0) {
-//                fileError.textContent = "יש לבחור קובץ.";
-//                fileError.classList.add("visible");
-//                fileInput.classList.add("error");
-//                isValid = false;
-//            } else {
-//                // Additional validations can be added here if needed
-//            }
-//        });
+        // File input verification
+        const fileInput = document.getElementById("Hfile");
+        const fileError = document.getElementById("fileError");
+        const allowedExtensions = ["pdf", "jpeg", "jpg"];
+
+        if (fileInput.files.length === 0) {
+            // Case: No file selected
+            fileError.textContent = "יש להעלות קובץ.";
+            fileError.classList.add("visible");
+            fileInput.classList.add("error");
+            isValid = false;
+        } else {
+            const fileName = fileInput.files[0].name;
+            const fileExtension = fileName.split(".").pop().toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                // Case: Invalid file type
+                fileError.textContent = "יש להעלות קובץ בפורמט PDF או JPEG בלבד.";
+                fileError.classList.add("visible");
+                fileInput.classList.add("error");
+                isValid = false;
+            } else {
+                // File is valid
+                fileError.classList.remove("visible");
+                fileInput.classList.remove("error");
+            }
+        }
+
 
         // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
