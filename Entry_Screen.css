@@ -79,10 +79,21 @@ span.button {
 
 .error-message {
     color: red;
-    font-size: 0.8rem;
-    display: none; /* מוסתר ברירת מחדל */
-    margin-top: 5px;
+    visibility: hidden; /* Reserve space for the error message */
+    margin-left: 14px; /* Add spacing between input and error message */
+    font-size: 0.9em; /* Slightly smaller text */
+    white-space: nowrap; /* Prevent line breaks in the error message */
 }
+
+.error-message.visible {
+    visibility: visible;
+}
+
+input.error {
+    border-color: red;
+    outline: none;
+}
+
 a.register-link {
     font-weight: bold; /* הדגשה */
     text-decoration: underline; /* קו תחתון */
