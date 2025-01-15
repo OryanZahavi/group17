@@ -91,43 +91,7 @@ img {
     color: white;
 }
 
-/* עיצוב חלון פופ-אפ */
-.popup {
-    display: none; /* מוסתר כברירת מחדל */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 2px solid rosybrown;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    z-index: 1000;
-}
 
-.popup p {
-    font-size: 1.2rem;
-    color: rosybrown;
-    margin-bottom: 15px;
-}
-
-.popup .btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: white;
-    background-color: rosybrown;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-.popup .btn:hover {
-    background-color: #d9b1a2;
-}
 
 .error-message {
     color: red;
