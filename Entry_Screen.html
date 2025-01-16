@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Entry_Screen</title>
+<!--    <link rel="stylesheet" href=Account_Details.css>-->
+<!--    <script src=Account_Details.js></script>-->
     <link rel="stylesheet" href="Entry_Screen.css">
     <script src=Entry_Screen.js></script>
 </head>
@@ -11,19 +13,20 @@
 <img src=Company_Logo.jpeg alt="CompanyLogo" width="100">
 
 <div class="grid_Container_1">
+
     <p>דואר אלקטרוני</p>
-    <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">
+    <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני">
     <span id="emailError" class="error-message"></span>
 
     <p>סיסמה</p>
-    <input type="password" id="password" name="user_Password" class="input-field" placeholder=" הזיני סיסמה ">
+    <input type="password" id="password" name="user_Password" class="input-field" placeholder="הזיני סיסמה">
     <span id="passwordError" class="error-message"></span>
 
     <p>משתמשת חדשה? ניתן להירשם <a href=New_Usser_Acount.html class="register-link">כאן</a></p>
 </div>
 
 <span class="button">
-    <button class="btn">כניסה</button>
+    <button id="submit-button" class="btn">כניסה</button>
 </span>
 
 </body>
