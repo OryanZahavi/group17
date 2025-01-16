@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+    //---------------------סידור הכפתורים של ימות השבוע+ עדכון שלהם בכל יום חמישי ב 22:00 --------------------
+
     const days = ['חמישי', 'רביעי', 'שלישי', 'שני', 'ראשון']; // ימות השבוע בעברית
 
     function calculateWeekStart() {
@@ -12,10 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // חישוב יום ראשון הקרוב
         const firstDayOfWeek = new Date(now);
-        firstDayOfWeek.setDate(firstDayOfWeek.getDate() - currentDay + 0); // יום ראשון הקרוב
+        firstDayOfWeek.setDate(firstDayOfWeek.getDate() - currentDay); // יום ראשון הקרוב
         return firstDayOfWeek;
     }
 
+    // מעדכן את התאריכים
     function updateDates() {
         const weekStart = calculateWeekStart();
 
@@ -26,19 +30,20 @@ document.addEventListener("DOMContentLoaded", function () {
             date.setDate(weekStart.getDate() + i);
             weekDates.push(date);
         }
+
         // הופכים את סדר הימים כדי להתאים לסדר מימין לשמאל
         const reversedWeekDates = weekDates.reverse();
+
         // מעדכנים את הכפתורים
         const buttons = document.querySelectorAll('.dates button');
         buttons.forEach((button, index) => {
-            const formattedDate = weekDates[index].toLocaleDateString('he-IL', {
+            const formattedDate = reversedWeekDates[index].toLocaleDateString('he-IL', {
                 day: '2-digit',
                 month: '2-digit',
             });
 
             button.innerHTML = `${formattedDate}<br>${days[index]}`;
-            button.dataset.date = weekDates[index].toISOString().split('T')[0]; // שמירת תאריך כ-ID
-
+            button.dataset.date = reversedWeekDates[index].toISOString().split('T')[0]; // שמירת תאריך כ-ID
 
             // הדגשה ליום שלישי
             if (days[index] === 'שלישי') {
@@ -48,155 +53,219 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-
     }
 
-    // עדכון תאריכים בהתחלה
-    updateDates();
+    updateDates();// עדכון הימים
 
-    // קישור הפופאפ
-    const sessions = document.querySelectorAll('.session');
-    const overlay = document.querySelector('.overlay');
+
+//---------------------חישוב נקודת הזמן של כל שיעור --------------------
+
+
+// פונקציה ליצירת תאריך מהמאפיינים data-day-offset ו-data-time
+function generateDateFromAttributes(element) {
+    if (!element || !element.dataset.time || !element.dataset.dayOffset) {
+        console.error("Missing dataset attributes for element:", element);
+        return null;
+    }
+
+    const weekStart = calculateWeekStart();
+    const dayOffset = Number(element.dataset.dayOffset);
+    const time = element.dataset.time.trim(); // לנקות רווחים
+
+    if (!/^\d{2}:\d{2}$/.test(time)) {
+        console.error("Invalid time format in data-time attribute:", time);
+        return null;
+    }
+
+    const [hour, minute] = time.split(':').map(Number);
+    const sessionDate = new Date(weekStart);
+    sessionDate.setDate(sessionDate.getDate() + dayOffset);
+    sessionDate.setHours(hour, minute, 0, 0);
+
+    if (isNaN(sessionDate.getTime())) {
+        console.error("Invalid sessionDate generated:", sessionDate);
+        return null;
+    }
+
+    return sessionDate;
+}
+    const scheduleButtons = document.querySelectorAll('.schedule .session');
     const popup = document.getElementById('popup');
+    const overlay = document.querySelector('.overlay');
     const popupContent = document.getElementById('popup-content');
-    const cancelResultPopup = document.getElementById('cancel-result-popup');
-    const finalResultPopup = document.getElementById('final-result-popup');
-    const cancelResultMessage = document.getElementById('cancel-result-message');
-    const finalCancelBtn = document.getElementById('final-cancel-btn');
+    const registerBtn = document.getElementById('register-btn');
+    const waitlistBtn = document.getElementById('waitlist-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const closePopup = document.getElementById('close-popup');
+    const cancelPopup = document.getElementById('cancel-popup');
+    const cancelTimer = document.getElementById('cancel-timer');
+    const cancelWarning = document.getElementById('cancel-warning');
+    const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+    const closeCancelPopup = document.getElementById('close-cancel-popup');
+    let cancelInterval; // טיימר לספירה לאחור
 
-    sessions.forEach(session => {
-        session.addEventListener('click', () => {
-            const popupId = session.getAttribute('data-popup');
-            popupContent.textContent = popupId;
+
+    let selectedSession; // משתנה לאחסון השיעור הנבחר
+
+    // סגירת הפופ-אפ
+    overlay.addEventListener('click', closePopupHandler);
+    closePopup.addEventListener('click', closePopupHandler);
+
+    function closePopupHandler() {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+
+    // לחיצה על כפתור הרשמה
+    registerBtn.addEventListener('click', () => {
+        const spotsText = selectedSession.querySelector('.spots');
+        const [current, max] = spotsText.textContent.split('/').map(Number);
+
+        // תיקון התנאי להרשמה
+        if (current < max) {
+            spotsText.textContent = `${current + 1}/${max} רשומות`;
+            alert('הרשמתך לשיעור אושרה!');
+            closePopupHandler();
+        } else {
+            alert('לא ניתן להירשם, השיעור מלא.');
+        }
+    });
+
+    // לחיצה על כפתור הרשמה
+    registerBtn.addEventListener('click', () => {
+        if (!selectedSession) return; // וודא שנבחר שיעור
+
+        const spotsText = selectedSession.querySelector('.spots');
+        const current = parseInt(spotsText.textContent.split('/')[0], 10); // מספר הרשומות הנוכחי
+
+        if (current < 10) { // אם יש פחות מ-10 משתתפות
+            spotsText.textContent = `${current + 1}/10 רשומות`;
+            alert('הרשמתך לשיעור אושרה!');
+            closePopupHandler();
+        } else {
+            alert('לא ניתן להירשם, השיעור מלא.');
+        }
+    });
+
+    // לחיצה על כפתור כניסה לרשימת המתנה
+    waitlistBtn.addEventListener('click', () => {
+        if (!selectedSession) return; // וודא שנבחר שיעור
+
+        const spotsText = selectedSession.querySelector('.spots');
+        const current = parseInt(spotsText.textContent.split('/')[0], 10); // מספר הרשומות הנוכחי
+
+        if (current >= 10) { // אם השיעור מלא
+            alert('נוספת בהצלחה לרשימת ההמתנה!');
+            closePopupHandler();
+        } else {
+            alert('יש מקומות פנויים, אנא הירשם לשיעור במקום.');
+        }
+    });
+
+    // לחיצה על שיעור בלוח השיעורים
+    scheduleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const sessionDate = generateDateFromAttributes(button);
+            const now = new Date();
+            selectedSession = button; // שמירת השיעור שנבחר
+
+            if (sessionDate < now) {
+                popupContent.innerText = 'זמן השיעור עבר.';
+                registerBtn.style.display = 'none';
+                cancelBtn.style.display = 'none';
+                waitlistBtn.style.display = 'none';
+            } else {
+                popupContent.innerText = button.dataset.popup;
+                registerBtn.style.display = 'block';
+                waitlistBtn.style.display = 'block';
+                cancelBtn.style.display = 'block';
+            }
+
             popup.style.display = 'block';
             overlay.style.display = 'block';
         });
     });
 
-    // טיפול בביטול הרשמה
-    document.getElementById('cancel-btn').addEventListener('click', () => {
-        const sessionId = popupContent.textContent.match(/שעה (\d+:\d+)/)[1];
-        const sessionDate = new Date(`2025-01-05T${sessionId}`);
-        const now = new Date();
-        const hoursUntilSession = (sessionDate - now) / (1000 * 60 * 60);
+    // לחיצה על כפתור ביטול הרשמה
+    cancelBtn.addEventListener('click', () => {
+        if (!selectedSession) return;
 
-        if (hoursUntilSession < 7) {
-            cancelResultMessage.textContent = "זמן הביטול כבר עבר, אם תבטלי עכשיו תאלצי לשלם.";
-        } else {
-            const hoursRemaining = Math.floor(hoursUntilSession - 7);
-            const minutesRemaining = Math.round((hoursUntilSession - 7 - hoursRemaining) * 60);
-            cancelResultMessage.textContent = `נותרו ${hoursRemaining} שעות ו-${minutesRemaining} דקות לביטול השיעור, אחרת תאלצי לשלם.`;
+        const sessionDate = generateDateFromAttributes(selectedSession);
+        const now = new Date();
+        const timeDifference = sessionDate - now; // חישוב ההבדל בזמן (מילישניות)
+
+        if (timeDifference <= 0) {
+            alert('לא ניתן לבטל, זמן השיעור עבר.');
+            return;
+        }
+// סגירת הפופ-אפ הקודם
+        closePopupHandler();
+
+
+        // הצגת פופ-אפ ביטול הרשמה
+        cancelPopup.style.display = 'block';
+        overlay.style.display = 'block';
+
+        // עדכון טיימר
+        updateCancelTimer(sessionDate);
+
+        // הפעלת טיימר שמעדכן כל שנייה
+        cancelInterval = setInterval(() => {
+            updateCancelTimer(sessionDate);
+        }, 1000);
+    });
+
+    // עדכון טיימר בפופ-אפ
+    function updateCancelTimer(sessionDate) {
+        const now = new Date();
+        const timeDifference = sessionDate - now; // חישוב ההבדל בזמן (מילישניות)
+
+        if (timeDifference <= 0) {
+            clearInterval(cancelInterval); // עצירת הטיימר
+            cancelTimer.innerText = "זמן השיעור עבר.";
+            return;
         }
 
-        cancelResultPopup.style.display = 'block';
-        popup.style.display = 'none';
-    });
+        const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    finalCancelBtn.addEventListener('click', () => {
-        cancelResultPopup.style.display = 'none';
-        finalResultPopup.style.display = 'block';
-    });
+        cancelTimer.innerText = `נותרו ${hours} שעות, ${minutes} דקות, ו-${seconds} שניות לשיעור.`;
 
-    overlay.addEventListener('click', () => {
-        popup.style.display = 'none';
-        cancelResultPopup.style.display = 'none';
-        finalResultPopup.style.display = 'none';
+        // הצגת אזהרה אם נותרו פחות מ-7 שעות
+        if (hours > 7) {
+            cancelWarning.classList.remove('hidden'); // הצגת ההודעה
+        } else {
+            cancelWarning.classList.add('hidden'); // הסתרת ההודעה
+        }
+    }
+
+    // לחיצה על כפתור "סגור" בפופ-אפ ביטול הרשמה
+    closeCancelPopup.addEventListener('click', () => {
+        clearInterval(cancelInterval); // עצירת הטיימר
+        cancelPopup.style.display = 'none';
         overlay.style.display = 'none';
     });
 
-});
+    // לחיצה על כפתור "ביטול ההרשמה שלי"
+    confirmCancelBtn.addEventListener('click', () => {
+        clearInterval(cancelInterval); // עצירת הטיימר
 
-// פופאפים
-const sessions = document.querySelectorAll('.session');
-const overlay = document.querySelector('.overlay');
-const popup = document.getElementById('popup');
-const resultPopup = document.getElementById('result-popup');
-const popupContent = document.getElementById('popup-content');
-const resultMessage = document.getElementById('result-message');
+        const spotsText = selectedSession.querySelector('.spots');
+        const current = parseInt(spotsText.textContent.split('/')[0], 10); // מספר הרשומות הנוכחי
 
-const registerBtn = document.getElementById('register-btn');
-const waitlistBtn = document.getElementById('waitlist-btn');
-const cancelBtn = document.getElementById('cancel-btn');
-const closePopupBtn = document.getElementById('close-popup');
+        if (current > 0) {
+            spotsText.textContent = `${current - 1}/10 רשומות`;
+            alert('הרשמתך לשיעור בוטלה בהצלחה!');
+        } else {
+            alert('לא ניתן לבטל, אינך רשומה לשיעור.');
+        }
 
-
-const cancelResultPopup = document.getElementById('cancel-result-popup');
-const finalResultPopup = document.getElementById('final-result-popup');
-const cancelResultMessage = document.getElementById('cancel-result-message');
-const finalCancelBtn = document.getElementById('final-cancel-btn');
-
-
-// הצגת פופ-אפ עם פרטי שיעור
-sessions.forEach(session => {
-    session.addEventListener('click', () => {
-        const popupId = session.getAttribute('data-popup');
-        popupContent.textContent = `${popupId}`;
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
+        cancelPopup.style.display = 'none';
+        overlay.style.display = 'none';
     });
+
+
+// ----סופי----
 });
 
-
-// לחיצה על "הרשמה"
-registerBtn.addEventListener('click', () => {
-    resultMessage.textContent = "הרשמתך לשיעור בוצעה בהצלחה!";
-    popup.style.display = 'none';
-    resultPopup.style.display = 'block';
-    overlay.style.display = 'block';
-
-});
-
-// לחיצה על "רשימת המתנה"
-waitlistBtn.addEventListener('click', () => {
-    resultMessage.textContent = "נכנסת לרשימת המתנה!";
-    popup.style.display = 'none';
-    resultPopup.style.display = 'block';
-    overlay.style.display = 'block';
-
-});
-
-// לחיצה על "סגור"
-closePopupBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-    overlay.style.display = 'none';
-});
-
-
-// סגירת כל חלון בלחיצה על ה-overlay
-overlay.addEventListener('click', () => {
-    popup.style.display = 'none';
-    cancelResultPopup.style.display = 'none';
-    finalResultPopup.style.display = 'none';
-    resultPopup.style.display = 'none';
-    overlay.style.display = 'none';
-});
-
-//-------------------
-
-// טיפול בביטול הרשמה
-cancelBtn.addEventListener('click', () => {
-    const sessionId = popupContent.textContent.match(/שעה (\d+:\d+)/)[1]; // חילוץ השעה מהתוכן
-    const sessionDate = new Date(`2025-01-05T${sessionId}`); // תאריך ושעה של השיעור
-    const now = new Date();
-    const hoursUntilSession = (sessionDate - now) / (1000 * 60 * 60);
-
-    if (hoursUntilSession < 7) {
-        cancelResultMessage.textContent = "זמן הביטול כבר עבר, אם תבטלי עכשיו תאלצי לשלם.";
-        document.getElementById('final-cancel-btn').classList.remove('hidden'); // מאפשר ביטול סופי
-    } else {
-        const hoursRemaining = Math.floor(hoursUntilSession - 7);
-        const minutesRemaining = Math.round((hoursUntilSession - 7 - hoursRemaining) * 60);
-        cancelResultMessage.textContent = `נותרו ${hoursRemaining} שעות ו-${minutesRemaining} דקות לביטול השיעור, אחרת תאלצי לשלם.`;
-        document.getElementById('final-cancel-btn').classList.remove('hidden'); // מאפשר ביטול סופי
-    }
-    cancelResultPopup.style.display = 'block';
-    popup.style.display = 'none';
-});
-
-// טיפול בכפתור "ביטול שיעור" הסופי
-finalCancelBtn.addEventListener('click', () => {
-    cancelResultPopup.style.display = 'none';
-    finalResultPopup.style.display = 'block';
-
-
-});
