@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New_User_Account</title>
+    <title>Edit_Details</title>
     <link rel="stylesheet" href=Account_Details.css>
+
 </head>
 <body>
 <div class="header-container">
@@ -14,35 +16,44 @@
 
 <div class="grid-container_1">
     <p>שם פרטי</p>
-    <input type="text" name="user_FirstName">
+    <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">
+    <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>
 
     <p>שם משפחה</p>
-    <input type="text" name="user_LastName">
+    <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">
+    <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>
 
     <p>תאריך לידה</p>
-    <input type="date" name="user_Date">
+    <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזיני תאריך">
+    <span id="birthDateError" class="error-message"></span>
 
     <p>דואר אלקטרוני</p>
-    <input type="text" name="user_Email">
+    <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">
+
+    <span id="emailError" class="error-message"></span>
 
     <p>מס' פלאפון</p>
-    <input type="number" name="user_Phone">
+    <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">
+    <span id="phoneNumberError" class="error-message"></span>
 
     <p>סיסמה</p>
-    <input type="password" name="user_Password" placeholder="הכניסי סיסמה רצויה">
+    <input type="password" id="password" name="user_Password" class="input-field" placeholder="הכניסי סיסמה כרצונך על פי הנהלים">
+    <span id="passwordError" class="error-message"></span>
 
     <p>טופס הצהרת בריאות</p>
-    <input type="file" name="user_Health">
+    <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזיני שם פרטי">
+    <span id="fileError" class="error-message"></span>
+
+
 </div>
 
 <!-- כפתורים למסך הירוק -->
 <div class="green-screen-buttons">
-    <a href="Home_Page.html">
-        <button class="btn">חזרה למסך הבית</button>
+    <a href=Entry_Screen.html>
+        <button class="btn">חזרה למסך הכניסה</button>
     </a>
     <button id="submit-button" class="btn">מאשרת פרטים</button>
 </div>
-
 
 <!-- חלון פופ-אפ -->
 <div id="popup" class="popup">
@@ -52,6 +63,9 @@
     </a>
 </div>
 
-<script src=Account_Details.js></script>
+
+<script src="Account_Details.js"></script>
 </body>
 </html>
+
+

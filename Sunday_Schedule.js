@@ -62,24 +62,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // פונקציה ליצירת תאריך מהמאפיינים data-day-offset ו-data-time
-    function generateDateFromAttributes(element) {
-        const weekStart = calculateWeekStart();
-        const dayOffset = Number(element.dataset.dayOffset || 0);
-        const time = element.dataset.time;
-
-        if (!time || !/^\d{2}:\d{2}$/.test(time)) {
-            console.error("Invalid time format in data-time attribute:", time);
-            return null;
-        }
-
-        const [hour, minute] = time.split(':').map(Number);
-        const sessionDate = new Date(weekStart);
-        sessionDate.setDate(sessionDate.getDate() + dayOffset);
-        sessionDate.setHours(hour, minute, 0, 0);
-
-        return sessionDate;
+function generateDateFromAttributes(element) {
+    if (!element || !element.dataset.time || !element.dataset.dayOffset) {
+        console.error("Missing dataset attributes for element:", element);
+        return null;
     }
 
+    const weekStart = calculateWeekStart();
+    const dayOffset = Number(element.dataset.dayOffset);
+    const time = element.dataset.time.trim(); // לנקות רווחים
+
+    if (!/^\d{2}:\d{2}$/.test(time)) {
+        console.error("Invalid time format in data-time attribute:", time);
+        return null;
+    }
+
+    const [hour, minute] = time.split(':').map(Number);
+    const sessionDate = new Date(weekStart);
+    sessionDate.setDate(sessionDate.getDate() + dayOffset);
+    sessionDate.setHours(hour, minute, 0, 0);
+
+    if (isNaN(sessionDate.getTime())) {
+        console.error("Invalid sessionDate generated:", sessionDate);
+        return null;
+    }
+
+    return sessionDate;
+}
     const scheduleButtons = document.querySelectorAll('.schedule .session');
     const popup = document.getElementById('popup');
     const overlay = document.querySelector('.overlay');
