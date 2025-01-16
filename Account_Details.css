@@ -37,7 +37,7 @@ img {
 /* קונטיינר הטופס */
 .grid-container_1 {
     display: grid;
-    grid-template-columns: 2fr 2fr 3fr;
+    grid-template-columns: 2fr 2fr 2fr;
     gap: 10px 50px;
     align-items: center;
     justify-content: center;
@@ -74,7 +74,7 @@ img {
     right: 100px; /* אפשר לשלב תזוזה לימין */
 }
 
-.green-screen-buttons .btn {
+ .btn {
     padding: 10px 20px;
     font-size: 16px;
     font-family: Gisha, sans-serif;
@@ -86,7 +86,7 @@ img {
     transition: background-color 0.3s ease;
 }
 
-.green-screen-buttons .btn:hover {
+.btn:hover {
     background-color: #d9b1a2;
     color: white;
 }
@@ -108,4 +108,36 @@ img {
 input.error {
     border-color: red;
     outline: none;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid rosybrown;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* שכבה מעל ה-overlay */
+    text-align: center;
+    width: 300px;
+}
+
+.popup button {
+    background-color: #8b5d5d;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+}
+
+.popup button:hover {
+    background-color: #a67575;
 }
