@@ -23,7 +23,7 @@ h1 {
 img {
     margin-bottom: 20px;
     width: 300px; /* הגדלת התמונה */
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 /* עיצוב קונטיינר שדות הטקסט */
@@ -54,7 +54,7 @@ img {
 }
 
 /* עיצוב הכפתורים */
-span.button {
+span.btn {
     display: flex;
     gap: 15px;
     margin-top: 20px;
@@ -79,10 +79,11 @@ span.button {
 
 .error-message {
     color: red;
-    visibility: hidden; /* Reserve space for the error message */
-    margin-left: 14px; /* Add spacing between input and error message */
-    font-size: 0.9em; /* Slightly smaller text */
-    white-space: nowrap; /* Prevent line breaks in the error message */
+    visibility: hidden; /* Hide by default but reserve space */
+    height: auto; /* Ensure height adjusts to content */
+    margin-top: 0px; /* Space between input and error message */
+    font-size: 0.9em; /* Smaller font size for clarity */
+    text-align: left; /* Align error message text */
 }
 
 .error-message.visible {
