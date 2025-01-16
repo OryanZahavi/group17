@@ -1,24 +1,23 @@
-    //document.addEventListener("DOMContentLoaded", function () {
-    //const form = document.getElementById("login-form");
-    //const emailInput = document.getElementById("email");
-    //const passwordInput = document.getElementById("password");
-    // const emailError = document.getElementById("email-error");
-   // const passwordError = document.getElementById("password-error");
-
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const formInputs = {
         email: document.querySelector("input[name='user_Email']"),
         password: document.querySelector("input[name='user_Password']"),
     };
 
-    const submit = document.getElementById("submit");
-    submit.addEventListener("submit", function (e) {
-        let valid = true;
+    const submitButton = document.getElementById("submit-button");
 
-        // אימות מייל
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל
+        let isValid = true;
+
+       // // אימות מייל
         const emailInput = document.getElementById("email");
         const emailError = document.getElementById("emailError");
         const emailValue = emailInput.value.trim();
+
+        // Detect language or define it (e.g., from user settings or page attribute)
+        const language = document.documentElement.lang || "he"; // Default to Hebrew
+
         if (!emailValue) {
             // Case: No input
             emailError.textContent = "יש להזין כתובת דוא\"ל.";
@@ -56,6 +55,10 @@
         } else {
             passwordError.classList.remove("visible");
             passwordInput.classList.remove("error");
+        }
+
+        if (isValid) {
+             window.location.href = "Home_Page.html";
         }
     });
 
