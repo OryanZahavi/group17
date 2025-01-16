@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const submitButton = document.getElementById("submit-button");
     // Regular expression to allow only English letters
-    const englishNamePattern = /^[A-Za-z\s]+$/;
+    const lettersOnlyPattern = /^[A-Za-z]+$/;
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // אימות שם פרטי
         const firstNameInput = document.getElementById("firstName");
         const firstNameError = document.getElementById("firstNameError");
-
         // Regular expression to allow only English letters
 
         if (!firstNameInput.value.trim()) {
@@ -28,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
             firstNameError.classList.add("visible"); // Show the error message
             firstNameInput.classList.add("error"); // Add error style to input
             isValid = false;
-        } else if (!englishNamePattern.test(firstNameInput.value.trim())) {
+        } else if (!lettersOnlyPattern.test(firstNameInput.value.trim())) {
             // Case: Invalid characters (not only English letters)
-            firstNameError.textContent = "שם פרטי חייב להכיל אותיות באנגלית בלבד.";
+            firstNameError.textContent = "שם פרטי חייב להכיל אותיות בלבד.";
             firstNameError.classList.add("visible"); // Show the error message
             firstNameInput.classList.add("error"); // Add error style to input
             isValid = false;
@@ -39,21 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
             firstNameError.classList.remove("visible"); // Hide the error message
             firstNameInput.classList.remove("error"); // Remove error style
         }
+
         // אימות שם משפחה
         const lastNameInput = document.getElementById("lastName");
         const lastNameError = document.getElementById("lastNameError");
-
-
-
         if (!lastNameInput.value.trim()) {
             // Case: Input is empty
             lastNameError.textContent = "יש להזין שם משפחה.";
             lastNameError.classList.add("visible"); // Show the error message
             lastNameInput.classList.add("error"); // Add error style to input
             isValid = false;
-        } else if (!englishNamePattern.test(lastNameInput.value.trim())) {
+        } else if (!lettersOnlyPattern.test(lastNameInput.value.trim())) {
             // Case: Invalid characters (not only English letters)
-            lastNameError.textContent = "שם משפחה חייב להכיל אותיות באנגלית בלבד.";
+            lastNameError.textContent = "שם משפחה חייב להכיל אותיות בלבד.";
             lastNameError.classList.add("visible"); // Show the error message
             lastNameInput.classList.add("error"); // Add error style to input
             isValid = false;
@@ -61,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Case: Valid input
             lastNameError.classList.remove("visible"); // Hide the error message
             lastNameInput.classList.remove("error"); // Remove error style
-}
+        }
 
 
 
@@ -97,17 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!emailValue) {
             // Case: No input
-            emailError.textContent = language === "en"
-                ? "Please enter an email address."
-                : "יש להזין כתובת דוא\"ל.";
+            emailError.textContent = "יש להזין כתובת דוא\"ל.";
             emailError.classList.add("visible");
             emailInput.classList.add("error");
             isValid = false;
         } else if (!isValidEmail(emailValue)) {
             // Case: Invalid email
-            emailError.textContent = language === "en"
-                ? "The email address is invalid."
-                : "כתובת הדוא\"ל אינה תקינה.";
+            emailError.textContent = "כתובת הדוא\"ל אינה תקינה.";
             emailError.classList.add("visible");
             emailInput.classList.add("error");
             isValid = false;
@@ -189,11 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-
         // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
             popup.style.display = "block"; // מציג את הפופ-אפ
         }
+
     });
 
 //    פונקציה לאימות גיל (מעל 18)
@@ -238,8 +231,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return { valid: true, errorMessage: "" };
     }
-
-
-
-
 });
