@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const submitButton = document.getElementById("submit-button");
     // Regular expression to allow only English letters
-    const lettersOnlyPattern = /^[A-Za-z]+$/;
+    const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל

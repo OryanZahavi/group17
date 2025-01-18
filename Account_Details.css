@@ -6,15 +6,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     direction: rtl; /* כיוון מימין לשמאל */
     text-align: right; /* יישור טקסט לימין */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Add padding to all direct children of body */
+body > * {
+    padding-left: 20px;
+    padding-right: 40px;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
 }
 
 /* כותרת */
 .header-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -25,23 +36,23 @@ body {
 h1 {
     color: rosybrown;
     font-family: Gisha, sans-serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 0;
+    text-align: center;
 }
 
 img {
-    width: 200px;
+    width: 150px;
     height: auto;
 }
 
 /* קונטיינר הטופס */
 .grid-container_1 {
     display: grid;
-    grid-template-columns: 2fr 2fr 3fr;
-    gap: 10px 50px;
-    align-items: center;
-    justify-content: center;
-    width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    width: 80%;
+    max-width: 80%;
     margin-bottom: 20px;
     direction: rtl;
     box-sizing: border-box;
@@ -49,32 +60,34 @@ img {
 
 .grid-container_1 p {
     text-align: right;
-    margin: 0;
+    margin: 0 0 5px 0;
     color: rosybrown;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .grid-container_1 input {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     border: 2px solid rosybrown;
     border-radius: 10px;
     background-color: #eafbea;
     font-size: 14px;
     color: rosybrown;
+    margin-bottom: 5px;
 }
 
 /* עיצוב כפתורים במסך הירוק */
 .green-screen-buttons {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 20px; /* רווח בין הכפתורים */
+    align-items: center;
+    gap: 10px;
     margin-top: 20px;
-    position: relative;
-    right: 100px; /* אפשר לשלב תזוזה לימין */
+    width: 100%;
 }
 
- .btn {
+.btn {
     padding: 10px 20px;
     font-size: 16px;
     font-family: Gisha, sans-serif;
@@ -84,6 +97,8 @@ img {
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 200px;
 }
 
 .btn:hover {
@@ -91,14 +106,12 @@ img {
     color: white;
 }
 
-
-
 .error-message {
     color: red;
-    visibility: hidden; /* Reserve space for the error message */
-    margin-left: 14px; /* Add spacing between input and error message */
-    font-size: 0.9em; /* Slightly smaller text */
-    white-space: nowrap; /* Prevent line breaks in the error message */
+    visibility: hidden;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
 }
 
 .error-message.visible {
@@ -121,9 +134,10 @@ input.error {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* שכבה מעל ה-overlay */
+    z-index: 1000;
     text-align: center;
-    width: 300px;
+    width: 90%;
+    max-width: 300px;
 }
 
 .popup button {
@@ -140,4 +154,52 @@ input.error {
 
 .popup button:hover {
     background-color: #a67575;
+}
+
+/* Responsive Styles */
+
+/* Small screens (mobile phones) */
+@media (max-width: 1000px) {
+    .grid-container_1 {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+}
+
+
+/* Large screens (desktops) */
+@media (min-width: 1000px) {
+    .grid-container_1 {
+        grid-template-columns: 2fr 2fr 3fr;
+        width: 70%;
+        gap: 15px;
+    }
+
+    .grid-container_1 > div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grid-container_1 input {
+        margin-bottom: 0%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    img {
+        width: 200px;
+    }
+
+    .green-screen-buttons {
+        justify-content: center;
+        padding-right: 0;
+    }
+
+    /* Increase padding for larger screens */
+    body > * {
+        padding-left: 40px;
+        padding-right: 40px;
+        width: calc(100% - 80px);
+    }
 }
