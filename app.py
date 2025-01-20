@@ -4,43 +4,34 @@ app = Flask(__name__)
 
 @app.route('/')
 @app.route('/Home_Page')
-def Home_page():
+def home_page():
     return render_template('Home_Page.html')
 
-@app.route('/My_Account')
-def My_Account_page():
-    return render_template('My_Account.html')
-
-
-
-
+# @app.route('/My_Account')
+# def my_account_page():
+#     return render_template('My_Account.html')
 @app.route('/Contact_Us')
-def Contact_Us_page():
+def contact_us_page():
     return render_template('Contact_Us.html')
-
-
 @app.route('/Meet_Us')
-def Meet_Us_page():
+def meet_us_page():
     return render_template('Meet_Us.html')
-
-# @app.route('/Sunday_Schedule')
-# def Sunday_Schedule_page():
-#     return render_template('Sunday_Schedule.html')
+@app.route('/Sunday_Schedule')
+def sunday_schedule_page():
+    return render_template('Sunday_Schedule.html')
 
 @app.route('/Monday_Schedule')
-def Monday_Schedule_page():
+def monday_schedule_page():
     return render_template('Monday_Schedule.html')
 @app.route('/Tuesday_Schedule')
-def Tuesday_Schedule_page():
-    return redirect(url_for('Tuesday_Schedule.html'))
+def tuesday_schedule_page():
+    return render_template('Tuesday_Schedule.html')
 @app.route('/Wednesday_Schedule')
-def Wednesday_Schedule_page():
-    return redirect(url_for('Wednesday_Schedule.html'))
+def wednesday_schedule_page():
+    return render_template('Wednesday_Schedule.html')
 @app.route('/Thursday_Schedule')
-def Thursday_Schedule_page():
-    return redirect(url_for('Thursday_Schedule.html'))
-
-
+def thursday_schedule_page():
+    return render_template('Thursday_Schedule.html')
 
 ##############################
 @app.route('/about')
@@ -68,7 +59,7 @@ def go_to_contact():
     #     'age': 50,
     # }
     # hobbies = ['Dance','sing','eat']
-    # degrees = ('B.Sc','M.Sc')
+    # degrees = ('M.Sc')
     #
     # return render_template(
     #     'index.html',
@@ -80,7 +71,7 @@ def go_to_contact():
 ################################
 
 @app.route('/Block_example')
-def Block_example_func():
+def block_example_func():
     return render_template('Block_example.html')
 
 
