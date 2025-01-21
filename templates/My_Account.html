@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>My_Account</title>
-    <link rel="stylesheet" href=My_Account.css>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/My_Account.css') }}">
 </head>
 <body>
 <div class="header-container">
-    <img src="Company_Logo.jpeg" alt="CompanyLogo">
+    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
     <h1>פרטי החשבון שלי</h1>
 
 </div>
@@ -31,13 +31,15 @@
     <p>הצהרת בריאות:</p>
     <span id="display_File"></span>
 </div>
-
 <span class="button">
-      <a href=Edit_Details.html>
+    <a href="/Edit_Details">
         <button class="btn">עריכת פרטים</button>
-      <a href="Home_Page.html">
+    </a>
+
+    <a href="/Home_Page">
         <button class="btn">חזרה למסך הבית</button>
+    </a>
 </span>
-<script src="My_Account.js"></script>
+<script src="{{ url_for('static', filename='js/Account_Details.js') }}"></script>
 </body>
 </html>

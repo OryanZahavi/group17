@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New_User_Account</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Entry_Screen.css') }}">
+    {% block page %}
+        <title>New_User_Account</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Account_Details.css') }}">
 
 </head>
 <body>
 <div class="header-container">
     <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
-    <h1>פתיחת חשבון משתמשת חדשה</h1>
+    {% block header %}
+        <h1>פתיחת חשבון משתמשת חדשה</h1>
+    {% endblock %}
 </div>
 
 <div class="grid-container_1">
@@ -48,16 +52,22 @@
 
 <!-- כפתורים למסך הירוק -->
 <div class="green-screen-buttons">
-    <button id="submit-button" class="btn">מאשרת פרטים</button>
-    <a href=Entry_Screen.html>
-        <button class="btn">חזרה למסך הכניסה</button>
-    </a>
+    {% block buttons %}
+        <button id="submit-button" class="btn">מאשרת פרטים</button>
+        <a href=/Entry_Screen>
+            <button class="btn">חזרה למסך הכניסה</button>
+        </a>
+    {% endblock %}
 </div>
 
 <!-- חלון פופ-אפ -->
 <div id="popup" class="popup">
-    <p>הפרטים נקלטו בהצלחה!</p>
-    <a href="Home_Page.html">
+
+    {% block popup_window %}
+        <p>הפרטים נקלטו בהצלחה!</p>
+    {% endblock %}
+
+    <a href="/Home_Page">
         <button id="home-button" class="btn">חזרה לדף הבית</button>
     </a>
 </div>

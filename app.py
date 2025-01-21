@@ -6,10 +6,12 @@ app = Flask(__name__)
 @app.route('/Home_Page')
 def home_page():
     return render_template('Home_Page.html')
-
-# @app.route('/My_Account')
-# def my_account_page():
-#     return render_template('My_Account.html')
+@app.route('/My_Account')
+def my_account_page():
+    return render_template('My_Account.html')
+@app.route('/Edit_Details')
+def edit_details_page():
+    return render_template('Edit_Details.html')
 @app.route('/Contact_Us')
 def contact_us_page():
     return render_template('Contact_Us.html')
@@ -19,7 +21,6 @@ def meet_us_page():
 @app.route('/Sunday_Schedule')
 def sunday_schedule_page():
     return render_template('Sunday_Schedule.html')
-
 @app.route('/Monday_Schedule')
 def monday_schedule_page():
     return render_template('Monday_Schedule.html')
@@ -32,7 +33,6 @@ def wednesday_schedule_page():
 @app.route('/Thursday_Schedule')
 def thursday_schedule_page():
     return render_template('Thursday_Schedule.html')
-
 
 @app.route('/Entry_Screen')
 def entry_screen_page():
