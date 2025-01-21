@@ -50,7 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateDates();// עדכון הימים
 
-
+  // // הדגשה ליום ראשון
+  //           if (days[index] === 'ראשון') {
+  //               button.classList.add('active'); // הוספת מחלקה ליום רביעי
+  //           } else {
+  //               button.classList.remove('active'); // הסרת מחלקה מימים אחרים
+  //           }
+  //       });
 //---------------------חישוב נקודת הזמן של כל שיעור --------------------
 
 

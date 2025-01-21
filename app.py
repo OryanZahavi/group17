@@ -33,12 +33,16 @@ def wednesday_schedule_page():
 def thursday_schedule_page():
     return render_template('Thursday_Schedule.html')
 
-##############################
-@app.route('/about')
-def about_page():
-    return render_template('about.html')
+
+@app.route('/Entry_Screen')
+def entry_screen_page():
+    return render_template('Entry_Screen.html')
+@app.route('/New_User_Account')
+def new_user_account_page():
+    return render_template('New_User_Account.html')
 
 
+###############################################################
 @app.route('/costomer')
 def go_to_contact():
     return redirect(url_for('contact_page'))  # מפנה לעמוד Contact
