@@ -1,5 +1,13 @@
 {% extends "Sunday_Schedule.html" %}
 
+{% block Sunday %}
+    <button id='0'></button>
+{% endblock %}
+
+        {% block Wednesday %}
+        <button id='3' class="active"></button>
+        {% endblock %}
+
 {% block Schedule %}
 <div class="schedule">
     <button class="session" data-time="07:00" data-day-offset="3" data-popup="Power yoga שעה 7:00">

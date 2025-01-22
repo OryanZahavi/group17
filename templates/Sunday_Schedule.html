@@ -15,19 +15,29 @@
 </div>
 <div class="dates">
     <a href=/Thursday_Schedule>
+        {% block Thursday %}
         <button id='4'></button>
+        {% endblock %}
     </a>
     <a href="/Wednesday_Schedule">
+        {% block Wednesday %}
         <button id='3'></button>
+        {% endblock %}
     </a>
     <a href="/Tuesday_Schedule">
+        {%  block Tuesday %}
         <button id='2'></button>
+        {% endblock %}
     </a>
     <a href="/Monday_Schedule">
+        {%  block Monday %}
         <button id='1'></button>
+        {% endblock %}
     </a>
     <a href="/Sunday_Schedule">
+        {%  block Sunday %}
         <button id='0' class="active"></button>
+        {% endblock %}
     </a>
 </div>
 <div class="footer">
