@@ -20,132 +20,90 @@
     }
 }
 
+
 @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateY(-20px);
+        opacity: 0; /* שקיפות התחלתית */
+        transform: translateY(-20px); /* זזת מעט למעלה */
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1; /* שקיפות מלאה */
+        transform: translateY(0); /* חזרה למקום המקורי */
     }
 }
+
 
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+    justify-content: center; /* מרכז אופקית */
+    align-items: center; /* מרכז אנכית */
+    height: 100vh; /* גובה כל הדף */
+    margin: 0; /* מבטל שוליים של הדפדפן */
     text-align: center;
     background-color: #b6dcb8;
-    padding: 20px;
-    box-sizing: border-box;
-}
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 800px;
-}
 
-img {
-    width: 150px;
-    height: auto;
-    display: block;
-    max-width: 100%;
 }
 
 h1 {
+
     text-align: center;
+    background-color: #b6dcb8;
     color: rosybrown;
     font-family: Gisha, sans-serif;
-    font-size: 2.5rem;
-    animation: fadeIn 1s ease-in;
-    margin-bottom: 20px;
+    font-size: 70px;
+    animation: fadeIn 1s ease-in; /* אנימציה עבור הכותרת */
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column; /* מסדר את התוכן בעמודה */
+    align-items: center; /* מרכז אופקית */
+    justify-content: center; /* מרכז אנכית */
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    width: 100%;
-    max-width: 500px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(2, 1fr); /* שתי עמודות */
+    grid-template-rows: auto auto auto; /* שלוש שורות */
+    gap: 30px;
+    margin-top: 50px; /* מוסיף מרחק בין התמונה לכפתורים */
+    width: 500px;
+    align-items: center;
 
 }
 
 .btn {
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 20px 40px;
+    font-size: 20px;
     font-family: Gisha, sans-serif;
     color: rosybrown;
     background-color: #D9F2D0;
     border: 2px solid rosybrown;
     border-radius: 30px;
-    cursor: pointer;
+    cursor: pointer; /* הפיכת הסמן ליד */
     transition: background-color 0.3s ease;
-    position: relative;
-    z-index: 10;
-    opacity: 0;
+    position: relative; /* מבטיח שאין בעיות בשכבות */
+    z-index: 10; /* מבטיח שהכפתור מעל אלמנטים אחרים */
+    opacity: 0; /* שקיפות התחלתית */
     animation-duration: 1s;
     animation-fill-mode: forwards;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .btn:hover {
-    background-color: #d9b1a2;
-    color: white;
+    background-color: #d9b1a2; /* שינוי צבע בריחוף */
+    color: white; /* שינוי צבע הטקסט */
 }
 
-.btn:nth-child(odd) {
+
+.btn:nth-child(1) {
     animation-name: slideInFromLeft;
 }
 
-.btn:nth-child(even) {
+
+.btn:nth-child(5) {
     animation-name: slideInFromRight;
-}
-
-@media (min-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-
-    img {
-        width: 180px;
-    }
-
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .btn {
-        font-size: 20px;
-        padding: 20px 40px;
-    }
-
-    .btn:nth-child(5) {
-        grid-column: 1 / 3;
-        justify-self: center;
-    }
-}
-
-@media (min-width: 1024px) {
-    h1 {
-        font-size: 3.5rem;
-    }
-
-    img {
-        width: 200px;
-    }
-
-    .grid-container {
-        max-width: 600px;
-    }
+    grid-column: 1/2; /* הכפתור מתפרס על שתי העמודות */
+    justify-self: center; /* ממקם את הכפתור במרכז  */
 }
