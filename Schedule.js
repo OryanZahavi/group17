@@ -255,3 +255,10 @@ function generateDateFromAttributes(element) {
 // ----סופי----
 });
 
+   // // הדגשה ליום רביעי
+   //          if (days[index] === 'רביעי') {
+   //              button.classList.add('active'); // הוספת מחלקה ליום רביעי
+   //          } else {
+   //              button.classList.remove('active'); // הסרת מחלקה מימים אחרים
+   //          }
+   //      });
