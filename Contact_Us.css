@@ -5,17 +5,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    direction: rtl;
-    text-align: right;
-    padding: 20px;
-    box-sizing: border-box;
+    justify-content: center;
+    height: 100vh;
+    direction: rtl; /* כיוון מימין לשמאל */
+    text-align: right; /* יישור טקסט לימין */
 }
 
 .header-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -27,60 +24,119 @@ body {
 h1 {
     color: rosybrown;
     font-family: Gisha, sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 0;
-    text-align: center;
+    text-align: left;
 }
 
 img {
-    width: 150px;
+    width: 200px;
     height: auto;
     display: block;
 }
 
-.grid-container_1, .grid-container_2 {
+.grid-container_1 {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* רווח בין זוגות של תווית ושדה */
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto 20px;
+    max-width: 500px; /* מגבלת רוחב כוללת */
+    margin: 0 auto 20px; /* מרכז ומוסיף רווח מלמטה */
+    direction: rtl; /* כיוון ימין לשמאל */
+    transform: translateX(+50px); /* הזזת הקונטיינר 20px שמאלה */
+}
+
+.grid-container_1 .field-container {
+    display: flex;
+    align-items: center; /* מיישר תוויות ושדות באותה שורה */
+    gap: 50px; /* מרווח בין התווית לתיבה */
+    white-space: nowrap; /* מבטיח שהטקסט יישאר באותה שורה */
+}
+
+/* שינוי ספציפי לתווית של "שם פרטי" */
+
+.grid-container_1 .field-container:nth-child(1) p {
+    margin-inside: 10px; /* רווח בין התווית לתיבה */
+}
+
+/* שליטה ברווח בין התווית לתיבה של "שם משפחה" */
+.grid-container_1 .field-container:nth-child(2) {
+    display: flex;
+    align-items: center; /* יישור אנכי */
+    gap: 20px; /* רווח אופקי בין התווית לתיבה */
+}
+
+/* אופציה חלופית עם מרווח ישיר */
+.grid-container_1 .field-container:nth-child(2) p {
+    margin-right: 1px; /* רווח מימין לתווית */
+}
+
+.grid-container_1 .field-container:nth-child(2) input {
+    margin-left: 0px; /* ביטול רווח נוסף משמאל לתיבה */
+}
+
+.grid-container_1 p {
+    margin: 0;
+    font-size: 18px;
+    color: rosybrown;
+    align-self: center; /* יישור אנכי לטקסט */
+    text-align: right; /* יישור טקסט לימין */
+}
+
+.grid-container_1 input {
+    width: 180px; /* רוחב קבוע לשדה */
+    padding: 10px;
+    border: 2px solid rosybrown;
+    border-radius: 10px;
+    background-color: #eafbea;
+    font-size: 16px;
+    color: rosybrown;
+    box-sizing: border-box;
+}
+
+.grid-container_2 {
+    display: grid;
+    grid-template-columns: 1fr 5fr; /* עמודה אחת לתוויות, עמודה אחת לשדות */
+    gap: 10px 20px; /* מרווח בין השורות (10px) והעמודות (20px) */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     direction: rtl;
 }
 
-.field-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
 
-.grid-container_1 p, .grid-container_2 p {
+.grid-container_2 p {
+
     margin: 0;
-    font-size: 16px;
+    font-size: 18px;
     color: rosybrown;
+    align-self: center; /* יישור אנכי לטקסט */
+    padding: 0; /* מסיר רווחים פנימיים */
 }
 
-.grid-container_1 input, .grid-container_2 input, .grid-container_2 textarea {
+.grid-container_2 input,
+.grid-container_2 textarea {
     width: 100%;
     padding: 10px;
     border: 2px solid rosybrown;
     border-radius: 10px;
     background-color: #eafbea;
-    font-size: 14px;
+    font-size: 16px;
     color: rosybrown;
-    box-sizing: border-box;
+    box-sizing: border-box; /* מניעת גלישה מחוץ לקונטיינר */
 }
 
 textarea {
+    grid-column: span 1; /* התיבה משתרעת על שתי עמודות */
     height: 150px;
     resize: none;
 }
 
 span.button {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: right;
+    gap: 40px;
     margin-top: 20px;
+    margin-right: 120px;
 }
 
 .btn {
@@ -93,12 +149,12 @@ span.button {
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 30px;
 }
 
 .btn:hover {
     background-color: #d9b1a2;
     color: white;
+<<<<<<< HEAD
 }
 
 .error-message {
@@ -187,3 +243,6 @@ input.error {
         width: 200px;
     }
 }
+=======
+}
+>>>>>>> parent of e0f3368 (added RWD for all pages)
