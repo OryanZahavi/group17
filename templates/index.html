@@ -10,9 +10,14 @@
 {% set page_name = "Home Page" %}
 {% include ('navigation.html') %}
 
+{% if session.get('logged_in') %}
+<h1> Welcome, user {{  session.get('username') }}</h1>
+{% else %}
+<h1>Hi ! Register Pleas!</h1>
+{% endif %}
 <!--<a href="/about">About Us</a>-->
 {% if user %}
-<h1>Welcome to {{page_name}} , {{ user.first_name | default('stranger',true) | upper() }} ! </h1>
+{#<h1>Welcome to {{page_name}} , {{ user.first_name | default('stranger',true) | upper() }} ! </h1>#}
 <h2>Your age is {{ age}} years old</h2>
 <h2>My hobbies:</h2>
 <ul>

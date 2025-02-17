@@ -52,14 +52,30 @@ img {
     font-size: 14px;
     color: rosybrown;
 }
-
-/* עיצוב הכפתורים */
-span.btn {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-
+/* עיצוב הכפתור "כניסה" */
+input[type="submit"] {
+    width: 150px; /* קיצור רוחב הכפתור */
+    padding: 10px; /* גובה מרווח פנימי */
+    font-size: 16px; /* גודל גופן */
+    color: rosybrown;
+    background-color: #eafbea;
+    border: 2px solid rosybrown;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; /* מוודא שהטקסט במרכז */
+    display: block; /* הפיכה לבלוק לצורך מרכוז */
+    margin: 10px auto; /* מרכוז הכפתור אופקית */
 }
+/*לא מחקתי בשביל שיהיה נח לראות מה שיניתי */
+
+/*!* עיצוב הכפתורים *!*/
+/*span.btn {*/
+/*    display: flex;*/
+/*    gap: 15px;*/
+/*    margin-top: 20px;*/
+
+/*}*/
 
 .btn {
     padding: 10px 30px;

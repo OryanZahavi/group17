@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block header %}{% endblock %}
+
+
+{% block main %}
+    <h1> GET & POST Examples</h1>
+    <h2>###################</h2>
+    <h2>the method is {{ request_method }}</h2>
+    <h2>###################</h2>
+    <h2> Simple GET Form:</h2>
+
+    <form action="/get_post_example" method="GET">
+        <input type="text" name="first name" placeholder=" enter your first name">
+        <input type="text" name="last name" placeholder=" enter your last name">
+        <br>
+        <br>
+        <input type="submit" value="send">
+    </form>
+
+    {% if first_name %}
+        <h2>Welcome, {{ first_name }} {{ last_name }}!</h2>
+    {% endif %}
+
+    <h2> Simple POST Form:</h2>
+
+    <form action="/get_post_example" method="POST">
+        <input type="text" name="username" placeholder=" enter your username">
+        <input type="password" name="password" placeholder=" enter your password">
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+
+    {% if password %}
+    <h2>Username: {{ username }}, Password:{{ password }}</h2>
+    {% endif %}
+{% endblock %}
+
+
+{% block footer %}{% endblock %}

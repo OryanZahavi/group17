@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block header %}{% endblock %}
+
+
+{% block main %}
+
+    <h2 class= "title2"></h2>
+
+    <form id="my-form-get" action= "" method= "GET">
+        <input type = "submit" value = "GET REQUEST">
+    </form>
+
+    <br>
+
+    <h2 class= "title3"></h2>
+
+    <form id="my-form-post" action= "" method= "POST">
+        <input type = "submit" value = "POST REQUEST">
+    </form>
+
+    <script src =" {{  url_for('static',filename= 'js/fetch_example.js') }}"></script>
+
+{% endblock %}
+
+
+{% block footer %}{% endblock %}
