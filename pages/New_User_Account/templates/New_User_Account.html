@@ -5,7 +5,10 @@
     {% block page %}
         <title>New_User_Account</title>
     {% endblock %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Account_Details.css') }}">
+{% block css %}
+	 <link rel="stylesheet" href="{{ url_for('static', filename='pages/New_User_Account/static/css/New_User_Account.css') }}">
+{% endblock %}
+
 
 </head>
 <body>
@@ -71,7 +74,10 @@
         <button id="home-button" class="btn">חזרה לדף הבית</button>
     </a>
 </div>
-<script src="{{ url_for('static', filename='js/Account_Details.js') }}"></script>
+{% block script %}
+	<script src="{{ url_for('static', filename='pages/New_User_Account/static/js/New_User_Account.js') }}"></script>
+{% endblock %}
+
 </body>
 </html>
 

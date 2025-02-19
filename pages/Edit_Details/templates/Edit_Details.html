@@ -1,4 +1,4 @@
-{% extends "New_User_Account.html" %}
+{% extends "../pages/New_User_Account/templates/New_User_Account.html" %}
 {% block page %}
     <title>Edit_Details</title>
 {% endblock %}
@@ -17,3 +17,9 @@
     {% block popup_window %}
         <p>השינויים נקלטו</p>
     {% endblock %}
+{% block css %}
+	 <link rel="stylesheet" href="{{ url_for('static', filename='pages/Edit_Details/static/css/Edit_Details.css') }}">
+{% endblock %}
+{% block script %}
+	<script src="{{ url_for('static', filename='pages/Edit_Details/static/js/Edit_Details.js') }}"></script>
+{% endblock %}

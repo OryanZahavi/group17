@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
 # about Blueprint definition
-Home_Page = Blueprint(
-    'Home_Page',
+Edit_Details = Blueprint(
+    'Edit_Details',
     __name__,
     static_folder='static',
-    static_url_path='/Home_Page',
+    static_url_path='Edit_Details',
     template_folder='templates'
 )
 
 # Routs
-@Home_Page.route('/Home_Page')
-def Home_Page():
-    return render_template('Home_Page.html')
+@Edit_Details.route('/Edit_Details')
+def edit_details():
+    return render_template('Edit_Details.html')
