@@ -56,7 +56,8 @@ app.register_blueprint(Thursday_Schedule)
 from components.Navigation.Navigation import Navigation
 app.register_blueprint(Navigation)
 
-
+from pages.My_Account.My_Account import My_Account
+app.register_blueprint(My_Account)
 
 #####################################################################
 

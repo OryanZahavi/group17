@@ -8,41 +8,7 @@
 {# Header #}
 {% set page_body_header ='עריכת חשבון' %}
 
-{# Main #}
-{% block page_body_main %}
-    <div class="grid-container_1">
-        <p>שם פרטי</p>
-        <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">
-        <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>
 
-        <p>שם משפחה</p>
-        <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">
-        <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>
-
-        <p>תאריך לידה</p>
-        <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזיני תאריך">
-        <span id="birthDateError" class="error-message"></span>
-
-        <p>דואר אלקטרוני</p>
-        <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">
-
-        <span id="emailError" class="error-message"></span>
-
-        <p>מס' פלאפון</p>
-        <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">
-        <span id="phoneNumberError" class="error-message"></span>
-
-        <p>סיסמה</p>
-        <input type="password" id="password" name="user_Password" class="input-field"
-               placeholder="הכניסי סיסמה כרצונך על פי הנהלים">
-        <span id="passwordError" class="error-message"></span>
-
-        <p>טופס הצהרת בריאות</p>
-        <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזיני שם פרטי">
-        <span id="fileError" class="error-message"></span>
-
-    </div>
-{% endblock %}
 
 {# Footer #}
 {% set submit_button_text = "מאשרת שינויים" %}

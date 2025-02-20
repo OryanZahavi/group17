@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% set page_head_title = 'Edit_Details' %}
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('My_Account.static', filename='css/My_Account.css') }}">
+{% endblock %}
+
+{# Header #}
+{% set page_body_header ='פרטי החשבון שלי' %}
+
+
+{# Main#}
+{% block page_body_main %}
+    <div class="grid-container_1">
+        <p>שם פרטי:</p>
+        <span id="display_FirstName"></span>
+
+        <p>שם משפחה:</p>
+        <span id="display_LastName"></span>
+
+        <p>תאריך לידה:</p>
+        <span id="display_BirthDate"></span>
+
+        <p>דואר אלקטרוני:</p>
+        <span id="display_Email"></span>
+
+        <p>מס' פלאפון:</p>
+        <span id="display_Phone"></span>
+
+        <p>הצהרת בריאות:</p>
+        <span id="display_File"></span>
+    </div>
+{% endblock %}
+
+
+{# Footer #}
+{% block submit %}
+    <a href="/Edit_Details">
+        <button class="btn">עריכת פרטים</button>
+    </a>
+{% endblock %}
+
+{# Popup #}
+{% block popup %}{% endblock %}
+
+
+{# JS #}
+{% block page_body_js %}
+    <script src="{{ url_for('My_Account.static', filename='js/My_Account.js') }}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+{######################################}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>My_Account</title>#}
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/My_Account.css') }}">#}
+{#</head>#}
+{#<body>#}
+{#<div class="header-container">#}
+{#    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">#}
+{#    <h1>פרטי החשבון שלי</h1>#}
+{##}
+{#</div>#}
+{##}
+{#<div class="grid-container_1">#}
+{#    <p>שם פרטי:</p>#}
+{#    <span id="display_FirstName"></span>#}
+{##}
+{#    <p>שם משפחה:</p>#}
+{#    <span id="display_LastName"></span>#}
+{##}
+{#    <p>תאריך לידה:</p>#}
+{#    <span id="display_BirthDate"></span>#}
+{##}
+{#    <p>דואר אלקטרוני:</p>#}
+{#    <span id="display_Email"></span>#}
+{##}
+{#    <p>מס' פלאפון:</p>#}
+{#    <span id="display_Phone"></span>#}
+{##}
+{#    <p>הצהרת בריאות:</p>#}
+{#    <span id="display_File"></span>#}
+{#</div>#}
+{#<span class="button">#}
+{#    <a href="/Edit_Details">#}
+{#        <button class="btn">עריכת פרטים</button>#}
+{#    </a>#}
+{##}
+{#    <a href="/Home_Page">#}
+{#        <button class="btn">חזרה למסך הבית</button>#}
+{#    </a>#}
+{#</span>#}
+{#<script src="{{ url_for('static', filename='js/My_Account.js') }}"></script>#}
+{#</body>#}
+{#</html>#}

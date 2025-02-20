@@ -1,15 +1,37 @@
-{% extends "Schedule.html" %}
+{% extends "base.html" %}
 
-{% block Sunday %}
-    <button id='0'></button>
+{% set page_head_title = 'Thursday_Schedule' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('Thursday_Schedule.static', filename='css/Thursday_Schedule.css') }}">
 {% endblock %}
 
-{% block Thursday %}
-    <button id='4' class="active"></button>
-{% endblock %}
+{# Header#}
+{% set page_body_header ='לוח שיעורים' %}
 
-{% block Schedule %}
-    <div class="schedule">
+
+{# Main#}
+{% block page_body_main %}
+    <div class="dates">
+        <a href=/Thursday_Schedule>
+            <button id='4' class="active"></button>
+        </a>
+        <a href="/Wednesday_Schedule">
+            <button id='3'></button>
+        </a>
+        <a href="/Tuesday_Schedule">
+            <button id='2'></button>
+        </a>
+        <a href="/Monday_Schedule">
+            <button id='1' ></button>
+        </a>
+        <a href="/Sunday_Schedule">
+            <button id='0' ></button>
+        </a>
+    </div>
+
+
+     <div class="schedule">
         <button class="session" data-time="07:00" data-day-offset="4" data-popup="שיעור נשימות שעה 7:00">
             <p class="time">07:00</p>
             <p class="details">שיעור נשימות</p>
@@ -36,8 +58,86 @@
             <p class="spots">7/10 רשומות</p>
         </button>
     </div>
+
+    <div class="footer">
+        <p>להרשמה לשיעור/ רשימת המתנה/ ביטול רישום – לחצי על השיעור</p>
+    </div>
+
 {% endblock %}
 
+{% block submit %}{% endblock %}
+
+{# Popup#}
+{% block popup %}
+    <div id="popup" class="popup">
+        <h2>פרטי שיעור</h2>
+        <p id="popup-content"></p>
+        <button id="register-btn" class="popup-btn">הרשמה</button>
+        <button id="waitlist-btn" class="popup-btn">כניסה לרשימת המתנה</button>
+        <button id="cancel-btn" class="popup-btn">ביטול הרשמה</button>
+        <button id="close-popup" class="popup-btn">סגור</button>
+    </div>
+    <!-- תוצאה לאחר לחיצה -->
+    <div id="result-popup" class="popup hidden">
+        <p id="result-message"></p>
+    </div>
+    <!-- חלון ביטול -->
+    <div id="cancel-result-popup" class="popup hidden">
+        <p id="cancel-result-message"></p>
+        <button id="final-cancel-btn" class="popup-btn hidden">ביטול שיעור</button>
+    </div>
+{% endblock %}
+
+{# JS#}
+{% block page_body_js %}
+    <script src="{{ url_for('Thursday_Schedule.static', filename='js/Thursday_Schedule.js') }}"></script>
+{% endblock %}
+
+
+
+
+
+{#############################}
+{#{% extends "Schedule.html" %}#}
+{##}
+{#{% block Sunday %}#}
+{#    <button id='0'></button>#}
+{#{% endblock %}#}
+{##}
+{#{% block Thursday %}#}
+{#    <button id='4' class="active"></button>#}
+{#{% endblock %}#}
+{##}
+{#{% block Schedule %}#}
+{#    <div class="schedule">#}
+{#        <button class="session" data-time="07:00" data-day-offset="4" data-popup="שיעור נשימות שעה 7:00">#}
+{#            <p class="time">07:00</p>#}
+{#            <p class="details">שיעור נשימות</p>#}
+{#            <p class="spots">8/10 רשומות</p>#}
+{#        </button>#}
+{#        <button class="session" data-time="08:00" data-day-offset="4" data-popup="יוגה אשטנגה - מתחילות שעה 8:00">#}
+{#            <p class="time">08:00</p>#}
+{#            <p class="details">יוגה אשטנגה - מתחילות</p>#}
+{#            <p class="spots">5/10 רשומות</p>#}
+{#        </button>#}
+{#        <button class="session" data-time="09:00" data-day-offset="4" data-popup="יוגה קונדליני שעה 9:00">#}
+{#            <p class="time">09:00</p>#}
+{#            <p class="details">יוגה קונדליני</p>#}
+{#            <p class="spots">6/10 רשומות</p>#}
+{#        </button>#}
+{#        <button class="session" data-time="17:00" data-day-offset="4" data-popup="יוגה ויניאסה - כל הרמות שעה 17:00">#}
+{#            <p class="time">17:00</p>#}
+{#            <p class="details">יוגה ויניאסה - כל הרמות</p>#}
+{#            <p class="spots">8/10 רשומות</p>#}
+{#        </button>#}
+{#        <button class="session" data-time="18:00" data-day-offset="4" data-popup="Power yoga שעה 18:00">#}
+{#            <p class="time">18:00</p>#}
+{#            <p class="details">Power yoga</p>#}
+{#            <p class="spots">7/10 רשומות</p>#}
+{#        </button>#}
+{#    </div>#}
+{#{% endblock %}#}
+{##}
 {#{% block popup1 %}#}
 {#    <a href="/Tuesday_Schedule.html"></a>#}
 {#{% endblock %}#}
