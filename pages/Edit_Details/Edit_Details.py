@@ -5,11 +5,11 @@ Edit_Details = Blueprint(
     'Edit_Details',
     __name__,
     static_folder='static',
-    static_url_path='Edit_Details',
+    static_url_path='/Edit_Details',
     template_folder='templates'
 )
 
 # Routs
 @Edit_Details.route('/Edit_Details')
-def edit_details():
+def index():
     return render_template('Edit_Details.html')

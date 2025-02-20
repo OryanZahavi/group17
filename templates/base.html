@@ -1,33 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Base</title>
-    <link rel="stylesheet" href="">
+    {% block page_head %}
+        {% block page_head_meta %}
+            <meta charset="UTF-8"/>
+            <meta name="keywords"
+                  content="flask, lean, skeleton, project, structure, environment, setup, template, fullstack, web, development, app, university, education"/>
+        {% endblock %}
+        <title>{{ page_head_title_author|default('Ofri & Orian', true) }}
+
+            | {{ page_head_title|default('part C', true) }}</title>
+
+        {% block page_head_css %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        {% endblock %}
+    {% endblock %}
 </head>
+
 <body>
+    {% block page_body_content %}
+    {# Navigation #}
+        {% block page_body_header_content__main_menu %}
+            <nav class="main-menu">
+                {% block page_body_header_content__main_menu_content %}
+                    <ul>
+                        {% block page_body_header_content__main_menu_content_links %}
+                            {% include 'navi.html' %}
+                        {% endblock %}
+                    </ul>
+                {% endblock %}
+            </nav>
+        {% endblock %}
 
-{% block header %}
-<header>
-    <h1>**********************</h1>
-    <h1>This is Base header</h1>
-    <h1>**********************</h1>
-</header>
-{% endblock %}
 
-{% include ('navigation.html') %}
+    {# Header #}
+        {% block page_body_header %}
+            <div class="header-container">
+                <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
+                <h1>{{ page_body_header|default('part C', true) }}</h1>
+            </div>
+        {% endblock %}
 
-{% block main%}
-<h2>This is the main block</h2>
-{% endblock %}
 
-{% block footer%}
-<footer>
-    <h1>**********************</h1>
-    <h1>This is Base footer</h1>
-    <h1>**********************</h1>
-</footer>
-{% endblock %}
 
-</body>
+
+    {# Main #}
+        {% block page_body_main %}
+            <main class="page-main">
+            </main>
+        {% endblock %}
+
+    {# Footer #}
+        {% block page_body_footer %}
+            <div class="button">
+            {% block submit %}
+                <button id="submit-button" class="btn">{{ submit_button_text }}</button>
+                 {% endblock %}
+                  <a href="/Home_Page">
+                    <button class="btn">חזרה למסך הבית</button>
+                  </a>
+            </div>
+        {% endblock %}
+
+
+
+    {# Popup #}
+        {% block popup %}
+            <div id="popup" class="popup">
+                    <p>{{ success_message }}</p>
+                    <a href="/Home_Page">
+                        <button class="btn">חזרה לדף הבית</button>
+                    </a>
+            </div>
+        {% endblock %}
+    {% endblock %}
+
+    {# JS #}
+    {% block page_body_js %}
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    {% endblock %}
+
+    </body>
 </html>
+
+
+
+
+
+
+
+
+
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Base</title>#}
+{#    <link rel="stylesheet" href="">#}
+{#</head>#}
+{#<body>#}
+{##}
+{#{% block header %}#}
+{#<header>#}
+{#    <h1>**********************</h1>#}
+{#    <h1>This is Base header</h1>#}
+{#    <h1>**********************</h1>#}
+{#</header>#}
+{#{% endblock %}#}
+{##}
+{#{% include ('navi.html') %}#}
+{##}
+{#{% block main%}#}
+{#<h2>This is the main block</h2>#}
+{#{% endblock %}#}
+{##}
+{#{% block footer%}#}
+{#<footer>#}
+{#    <h1>**********************</h1>#}
+{#    <h1>This is Base footer</h1>#}
+{#    <h1>**********************</h1>#}
+{#</footer>#}
+{#{% endblock %}#}
+{##}
+{#</body>#}
+{#</html>#}
+{##}
+
+

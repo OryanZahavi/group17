@@ -1,0 +1,37 @@
+{#<link rel="stylesheet" href="{{ url_for('Navigation.static', filename='css/Navigation.css') }}"/>#}
+
+{#{%#}
+{#    set menu_items = {#}
+{#        'Home_Page': '/',#}
+{#        'Contact_Us': url_for('Contact_Us.index'),#}
+{#        'Edit_Details': url_for('Edit_Details.index'),#}
+{#        'Meet_Us': url_for('Meet_Us.index'),#}
+{#        'Thursday_Schedule': url_for('Sunday_Schedule.index'),#}
+{#    }#}
+{#%}#}
+{##}
+{#{% for item in menu_items %}#}
+{#    <li>#}
+{#        <a#}
+{#            href="{{ menu_items[item] }}"#}
+{#            {% if menu_items[item] == request.path %}#}
+{#                class="active"#}
+{#            {% endif %}#}
+{#        >{{ item | capitalize }}</a>#}
+{#    </li>#}
+{#{% endfor %}#}
+
+
+
+<a href="/">Home page</a>
+<a href="/costomers">Coustomers</a>
+<a href="/about">About Us</a>
+<a href="/Block_example">Block example</a>
+<a href="/contacts">Contacts</a>
+<a href="/get_post_example">GET & POST example</a>
+<a href="/fetch_page">Fetch Example</a>
+{%  if session.get('logged_in') %}
+    <a href="/logout">Log out</a>
+{% else %}
+    <a href="/login">Log In</a>
+{% endif %}

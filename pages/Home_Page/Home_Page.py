@@ -11,5 +11,5 @@ Home_Page = Blueprint(
 
 # Routs
 @Home_Page.route('/Home_Page')
-def Home_Page():
+def index():
     return render_template('Home_Page.html')

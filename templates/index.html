@@ -8,7 +8,7 @@
 <body>
 
 {% set page_name = "Home Page" %}
-{% include ('navigation.html') %}
+{% include ('navi.html') %}
 
 {% if session.get('logged_in') %}
 <h1> Welcome, user {{  session.get('username') }}</h1>

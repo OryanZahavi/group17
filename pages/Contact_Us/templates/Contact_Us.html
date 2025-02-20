@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact_Us</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Contact_Us.css') }}">
+{% extends "base.html" %}
+{% set page_head_title = 'Contact_Us' %}
+{% block page_head_css %}
+      <link rel="stylesheet" href="{{ url_for('Contact_Us.static', filename='css/Contact_Us.css') }}">
+{% endblock %}
 
-</head>
-<body>
-<div class="header-container">
-    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
-    <h1>יצירת קשר</h1>
-</div>
+{% set page_body_header ='יצירת קשר'%}
 
+  {% block page_body_main %}
 <div class="grid-container_1">
     <div class="field-container">
         <p>שם פרטי</p>
@@ -46,23 +41,101 @@
     </div>
 
 </div>
+{% endblock %}
+
+{% set submit_button_text = "שליחת פנייה" %}
+
+{% set success_message = "הפניה התקבלה בהצלחה!" %}
 
 
-<span class="button">
-    <button id="submit-button" class="btn">שליחת פנייה</button>
-      <a href="/Home_Page">
-        <button class="btn">חזרה למסך הבית</button>
-      </a>
-</span>
+ {% block page_body_js %}
+<script src="{{ url_for('Contact_Us.static', filename='js/Contact_Us.js') }}"></script>
+{% endblock %}
 
 
-<!-- חלון פופ-אפ -->
-<div id="popup" class="popup">
-    <p>הפניה התקבלה בהצלחה!</p>
-    <a href="/Home_Page">
-        <button class="btn">חזרה לדף הבית</button>
-    </a>
-</div>
-<script src="{{ url_for('static', filename='js/Contact_Us.js') }}"></script>
-</body>
-</html>
+
+
+
+
+
+
+{##}
+{##############  its goood!! ##################}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Contact_Us</title>#}
+{#    <link rel="stylesheet" href="{{ url_for('Contact_Us.static', filename='css/Contact_Us.css') }}">#}
+{##}
+{#</head>#}
+{#<body>#}
+{#<nav class="main-menu">#}
+{#                {% block page_body_header_content__main_menu_content %}#}
+{#                    <ul>#}
+{#                        {% block page_body_header_content__main_menu_content_links %}#}
+{#                            {% include 'navi.html' %}#}
+{#                        {% endblock %}#}
+{#                    </ul>#}
+{#                {% endblock %}#}
+{#            </nav>#}
+{##}
+{#<div class="header-container">#}
+{#    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">#}
+{#    <h1>יצירת קשר</h1>#}
+{#</div>#}
+{##}
+{#<div class="grid-container_1">#}
+{#    <div class="field-container">#}
+{#        <p>שם פרטי</p>#}
+{#        <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">#}
+{#        <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>#}
+{#    </div>#}
+{#    <div class="field-container">#}
+{#        <p>שם משפחה</p>#}
+{#        <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">#}
+{#        <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{##}
+{#<div class="grid-container_2">#}
+{#    <div class="field-container">#}
+{#        <p>מס' פלאפון</p>#}
+{#        <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">#}
+{#        <span id="phoneNumberError" class="error-message"></span>#}
+{#    </div>#}
+{##}
+{#    <div class="field-container">#}
+{#        <p>דואר אלקטרוני</p>#}
+{#        <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">#}
+{#        <span id="emailError" class="error-message"></span>#}
+{#    </div>#}
+{##}
+{#    <div class="field-container">#}
+{#        <p>תיאור הפנייה</p>#}
+{#        <textarea name="Description" placeholder="הזיני את הפניה "></textarea>#}
+{#        <span id="descriptionError" class="error-message"></span>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#<span class="button">#}
+{#    <button id="submit-button" class="btn">שליחת פנייה</button>#}
+{#      <a href="/Home_Page">#}
+{#        <button class="btn">חזרה למסך הבית</button>#}
+{#      </a>#}
+{#</span>#}
+{##}
+{##}
+{#<!-- חלון פופ-אפ -->#}
+{#<div id="popup" class="popup">#}
+{#    <p>הפניה התקבלה בהצלחה!</p>#}
+{#    <a href="/Home_Page">#}
+{#        <button class="btn">חזרה לדף הבית</button>#}
+{#    </a>#}
+{#</div>#}
+{#<script src="{{ url_for('Contact_Us.static', filename='js/Contact_Us.js') }}"></script>#}
+{#</body>#}
+{#</html>#}

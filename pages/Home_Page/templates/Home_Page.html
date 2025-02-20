@@ -1,33 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home_Page</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/Home_Page.css') }}">
-</head>
-<body>
-<div class="container">
-    <h1>דף הבית</h1>
-    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
+{% extends "base.html" %}
 
-    <div class="grid-container">
+{% set page_head_title = 'Home_Page' %}
 
-        <a href="/My_Account">
-            <button class="btn">החשבון שלי</button>
-        </a>
-        <a href="/Sunday_Schedule">
-            <button class="btn">לוח שיעורים</button>
-        </a>
-        <a href="/Contact_Us">
-            <button class="btn">יצירת קשר</button>
-        </a>
-        <a href=/Meet_Us>
-            <button class="btn">קצת עלינו</button>
-        </a>
-    </div>
+{% block page_head_css %}
+       <link rel="stylesheet" href="{{ url_for('Home_Page.static', filename='css/Home_Page.css') }}">
+{% endblock %}
+
+{# Header#}
+{% set page_body_header ='דף הבית' %}
+
+ Navigation
+{% block page_body_header_content__main_menu %}{% endblock %}
+
+{# Main#}
+{% block page_body_main %}
+    <div class="container">
+        <div class="grid-container">
+            <a href="/My_Account">
+                <button class="btn">החשבון שלי</button>
+            </a>
+            <a href="/Sunday_Schedule">
+                <button class="btn">לוח שיעורים</button>
+            </a>
+            <a href="/Contact_Us">
+                <button class="btn">יצירת קשר</button>
+            </a>
+            <a href="/Meet_Us">
+                <button class="btn">קצת עלינו</button>
+            </a>
+        </div>
         <a href="https://www.instagram.com/soul.studio.p/" target="_blank">
             <button class="btn">עקבו אחרינו</button>
         </a>
-</div>
-</body>
-</html>
+    </div>
+{% endblock %}
+
+
+{# Footer#}
+{% block page_body_footer %}{% endblock %}
+
+{# Popup#}
+{% block popup %}{% endblock %}
+
+{# JS#}
+{% block page_body_js %}{% endblock %}
+
+
+
+
+
+{############# before base - its goog! ############}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Home_Page</title>#}
+{#        <link rel="stylesheet" href="{{ url_for('Home_Page.static', filename='css/Home_Page.css') }}">#}
+{#</head>#}
+{#<body>#}
+{#<div class="container">#}
+{#    <h1>דף הבית</h1>#}
+{#    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">#}
+{##}
+{#    <div class="grid-container">#}
+{##}
+{#        <a href="/My_Account">#}
+{#            <button class="btn">החשבון שלי</button>#}
+{#        </a>#}
+{#        <a href="/Sunday_Schedule">#}
+{#            <button class="btn">לוח שיעורים</button>#}
+{#        </a>#}
+{#        <a href="/Contact_Us">#}
+{#            <button class="btn">יצירת קשר</button>#}
+{#        </a>#}
+{#        <a href=/Meet_Us>#}
+{#            <button class="btn">קצת עלינו</button>#}
+{#        </a>#}
+{#    </div>#}
+{#        <a href="https://www.instagram.com/soul.studio.p/" target="_blank">#}
+{#            <button class="btn">עקבו אחרינו</button>#}
+{#        </a>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}

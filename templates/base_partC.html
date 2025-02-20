@@ -1,0 +1,108 @@
+{#
+Base page variables:
+-- page_lang | default: 'en'
+-- page_head_title_author | default: 'Barak Pinchovski'
+-- page_head_title | default: 'Flask skeleton project'
+#}
+
+{#
+Base page blocks:
+- head
+-- page_head
+-- page_head_meta
+--- page_head_meta_extra
+-- page_head_css
+
+- body
+-- page_body_content
+--- page_body_header
+---- page_body_header_content
+----- page_body_header_content__main_menu
+------ page_body_header_content__main_menu_content
+------- page_body_header_content__main_menu_content_links
+--- page_body_main
+---- page_body_main_content
+--- page_body_footer
+---- page_body_footer_content
+-- page_body_js
+ #}
+
+
+
+<!DOCTYPE html>
+ <html lang="en">
+    <head>
+
+    {% block page_head %}
+        {# Title #}
+        <title>{{ page_head_title_author|default('Ofri & Orian', true) }} | {{ page_head_title|default('part C', true) }}</title>
+
+        {# Meta tags #}
+        {% block page_head_meta %}
+{#            <base href="/"/>#}
+            <meta charset="UTF-8"/>
+{#            <meta name="description" content="Flask skeleton project as a base to start developing on"/>#}
+            <meta name="keywords" content="flask, lean, skeleton, project, structure, environment, setup, template, fullstack, web, development, app, university, education"/>
+        {% endblock %}
+
+        {# favicon #}
+       <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
+
+        {# Base #}
+{#        <base href="/"/>#}
+
+        {# CSS #}
+        {% block page_head_css %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
+        {% endblock %}
+    {% endblock %}
+
+    </head>
+    <body>
+        {% block page_body_content %}
+
+            {# Header #}
+            {% block page_body_header %}
+                <header class="page-header">
+                    {% block page_body_header_content %}
+
+                        {# Main Menu #}
+                        {% block page_body_header_content__main_menu %}
+                            <nav class="main-menu">
+                                {% block page_body_header_content__main_menu_content %}
+                                    <ul>
+                                        {% block page_body_header_content__main_menu_content_links %}
+                                            {% include 'navi.html' %}
+                                        {% endblock %}
+                                    </ul>
+                                {% endblock %}
+                            </nav>
+                        {% endblock %}
+
+                    {% endblock %}
+                </header>
+            {% endblock %}
+
+            {# Main #}
+            {% block page_body_main %}
+                <main class="page-main">
+                  {% block page_body_main_content %}
+                  {% endblock %}
+                </main>
+            {% endblock %}
+
+            {# Footer #}
+            {% block page_body_footer %}
+                <footer class="page-footer">
+                  {% block page_body_footer_content %}
+                  {% endblock %}
+                </footer>
+            {% endblock %}
+
+        {% endblock %}
+
+        {# JS #}
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+        {% block page_body_js %}{% endblock %}
+    </body>
+</html>

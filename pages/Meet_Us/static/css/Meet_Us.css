@@ -3,7 +3,6 @@ body {
     background-color: #b6dcb8;
     margin: 0;
     padding: 20px;
-    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -60,15 +59,15 @@ h1 {
     margin-top: 10px;
 }
 
-.back-button {
+button {
     margin-top: 20px;
 }
 
-.back-button a {
+button a {
     text-decoration: none;
 }
 
-.back-button button {
+.button button {
     padding: 10px 20px;
     font-size: 1rem;
     color: rosybrown;
@@ -79,7 +78,7 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.back-button button:hover {
+.button button:hover {
     background-color: #d9b1a2;
     color: white;
 }

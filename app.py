@@ -1,24 +1,24 @@
-from flask import Flask
+from flask import Flask, render_template
 import json
 
 app = Flask(__name__)
 app.secret_key = '123'
 # app.config.from_pyfile('settings.py')
-
-##### Pages
-
+#
+# ##### Pages
+#
 ## Contact_Us
 from pages.Contact_Us.Contact_Us import Contact_Us
 app.register_blueprint(Contact_Us)
 
-## Edit_Details
+# ## Edit_Details
 from pages.Edit_Details.Edit_Details import Edit_Details
 app.register_blueprint(Edit_Details)
 
 ## Entry_Screen
 from pages.Entry_Screen.Entry_Screen import Entry_Screen
 app.register_blueprint(Entry_Screen)
-
+#
 ## Home_Page
 from pages.Home_Page.Home_Page import Home_Page
 app.register_blueprint(Home_Page)
@@ -26,18 +26,39 @@ app.register_blueprint(Home_Page)
 ## Meet_Us
 from pages.Meet_Us.Meet_Us import Meet_Us
 app.register_blueprint(Meet_Us)
-
+#
 ## New_User_account
 from pages.New_User_Account.New_User_Account import New_User_Account
 app.register_blueprint(New_User_Account)
 
-## Schedule
-from pages.Schedule.Schedule import Schedule
-app.register_blueprint(Schedule)
+
+## Sunday_Schedule
+from pages.Sunday_Schedule.Sunday_Schedule import Sunday_Schedule
+app.register_blueprint(Sunday_Schedule)
+
+## Monday_Schedule
+from pages.Monday_Schedule.Monday_Schedule import Monday_Schedule
+app.register_blueprint(Monday_Schedule)
+
+## Tuesday_Schedule
+from pages.Tuesday_Schedule.Tuesday_Schedule import Tuesday_Schedule
+app.register_blueprint(Tuesday_Schedule)
+
+## Wednesday_Schedule
+from pages.Wednesday_Schedule.Wednesday_Schedule import Wednesday_Schedule
+app.register_blueprint(Wednesday_Schedule)
+
+## Thursday_Schedule
+from pages.Thursday_Schedule.Thursday_Schedule import Thursday_Schedule
+app.register_blueprint(Thursday_Schedule)
+
+## Navigation
+from components.Navigation.Navigation import Navigation
+app.register_blueprint(Navigation)
 
 
 
-
+#####################################################################
 
 
 # @app.route('/')
@@ -66,9 +87,9 @@ app.register_blueprint(Schedule)
 #     return render_template('Meet_Us.html')
 #
 #
-# @app.route('/Sunday_Schedule')
+# @app.route('/static')
 # def sunday_schedule_page():
-#     return render_template('Sunday_Schedule.html')
+#     return render_template('static.html')
 #
 #
 # @app.route('/Monday_Schedule')
@@ -112,11 +133,11 @@ app.register_blueprint(Schedule)
 # @app.route('/costomer')
 # def go_to_contact():
 #     return redirect(url_for('contact_page'))  # מפנה לעמוד Contact
-
-
-
-
-
+#
+#
+#
+#
+#
 # import from DB
 # first_name = ''
 # last_name = 'Applebaum'
@@ -135,14 +156,14 @@ app.register_blueprint(Schedule)
 #    user= user,
 #     hobbies=hobbies,
 #     degrees=degrees,
-
+#
 #
 # ###############in class-final#################
-# @app.route('/index')
-# @app.route('/home')
-# @app.route('/')
-# def home_page():
-#     return render_template('index.html')
+@app.route('/index')
+@app.route('/home')
+@app.route('/')
+def home_page():
+    return render_template('index.html')
 #
 #
 # @app.route('/fetch_page')

@@ -77,7 +77,7 @@ img {
 }
 
 /* עיצוב כפתורים במסך הירוק */
-.green-screen-buttons {
+.button {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -191,7 +191,7 @@ input.error {
         width: 200px;
     }
 
-    .green-screen-buttons {
+    .button {
         justify-content: center;
         padding-right: 0;
     }

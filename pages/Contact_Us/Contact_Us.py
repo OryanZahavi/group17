@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template
 
 # about Blueprint definition
 Contact_Us = Blueprint(
@@ -11,5 +11,5 @@ Contact_Us = Blueprint(
 
 # Routs
 @Contact_Us.route('/Contact_Us')
-def contact_us():
+def index():
     return render_template('Contact_Us.html')

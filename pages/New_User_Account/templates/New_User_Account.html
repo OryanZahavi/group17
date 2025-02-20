@@ -6,7 +6,7 @@
         <title>New_User_Account</title>
     {% endblock %}
 {% block css %}
-	 <link rel="stylesheet" href="{{ url_for('static', filename='pages/New_User_Account/static/css/New_User_Account.css') }}">
+	 <link rel="stylesheet" href="{{ url_for('New_User_Account.static', filename='css/New_User_Account.css') }}">
 {% endblock %}
 
 
@@ -75,7 +75,7 @@
     </a>
 </div>
 {% block script %}
-	<script src="{{ url_for('static', filename='pages/New_User_Account/static/js/New_User_Account.js') }}"></script>
+	<script src="{{ url_for('New_User_Account.static', filename='js/New_User_Account.js') }}"></script>
 {% endblock %}
 
 </body>

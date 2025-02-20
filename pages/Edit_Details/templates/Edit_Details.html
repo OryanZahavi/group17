@@ -1,25 +1,146 @@
-{% extends "../pages/New_User_Account/templates/New_User_Account.html" %}
-{% block page %}
-    <title>Edit_Details</title>
+{% extends "base.html" %}
+
+{% set page_head_title = 'Edit_Details' %}
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('Edit_Details.static', filename='css/Edit_Details.css') }}">
 {% endblock %}
 
-{% block header %}
-    <h1>עריכת חשבון</h1>
+{# Header #}
+{% set page_body_header ='עריכת חשבון' %}
+
+{# Main #}
+{% block page_body_main %}
+    <div class="grid-container_1">
+        <p>שם פרטי</p>
+        <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">
+        <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>
+
+        <p>שם משפחה</p>
+        <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">
+        <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>
+
+        <p>תאריך לידה</p>
+        <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזיני תאריך">
+        <span id="birthDateError" class="error-message"></span>
+
+        <p>דואר אלקטרוני</p>
+        <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">
+
+        <span id="emailError" class="error-message"></span>
+
+        <p>מס' פלאפון</p>
+        <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">
+        <span id="phoneNumberError" class="error-message"></span>
+
+        <p>סיסמה</p>
+        <input type="password" id="password" name="user_Password" class="input-field"
+               placeholder="הכניסי סיסמה כרצונך על פי הנהלים">
+        <span id="passwordError" class="error-message"></span>
+
+        <p>טופס הצהרת בריאות</p>
+        <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזיני שם פרטי">
+        <span id="fileError" class="error-message"></span>
+
+    </div>
 {% endblock %}
 
-{% block buttons %}
-    <button id="submit-button" class="btn">מאשרת שינויים</button>
-      <a href=/Home_Page>
-        <button class="btn">חזרה למסך הבית</button>
-    </a>
+{# Footer #}
+{% set submit_button_text = "מאשרת שינויים" %}
+
+{# Popup #}
+{% set success_message = "השינויים נקלטו בהצלחה!" %}
+
+{# JS #}
+{% block page_body_js %}
+    <script src="{{ url_for('Edit_Details.static', filename='js/Edit_Details.js') }}"></script>
 {% endblock %}
 
-    {% block popup_window %}
-        <p>השינויים נקלטו</p>
-    {% endblock %}
-{% block css %}
-	 <link rel="stylesheet" href="{{ url_for('static', filename='pages/Edit_Details/static/css/Edit_Details.css') }}">
-{% endblock %}
-{% block script %}
-	<script src="{{ url_for('static', filename='pages/Edit_Details/static/js/Edit_Details.js') }}"></script>
-{% endblock %}
+
+
+
+
+{############# before base - its goog! ############}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    {% block page %}#}
+{#        <title>Edit_Details</title>#}
+{#    {% endblock %}#}
+{#{% block css %}#}
+{#	 <link rel="stylesheet" href="{{ url_for('Edit_Details.static', filename='css/Edit_Details.css') }}">#}
+{#{% endblock %}#}
+{##}
+{##}
+{#</head>#}
+{#<body>#}
+{#<div class="header-container">#}
+{#    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">#}
+{#    {% block header %}#}
+{#            <h1>עריכת חשבון</h1>#}
+{#    {% endblock %}#}
+{#</div>#}
+{##}
+{#<div class="grid-container_1">#}
+{#    <p>שם פרטי</p>#}
+{#    <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">#}
+{#    <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>#}
+{##}
+{#    <p>שם משפחה</p>#}
+{#    <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">#}
+{#    <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>#}
+{##}
+{#    <p>תאריך לידה</p>#}
+{#    <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזיני תאריך">#}
+{#    <span id="birthDateError" class="error-message"></span>#}
+{##}
+{#    <p>דואר אלקטרוני</p>#}
+{#    <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">#}
+{##}
+{#    <span id="emailError" class="error-message"></span>#}
+{##}
+{#    <p>מס' פלאפון</p>#}
+{#    <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">#}
+{#    <span id="phoneNumberError" class="error-message"></span>#}
+{##}
+{#    <p>סיסמה</p>#}
+{#    <input type="password" id="password" name="user_Password" class="input-field"#}
+{#           placeholder="הכניסי סיסמה כרצונך על פי הנהלים">#}
+{#    <span id="passwordError" class="error-message"></span>#}
+{##}
+{#    <p>טופס הצהרת בריאות</p>#}
+{#    <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזיני שם פרטי">#}
+{#    <span id="fileError" class="error-message"></span>#}
+{##}
+{##}
+{#</div>#}
+{##}
+{#<!-- כפתורים למסך הירוק -->#}
+{#<div class="green-screen-buttons">#}
+{#    {% block buttons %}#}
+{#    <button id="submit-button" class="btn">מאשרת שינויים</button>#}
+{#      <a href=/Home_Page>#}
+{#        <button class="btn">חזרה למסך הבית</button>#}
+{#    </a>#}
+{#    {% endblock %}#}
+{#</div>#}
+{##}
+{#<!-- חלון פופ-אפ -->#}
+{#<div id="popup" class="popup">#}
+{##}
+{#    {% block popup_window %}#}
+{#          <p>השינויים נקלטו</p>#}
+{#    {% endblock %}#}
+{##}
+{#    <a href="/Home_Page">#}
+{#        <button id="home-button" class="btn">חזרה לדף הבית</button>#}
+{#    </a>#}
+{#</div>#}
+{#{% block script %}#}
+{#		<script src="{{ url_for('Edit_Details.static', filename='js/Edit_Details.js') }}"></script>#}
+{#{% endblock %}#}
+{##}
+{#</body>#}
+{#</html>#}
+{##}
+{##}

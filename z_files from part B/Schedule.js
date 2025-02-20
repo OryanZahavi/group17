@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll('.dates button');
         buttons.forEach((button, index) => {
             const formattedDate = reversedWeekDates[index].toLocaleDateString('he-IL', {
-                day: 'Schedule-digit',
-                month: 'Schedule-digit',
+                day: 'Thursday_Schedule-digit',
+                month: 'Thursday_Schedule-digit',
             });
 
             button.innerHTML = `${formattedDate}<br>${days[index]}`;

@@ -1,70 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charsetמ="UTF-8">
-    <title>Entry_Screen</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Entry_Screen.css') }}">
+{% extends "base.html" %}
 
-</head>
-<body>
-<h1>ברוכות הבאות</h1>
-<img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
+{% set page_head_title = 'Entry_Screen' %}
 
-<form action="/Z_B_to%20_Delete/Entry_Screen.html" method="post">
-    <div class="grid_Container_1">
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('Entry_Screen.static', filename='css/Entry_Screen.css') }}">
+{% endblock %}
 
-        <p>דואר אלקטרוני</p>
-        <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">
-        <span id="emailError" class="error-message"></span>
+{# Header #}
+{% set page_body_header ='ברוכות הבאות' %}
 
-        <p>סיסמה</p>
-        <input type="password" id="password" name="user_Password" class="input-field" placeholder=" הזיני סיסמה ">
-        <span id="passwordError" class="error-message"></span>
+{# Navigation #}
+{% block page_body_header_content__main_menu %}{% endblock %}
 
-        <p>משתמשת חדשה? ניתן להירשם <a href=/New_User_Account class="register-link">כאן</a></p>
-        <input type="submit" value="כניסה">
-    </div>
-{#לא מחקתי בשביל שיהיה נח לראות מה שיניתי #}
-    {#    <span class="button">#}
-    {#    <button id="submit-button" class="btn">כניסה</button>#}
-    {#    </span>#}
+{# Main #}
+{% block page_body_main %}
+    <form action="Entry_Screen.html" method="post">
+        <div class="grid_Container_1">
 
-</form>
-<script src="{{ url_for('static', filename='js/Entry_Screen.js') }}"></script>
-</body>
-</html>
+            <p>דואר אלקטרוני</p>
+            <input type="text" id="email" name="user_Email" class="input-field"
+                   placeholder="הזיני כתובת דואר אלקטרוני ">
+            <span id="emailError" class="error-message"></span>
+
+            <p>סיסמה</p>
+            <input type="password" id="password" name="user_Password" class="input-field" placeholder=" הזיני סיסמה ">
+            <span id="passwordError" class="error-message"></span>
+
+            <p>משתמשת חדשה? ניתן להירשם <a href=/New_User_Account class="register-link">כאן</a></p>
+            <input type="submit" value="כניסה">
+        </div>
+
+    </form>
+{% endblock %}
+
+{# Footer #}
+{% block page_body_footer %}{% endblock %}
+
+{# Popup #}
+{% block popup %}{% endblock %}
+
+{# JS #}
+{% block page_body_js %}
+    <script src="{{ url_for('Entry_Screen.static', filename='js/Entry_Screen.js') }}"></script>
+{% endblock %}
 
 
-{#before changes 30.Edit_Details#}
 
+
+{##}
+{##}
+{############# before base - its goog! ############}
 {#<!DOCTYPE html>#}
 {#<html lang="en">#}
 {#<head>#}
-{#    <meta charset="UTF-8">#}
+{#    <meta charsetמ="UTF-8">#}
 {#    <title>Entry_Screen</title>#}
-{#     <link rel="stylesheet" href="{{ url_for('static', filename='css/Entry_Screen.css') }}">#}
+{#    <link rel="stylesheet" href="{{ url_for('Entry_Screen.static', filename='css/Entry_Screen.css') }}">#}
 {##}
 {#</head>#}
 {#<body>#}
 {#<h1>ברוכות הבאות</h1>#}
 {#<img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">#}
 {##}
-{#<div class="grid_Container_1">#}
-{#    <p>דואר אלקטרוני</p>#}
-{#    <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">#}
-{#    <span id="emailError" class="error-message"></span>#}
+{#<form action="/Z_B_to%20_Delete/Entry_Screen.html" method="post">#}
+{#    <div class="grid_Container_1">#}
 {##}
-{#    <p>סיסמה</p>#}
-{#    <input type="password" id="password" name="user_Password" class="input-field" placeholder=" הזיני סיסמה ">#}
-{#    <span id="passwordError" class="error-message"></span>#}
+{#        <p>דואר אלקטרוני</p>#}
+{#        <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">#}
+{#        <span id="emailError" class="error-message"></span>#}
 {##}
-{#    <p>משתמשת חדשה? ניתן להירשם <a href=/New_User_Account class="register-link">כאן</a></p>#}
-{#</div>#}
+{#        <p>סיסמה</p>#}
+{#        <input type="password" id="password" name="user_Password" class="input-field" placeholder=" הזיני סיסמה ">#}
+{#        <span id="passwordError" class="error-message"></span>#}
 {##}
-{#<span class="button">#}
-{#    <button id="submit-button" class="btn">כניסה</button>#}
-{#</span>#}
+{#        <p>משתמשת חדשה? ניתן להירשם <a href=/New_User_Account class="register-link">כאן</a></p>#}
+{#        <input type="submit" value="כניסה">#}
+{#    </div>#}
 {##}
-{#<script src="{{ url_for('static', filename='js/Entry_Screen.js') }}"></script>#}
+{#</form>#}
+{#<script src="{{ url_for('Entry_Screen.static', filename='js/Entry_Screen.js') }}"></script>#}
 {#</body>#}
 {#</html>#}
+
+
