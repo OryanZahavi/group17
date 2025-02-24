@@ -46,6 +46,7 @@
 
     {# Main #}
         {% block page_body_main %}
+         <form action="/register" method="POST">
              <div class="grid-container_1">
                 <p>שם פרטי</p>
                 <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">
@@ -78,13 +79,14 @@
                 <span id="fileError" class="error-message"></span>
 
             </div>
+         </form>
         {% endblock %}
 
     {# Footer #}
         {% block page_body_footer %}
             <div class="button">
             {% block submit %}
-                <button id="submit-button" class="btn">{{ submit_button_text }}
+                <button type="submit" id="submit-button" class="btn">{{ submit_button_text }}
                 </button>
                  {% endblock %}
                   <a href="{{ return_to_url | default('/Home_Page', true) }}">

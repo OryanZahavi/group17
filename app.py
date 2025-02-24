@@ -1,5 +1,9 @@
 from flask import Flask, render_template
+
+from flask import session
+from flask import request
 import json
+
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -58,6 +62,32 @@ app.register_blueprint(Navigation)
 
 from pages.My_Account.My_Account import My_Account
 app.register_blueprint(My_Account)
+
+
+from db_functions import *
+
+#################################
+
+import pymongo
+
+
+@app.route('/mongodb')
+def mongodb_func():
+    message = 'good'
+    return render_template('mongodb_lecture.html', message=message)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #####################################################################
 
