@@ -10,12 +10,34 @@ users_col = db["Users"]  # שם הקולקשן של המשתמשות
 
 # ------------------- פונקציות ניהול משתמשים -------------------
 
+def user_exist(user_email,user_password):
+    user = users_col.find_one({"Email": user_email})
+    if user and user_password == user["Password"]:
+        return True
+    return False
+
+
+
+def insert_user(email, password, first_name, last_name, birth_date, phone_number):
+    """ הוספת משתמש חדש למסד הנתונים """
+    user_data = {
+        "name": email,
+        "password": password,  # יש להצפין בעתיד!
+        "first_name": first_name,
+        "last_name": last_name,
+        "birth_date": birth_date,
+        "phone_number": phone_number
+    }
+    users_col.insert_one(user_data)
+
 # פונקציה לבדיקת קיום משתמשת במערכת
 def get_user_by_email(email):
     return users_col.find_one({"email": email})
 
-
-
+def get_all_users():
+    """שליפת כל המשתמשות מהקולקשן Users"""
+    users = list(users_col.find({}, {"_id": 0}))  # מוציאים את ה-_id מהתוצאה
+    return users
 
 
 

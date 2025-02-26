@@ -179,3 +179,17 @@ h1 {
     }
 }
 
+.logout-link {
+    color: #d38b8b; /* צבע כמו Schedule */
+    font-family: Gisha, sans-serif;
+    font-weight: bold; /* טקסט מודגש */
+    text-decoration: none; /* מסיר קו תחתון */
+    font-size: 18px; /* שינוי גודל הפונט (מותאם אישית) */
+    transition: color 0.3s ease-in-out; /* אפקט מעבר חלק */
+}
+
+/* שינוי צבע בעת מעבר עם העכבר */
+.logout-link:hover {
+    color: #475e48; /* אפור כהה כמו בטקסט של הלוגו */
+    text-decoration: underline; /* מוסיף קו תחתון רק כשעוברים עם העכבר */
+}

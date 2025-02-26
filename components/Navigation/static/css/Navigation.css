@@ -1,3 +1,6 @@
+:root {
+    --active-menu-item-color: #d38b8b; /* שימי כאן את הצבע של Schedule */
+}
 .main-menu ul {
     padding: 0;
 }
@@ -6,6 +9,20 @@
     display: inline-block;
 }
 
-.main-menu > ul li a.active {
+/* כל הקישורים בתפריט יקבלו את הצבע של Schedule */
+.main-menu > ul li a {
+    color: var(--active-menu-item-color); /* ודאי שזה הצבע של Schedule */
+    text-decoration: none; /* מסיר קו תחתון */
+}
+
+/* כשהעכבר עובר על הקישור - הצבע יישאר כמו Schedule */
+.main-menu > ul li a:hover {
     color: var(--active-menu-item-color);
 }
+
+/* הפריט של הדף הפעיל יהיה בצבע שחור */
+.main-menu > ul li a.active {
+    color: black;
+
+}
+

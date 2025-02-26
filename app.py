@@ -63,6 +63,8 @@ app.register_blueprint(Navigation)
 from pages.My_Account.My_Account import My_Account
 app.register_blueprint(My_Account)
 
+from pages.log_out.log_out import log_out
+app.register_blueprint(log_out)
 
 from db_functions import *
 

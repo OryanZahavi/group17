@@ -74,9 +74,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return { valid: true, errorMessage: "" };
     }
+
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
 
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();  // מונע שליחת טופס רגילה
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        fetch("/api/login", {  // קריאה ל-API Flask
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ user_Email: email, user_Password: password })  // שליחת JSON
+        })
+        .then(response => response.json())  // הפיכת התשובה לאובייקט JSON
+        .then(data => {
+            if (data.status === "success") {
+                window.location.href = data.redirect;  // מעבר לדף הבית
+            } else {
+                alert(data.message);  // הצגת הודעת שגיאה
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+});
 
 
 

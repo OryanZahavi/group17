@@ -9,8 +9,10 @@
 {# Header#}
 {% set page_body_header ='דף הבית' %}
 
- Navigation
-{% block page_body_header_content__main_menu %}{% endblock %}
+{# Navigation#}
+{% block page_body_header_content__main_menu %}
+<a href="/log_out" class="logout-link">התנתקי</a>
+{% endblock %}
 
 {# Main#}
 {% block page_body_main %}
