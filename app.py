@@ -1,9 +1,8 @@
 from flask import Flask, render_template
-
 from flask import session
 from flask import request
 import json
-
+from db_functions import *
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -15,7 +14,7 @@ app.secret_key = '123'
 from pages.Contact_Us.Contact_Us import Contact_Us
 app.register_blueprint(Contact_Us)
 
-# ## Edit_Details
+## Edit_Details
 from pages.Edit_Details.Edit_Details import Edit_Details
 app.register_blueprint(Edit_Details)
 
@@ -66,22 +65,29 @@ app.register_blueprint(My_Account)
 from pages.log_out.log_out import log_out
 app.register_blueprint(log_out)
 
-from db_functions import *
+
 
 #################################
 
-import pymongo
-
-
-@app.route('/mongodb')
-def mongodb_func():
-    message = 'good'
-    return render_template('mongodb_lecture.html', message=message)
-
-
-
-
-
+# import pymongo
+# from pymongo.mongo_client import MongoClient
+# from pymongo.server_api import ServerApi
+#
+# uri = "mongodb+srv://ofriap:Oa2712!@cluster0.vzg9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+#
+# # Create a new client and connect to the server
+# client = MongoClient(uri, server_api=ServerApi('1'))
+#
+#
+# cluster = cluster['Soul_Studio']  # שם הדאטהבייס
+# users_col = Soul_Studio['users']  # שם הקולקשן של המשתמשות
+# #
+#
+# @.route('/mongodb')
+# def mongodb_func():
+#     message = 'good'
+#     return render_template('mongodb_lecture.html', message=message)
+#
 
 
 

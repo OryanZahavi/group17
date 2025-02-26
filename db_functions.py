@@ -1,34 +1,56 @@
+
 import pymongo
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-# חיבור ל-MongoDB Atlas
-uri = "mongodb+srv://ofriap:<db_password>@cluster0.vzg9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-cluster = MongoClient(uri, server_api=ServerApi('1'))
-db = cluster["Soul_Studio"]  # שם הדאטהבייס
-users_col = db["Users"]  # שם הקולקשן של המשתמשות
+uri = "mongodb+srv://ofriap:Oa2712!@cluster0.vzg9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
-# ------------------- פונקציות ניהול משתמשים -------------------
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
 
-def user_exist(user_email,user_password):
+Soul_Studio = client['Soul_Studio']  # שם הדאטהבייס
+users_col = Soul_Studio['users']  # שם הקולקשן של המשתמשות
+lessons_col = Soul_Studio['lessons']
+
+
+# # ------------------- פונקציות ניהול משתמשים -------------------
+
+#
+# print("Hello, world!")
+# def insert():
+#     user1 = {
+#         'name': 'shelly',
+#         'lastname': 'bar',
+#         'age': 27
+#     }
+#     result = users_col.insert_one(user1)  # הכנסת הנתונים
+#     print(f"Inserted document ID: {result.inserted_id}")  # מדפיס את ה-ID של המסמך שנוסף
+#     return result.inserted_id
+#
+#
+
+
+
+def user_exist(user_email, user_password):
     user = users_col.find_one({"Email": user_email})
     if user and user_password == user["Password"]:
         return True
     return False
 
-
-
-def insert_user(email, password, first_name, last_name, birth_date, phone_number):
+def insert_user(first_name,last_name, birth_date, email, phone,password,health_file):
     """ הוספת משתמש חדש למסד הנתונים """
-    user_data = {
-        "name": email,
-        "password": password,  # יש להצפין בעתיד!
-        "first_name": first_name,
-        "last_name": last_name,
-        "birth_date": birth_date,
-        "phone_number": phone_number
-    }
-    users_col.insert_one(user_data)
+    users_col.insert_one({
+
+        'first_name': first_name,
+        'last_name': last_name,
+        'birth_date': birth_date,
+        'email': email,
+        'phone': phone,
+        'password': password,
+        'health_file': health_file
+
+    })
+
 
 # פונקציה לבדיקת קיום משתמשת במערכת
 def get_user_by_email(email):
@@ -40,14 +62,7 @@ def get_all_users():
     return users
 
 
-
-# import pymongo
-# from pymongo.mongo_client import MongoClient
-# from pymongo.server_api import ServerApi
-#
-# uri= "mongodb+srv://ofriap:<db_password>@cluster0.vzg9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-#
-# cluster = MongoClient(uri, server_api=ServerApi('1'))
-# mydatabase = cluster['mydatabase']
-# customers_col = mydatabase['customers']
-# product_col = mydatabase['products']
+def email_exists(email):
+    if users_col.find_one({"email": email}):
+        return True
+    return False
