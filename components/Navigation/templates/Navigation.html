@@ -7,24 +7,27 @@
         'החשבון שלי': url_for('My_Account.index'),
         'קצת עלינו': url_for('Meet_Us.index'),
         'לוח שיעורים': url_for('Sunday_Schedule.index'),
-        'התנתקי': url_for('log_out.log_out_func'),
         'mongo': '/mongodb_lecture'
-
-
     }
 %}
 
-{% for item in menu_items %}
-    <li>
-        <a
-            href="{{ menu_items[item] }}"
-            {% if menu_items[item] == request.path %}
-                class="active"
-            {% endif %}
-        >{{ item | capitalize }}</a>
-    </li>
-{% endfor %}
+<ul>
+    {% for item in menu_items %}
+        <li>
+            <a href="{{ menu_items[item] }}" {% if menu_items[item] == request.path %} class="active" {% endif %}>
+                {{ item | capitalize }}
+            </a>
+        </li>
+    {% endfor %}
 
+    {% if session.get('user_name') %}
+        <li><p>ברוכה הבאה, {{ session['user_name'] }}!</p></li>
+        <li><a href="{{ url_for('log_out.log_out_func') }}">התנתקות</a></li>
+    {% else %}
+        <li><a href="{{ url_for('New_User_Account.new_user_account') }}">הרשמה</a></li>
+        <li><a href="{{ url_for('Entry_Screen.index') }}">כניסה</a></li>
+    {% endif %}
+</ul>
 
 {##}
 {#<a href="/">Home page</a>#}

@@ -190,6 +190,21 @@ h1 {
 
 /* שינוי צבע בעת מעבר עם העכבר */
 .logout-link:hover {
-    color: #475e48; /* אפור כהה כמו בטקסט של הלוגו */
+    color: #3a4a3f; /* אפור כהה כמו בטקסט של הלוגו */
     text-decoration: underline; /* מוסיף קו תחתון רק כשעוברים עם העכבר */
+}
+
+/* עיצוב כפתור התחברי */
+.login-button {
+    color: #d38b8b; /* אותו צבע כמו "התנתקי" */
+    font-family: Gisha, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.login-button:hover {
+    color: #3a4a3f;
+    text-decoration: underline;
 }

@@ -21,15 +21,17 @@
     {% block page_body_content %}
     {# Navigation #}
         {% block page_body_header_content__main_menu %}
-            <nav class="main-menu">
-                {% block page_body_header_content__main_menu_content %}
-                    <ul>
-                        {% block page_body_header_content__main_menu_content_links %}
-                            {% include 'Navigation.html' %}
-                        {% endblock %}
-                    </ul>
-                {% endblock %}
-            </nav>
+            {% if request.path not in ['/', '/Home_Page'] %}  {# אם המשתמש לא נמצא בדף הבית #}
+                <nav class="main-menu">
+                    {% block page_body_header_content__main_menu_content %}
+                        <ul>
+                            {% block page_body_header_content__main_menu_content_links %}
+                                {% include 'Navigation.html' %}
+                            {% endblock %}
+                        </ul>
+                    {% endblock %}
+                </nav>
+            {% endif %}
         {% endblock %}
 
 

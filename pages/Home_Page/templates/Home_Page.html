@@ -6,12 +6,21 @@
        <link rel="stylesheet" href="{{ url_for('Home_Page.static', filename='css/Home_Page.css') }}">
 {% endblock %}
 
-{# Header#}
-{% set page_body_header ='דף הבית' %}
+{# Header #}
+{% if session.get('user_name') %}
+    {% set page_body_header = 'ברוכה הבאה לדף הבית ' + session['user_name'] + '!' %}
+{% else %}
+    {% set page_body_header = 'ברוכה הבאה לדף הבית אורחת' %}
+{% endif %}
 
-{# Navigation#}
+
+{# Navigation #}
 {% block page_body_header_content__main_menu %}
-<a href="/log_out" class="logout-link">התנתקי</a>
+    {% if session.get('user_name') %}
+        <a href="{{ url_for('log_out.log_out_func') }}" class="logout-link">התנתקי</a>
+    {% else %}
+        <a href="{{ url_for('Entry_Screen.index') }}" class="login-button">התחברי</a>
+    {% endif %}
 {% endblock %}
 
 {# Main#}
