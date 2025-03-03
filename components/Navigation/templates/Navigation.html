@@ -21,8 +21,7 @@
     {% endfor %}
 
     {% if session.get('user_name') %}
-        <li><p>ברוכה הבאה, {{ session['user_name'] }}!</p></li>
-        <li><a href="{{ url_for('log_out.log_out_func') }}">התנתקות</a></li>
+        <li><a href="{{ url_for('log_out.log_out_func') }}">התנתקי</a></li>
     {% else %}
         <li><a href="{{ url_for('New_User_Account.new_user_account') }}">הרשמה</a></li>
         <li><a href="{{ url_for('Entry_Screen.index') }}">כניסה</a></li>
