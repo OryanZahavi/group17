@@ -70,6 +70,14 @@ def insert_user(first_name, last_name, birth_date, email, phone_number, password
     result = users_col.insert_one(user_data)
     return str(result.inserted_id)  # מחזיר את ה-ID של המשתמש החדש
 
+# ---- פונקציות לניהול שיעורים ----
+
+
+
+
+
+
+
 
 
 ################################################################################

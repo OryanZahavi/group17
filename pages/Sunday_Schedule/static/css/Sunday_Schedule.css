@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5px ;
+    margin: 5px;
 }
 
 .header img {
@@ -26,10 +26,11 @@ body {
 /* כפתורי התאריכים */
 .dates {
     display: flex;
-    flex-direction: row-reverse; /* סדר מימין לשמאל */
+    /*flex-direction: row-reverse; !* סדר מימין לשמאל *!*/
     justify-content: center;
     gap: 10px;
-   }
+    margin-bottom: 20px; /* הוספת רווח בין הכפתורים לשיעורים */
+}
 
 .dates button {
     padding: 10px 15px;
@@ -215,6 +216,7 @@ body {
     font-size: 1rem; /* עדכון גודל טקסט */
     color: rosybrown;
 }
+
 .popup.hidden {
     display: none;
 }
@@ -245,6 +247,7 @@ body {
     font-weight: bold;
     display: none;
 }
+
 #cancel-warning.visible {
     display: inline; /* Show the warning when this class is added */
 }

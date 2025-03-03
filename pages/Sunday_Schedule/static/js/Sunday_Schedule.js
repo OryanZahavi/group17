@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll('.dates button');
         buttons.forEach((button, index) => {
             const formattedDate = reversedWeekDates[index].toLocaleDateString('he-IL', {
-                day: 'Thursday_Schedule-digit',
-                month: 'Thursday_Schedule-digit',
+                day: 'numeric',
+                month: 'long',
             });
 
             button.innerHTML = `${formattedDate}<br>${days[index]}`;
@@ -50,44 +50,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateDates();// עדכון הימים
 
-  // // הדגשה ליום ראשון
-  //           if (days[index] === 'ראשון') {
-  //               button.classList.add('active'); // הוספת מחלקה ליום רביעי
-  //           } else {
-  //               button.classList.remove('active'); // הסרת מחלקה מימים אחרים
-  //           }
-  //       });
+    // // הדגשה ליום ראשון
+    //           if (days[index] === 'ראשון') {
+    //               button.classList.add('active'); // הוספת מחלקה ליום רביעי
+    //           } else {
+    //               button.classList.remove('active'); // הסרת מחלקה מימים אחרים
+    //           }
+    //       });
 //---------------------חישוב נקודת הזמן של כל שיעור --------------------
 
 
 // פונקציה ליצירת תאריך מהמאפיינים data-day-offset ו-data-time
-function generateDateFromAttributes(element) {
-    if (!element || !element.dataset.time || !element.dataset.dayOffset) {
-        console.error("Missing dataset attributes for element:", element);
-        return null;
+    function generateDateFromAttributes(element) {
+        if (!element || !element.dataset.time || !element.dataset.dayOffset) {
+            console.error("Missing dataset attributes for element:", element);
+            return null;
+        }
+
+        const weekStart = calculateWeekStart();
+        const dayOffset = Number(element.dataset.dayOffset);
+        const time = element.dataset.time.trim(); // לנקות רווחים
+
+        if (!/^\d{2}:\d{2}$/.test(time)) {
+            console.error("Invalid time format in data-time attribute:", time);
+            return null;
+        }
+
+        const [hour, minute] = time.split(':').map(Number);
+        const sessionDate = new Date(weekStart);
+        sessionDate.setDate(sessionDate.getDate() + dayOffset);
+        sessionDate.setHours(hour, minute, 0, 0);
+
+        if (isNaN(sessionDate.getTime())) {
+            console.error("Invalid sessionDate generated:", sessionDate);
+            return null;
+        }
+
+        return sessionDate;
     }
 
-    const weekStart = calculateWeekStart();
-    const dayOffset = Number(element.dataset.dayOffset);
-    const time = element.dataset.time.trim(); // לנקות רווחים
-
-    if (!/^\d{2}:\d{2}$/.test(time)) {
-        console.error("Invalid time format in data-time attribute:", time);
-        return null;
-    }
-
-    const [hour, minute] = time.split(':').map(Number);
-    const sessionDate = new Date(weekStart);
-    sessionDate.setDate(sessionDate.getDate() + dayOffset);
-    sessionDate.setHours(hour, minute, 0, 0);
-
-    if (isNaN(sessionDate.getTime())) {
-        console.error("Invalid sessionDate generated:", sessionDate);
-        return null;
-    }
-
-    return sessionDate;
-}
     const scheduleButtons = document.querySelectorAll('.schedule .session');
     const popup = document.getElementById('popup');
     const overlay = document.querySelector('.overlay');
@@ -222,13 +223,13 @@ function generateDateFromAttributes(element) {
 
         cancelTimer.innerText = `נותרו ${hours} שעות, ${minutes} דקות, ו-${seconds} שניות לשיעור.`;
 
-    if (hours > 7) {
-        cancelWarning.classList.remove('visible'); // Ensure it's not visible
-        cancelWarning.classList.add('hidden');    // Explicitly hide the warning
-    } else {
-        cancelWarning.classList.remove('hidden'); // Ensure it's not hidden
-        cancelWarning.classList.add('visible');   // Explicitly show the warning
-    }
+        if (hours > 7) {
+            cancelWarning.classList.remove('visible'); // Ensure it's not visible
+            cancelWarning.classList.add('hidden');    // Explicitly hide the warning
+        } else {
+            cancelWarning.classList.remove('hidden'); // Ensure it's not hidden
+            cancelWarning.classList.add('visible');   // Explicitly show the warning
+        }
 
     }
 
