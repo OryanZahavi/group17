@@ -8,7 +8,7 @@
 
 {# Header #}
 {% if session.get('user_name') %}
-    {% set page_body_header = 'ברוכה הבאה לדף הבית ' + session['user_name'] + '!' %}
+    {% set page_body_header = '! '+ session['user_name']+' ברוכה הבאה לדף הבית '   %}
 {% else %}
     {% set page_body_header = 'ברוכה הבאה לדף הבית אורחת' %}
 {% endif %}

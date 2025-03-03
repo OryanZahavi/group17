@@ -33,26 +33,3 @@ def entry_screen():
 
     return render_template('Entry_Screen.html')
 
-#
-#
-# @Entry_Screen.route('/Entry_Screen', methods=['GET', 'POST'])
-#
-# def sign_in_web():
-#     if request.method == 'POST':
-#         email = request.form.get('user_Email')
-#         password = request.form.get('user_Password')
-#
-#         user = get_user_by_email(email)  # נבדוק אם המשתמשת קיימת
-#
-#         if user and user["password"] == password:  # בדיקת סיסמה
-#             session['user_email'] = email  # שמירת המשתמשת בסשן
-#             return redirect('/Home_Page')  # הפניה לדף הבית
-#
-#         # אם המשתמשת לא קיימת או שהסיסמה לא נכונה - הצגת הודעה
-#         return render_template('Entry_Screen.html', error="שם משתמש או סיסמה שגויים")
-#
-#     return render_template('Entry_Screen.html')  # הצגת הדף במצב GET
-
-
-# user = authenticate_user("ofriapple2712@gmail.com", "Rsdf123!!")  # בדיקת התחברות
-# print(user)
