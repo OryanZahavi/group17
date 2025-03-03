@@ -197,7 +197,7 @@ h1 {
 
 /* עיצוב כפתור התחברי */
 .login-button {
-    color: #d38b8b; /* אותו צבע כמו "התנתקי" */
+    color: #d38b8b; /* אותו צבע כמו התנתקי */
     font-family: Gisha, sans-serif;
     font-weight: bold;
     text-decoration: none;
