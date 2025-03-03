@@ -19,7 +19,7 @@
     {% if session.get('user_name') %}
         <a href="{{ url_for('log_out.log_out_func') }}" class="logout-link">התנתקי</a>
     {% else %}
-        <a href="{{ url_for('Entry_Screen.index') }}" class="login-button">התחברי</a>
+        <a href="{{ url_for('Entry_Screen.entry_screen') }}" class="login-button">התחברי</a>
     {% endif %}
 {% endblock %}
 

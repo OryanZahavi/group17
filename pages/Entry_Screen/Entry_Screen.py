@@ -12,10 +12,13 @@ def entry_screen():
     if request.method == 'POST':
         email = request.form.get("user_Email")  # קבלת האימייל מהטופס
         password = request.form.get("user_Password")  # קבלת הסיסמה מהטופס
+        print(email, password)
+        print(authenticate_user("ofriapple2712@gmail.com", "Rsdf123!!"))  # בדיקת התחברות
 
         user = authenticate_user(email, password)  # בדיקת התחברות
 
-        if user:
+        if user :
+            print(user)
             # שמירת המשתמש ב-Session
             session['user_id'] = str(user['_id'])
             session['user_name'] = user['first_name']
@@ -49,3 +52,7 @@ def entry_screen():
 #         return render_template('Entry_Screen.html', error="שם משתמש או סיסמה שגויים")
 #
 #     return render_template('Entry_Screen.html')  # הצגת הדף במצב GET
+
+
+# user = authenticate_user("ofriapple2712@gmail.com", "Rsdf123!!")  # בדיקת התחברות
+# print(user)

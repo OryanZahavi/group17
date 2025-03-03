@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
-from db_functions import get_user_by_email, user_exist  # וודאי שהפונקציה מיובאת נכון
+from db_functions import get_user_by_email, user_exists  # וודאי שהפונקציה מיובאת נכון
 
 # יצירת ה-Blueprint
 log_out = Blueprint('log_out', __name__,

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailError = document.getElementById("emailError");
     const passwordInput = document.getElementById("password");
     const passwordError = document.getElementById("passwordError");
-    const submitButton = document.querySelector("input[type='submit']"); // בחירת הכפתור הנכון
+    // const submitButton = document.querySelector("input[type='submit']"); // בחירת הכפתור הנכון
 
     form.addEventListener("submit", function (event) {
         let isValid = true;

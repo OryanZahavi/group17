@@ -14,7 +14,7 @@
 
 {# Main #}
 {% block page_body_main %}
-   <form action="{{ url_for('Entry_Screen.entry_screen') }}" method="post">
+   <form action="{{ url_for('Entry_Screen.entry_screen') }}" method="POST">
  <div class="grid_Container_1">
             <p>דואר אלקטרוני</p>
             <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני" required>
@@ -26,10 +26,11 @@
 
             <p>משתמשת חדשה? ניתן להירשם <a href="{{ url_for('New_User_Account.new_user_account') }}" class="register-link">כאן</a></p>
 
-            <button type="submit" class="btn">כניסה</button>
+            <button type="submit" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
         </div>
 
     </form>
+
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">
