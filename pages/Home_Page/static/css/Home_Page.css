@@ -186,6 +186,7 @@ h1 {
     text-decoration: none; /* מסיר קו תחתון */
     font-size: 18px; /* שינוי גודל הפונט (מותאם אישית) */
     transition: color 0.3s ease-in-out; /* אפקט מעבר חלק */
+    margin-right: auto;
 }
 
 /* שינוי צבע בעת מעבר עם העכבר */
