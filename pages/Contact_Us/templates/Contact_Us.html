@@ -6,7 +6,7 @@
 
 {% set page_body_header ='יצירת קשר'%}
 
-  {% block page_body_main %}
+{% block page_body_main %}
 <div class="grid-container_1">
     <div class="field-container">
         <p>שם פרטי</p>
@@ -18,10 +18,7 @@
         <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">
         <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>
     </div>
-</div>
 
-
-<div class="grid-container_2">
     <div class="field-container">
         <p>מס' פלאפון</p>
         <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">
@@ -48,8 +45,8 @@
 {% set success_message = "הפניה התקבלה בהצלחה!" %}
 
 
- {% block page_body_js %}
-<script src="{{ url_for('Contact_Us.static', filename='js/Contact_Us.js') }}"></script>
+{% block page_body_js %}
+    <script src="{{ url_for('Contact_Us.static', filename='js/Contact_Us.js') }}"></script>
 {% endblock %}
 
 

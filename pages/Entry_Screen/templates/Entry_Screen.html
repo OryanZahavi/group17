@@ -7,7 +7,7 @@
 {% endblock %}
 
 {# Header #}
-{% set page_body_header ='ברוכות הבאות' %}
+{% set page_body_header ='ברוכה הבאה לסטודיו סול' %}
 
 {# Navigation #}
 {% block page_body_header_content__main_menu %}{% endblock %}
@@ -15,7 +15,7 @@
 {# Main #}
 {% block page_body_main %}
    <form action="{{ url_for('Entry_Screen.entry_screen') }}" method="POST">
- <div class="grid_Container_1">
+    <div class="grid_Container_1">
             <p>דואר אלקטרוני</p>
             <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני" required>
             <span id="emailError" class="error-message"></span>
@@ -25,13 +25,11 @@
             <span id="passwordError" class="error-message"></span>
 
             <p>משתמשת חדשה? ניתן להירשם <a href="{{ url_for('New_User_Account.new_user_account') }}" class="register-link">כאן</a></p>
-
-            <button type="submit" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
         </div>
 
     </form>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">
                 {% for category, message in messages %}
@@ -42,8 +40,11 @@
     {% endwith %}
 {% endblock %}
 
-{# Footer #}
-{% block page_body_footer %}{% endblock %}
+{% block submit %}
+    <a href="/Edit_Details">
+           <button type="submit" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
+    </a>
+{% endblock %}
 
 {# Popup #}
 {% block popup %}{% endblock %}

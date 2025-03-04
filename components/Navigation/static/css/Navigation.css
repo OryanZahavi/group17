@@ -2,7 +2,9 @@
     --active-menu-item-color: #d38b8b; /* שימי כאן את הצבע של Schedule */
 }
 .main-menu ul {
-    padding: 0;
+    padding-right: 10px;
+    margin: 0;
+    list-style: none; /* מסיר את העיגולים מהרשימה */
 }
 
 .main-menu > ul > li {

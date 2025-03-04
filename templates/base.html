@@ -1,104 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <link rel="stylesheet" href="{{ url_for('static', filename='CSS/base.css') }}">
+
+{% block page_body_js %}
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+{% endblock %}
+
+<div class="grid-container">
+
+    <div class="div1">
     {% block page_head %}
-        {% block page_head_meta %}
-            <meta charset="UTF-8"/>
-            <meta name="keywords"
-                  content="flask, lean, skeleton, project, structure, environment, setup, template, fullstack, web, development, app, university, education"/>
-        {% endblock %}
-        <title>{{ page_head_title_author|default('Ofri & Oryan', true) }}
+            {% block page_head_meta %}
+                <meta charset="UTF-8"/>
+                <meta name="keywords"
+                      content="flask, lean, skeleton, project, structure, environment, setup, template, fullstack, web, development, app, university, education"/>
+            {% endblock %}
+            <title>{{ page_head_title_author|default('Ofri & Oryan', true) }} | {{ page_head_title|default('part C', true) }}</title>
 
-            | {{ page_head_title|default('part C', true) }}</title>
+            {% block page_head_css %}
+                <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+            {% endblock %}
 
-        {% block page_head_css %}
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-        {% endblock %}
+            <h1>{{ page_body_header|default('part C', true) }}</h1>
+
     {% endblock %}
-</head>
+    </div>
 
-<body>
-    {% block page_body_content %}
-    {# Navigation #}
-        {% block page_body_header_content__main_menu %}
-            {% if request.path not in ['/', '/Home_Page'] %}  {# אם המשתמש לא נמצא בדף הבית #}
-                <nav class="main-menu">
-                    {% block page_body_header_content__main_menu_content %}
-                        <ul>
-                            {% block page_body_header_content__main_menu_content_links %}
-                                {% include 'Navigation.html' %}
-                            {% endblock %}
-                        </ul>
-                    {% endblock %}
-                </nav>
-            {% endif %}
-        {% endblock %}
-
-
-    {# Header #}
-        {% block page_body_header %}
+    <div class="div2">
+    {% block page_body_header %}
             <div class="header-container">
                 <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
-                <h1>{{ page_body_header|default('part C', true) }}</h1>
             </div>
+    {% endblock %}
+    </div>
+
+    <div class="div3">
+    {% block page_body_main %}
+
+    {% endblock %}
+    </div>
+
+    <div class="div4">
+    {% block page_body_content %}
+        {% block page_body_header_content__main_menu %}
+                {% if request.path not in ['/', '/Home_Page'] %}  {# אם המשתמש לא נמצא בדף הבית #}
+                    <nav class="main-menu">
+                        {% block page_body_header_content__main_menu_content %}
+                            <ul>
+                                {% block page_body_header_content__main_menu_content_links %}
+                                    {% include 'Navigation.html' %}
+                                {% endblock %}
+                            </ul>
+                        {% endblock %}
+                    </nav>
+                {% endif %}
         {% endblock %}
+    {% endblock %}
+    </div>
 
 
-
-
-    {# Main #}
-        {% block page_body_main %}
-         <form action="/register" method="POST">
-             <div class="grid-container_1">
-                <p>שם פרטי</p>
-                <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">
-                <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>
-
-                <p>שם משפחה</p>
-                <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">
-                <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>
-
-                <p>תאריך לידה</p>
-                <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזיני תאריך">
-                <span id="birthDateError" class="error-message"></span>
-
-                <p>דואר אלקטרוני</p>
-                <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">
-
-                <span id="emailError" class="error-message"></span>
-
-                <p>מס' פלאפון</p>
-                <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">
-                <span id="phoneNumberError" class="error-message"></span>
-
-                <p>סיסמה</p>
-                <input type="password" id="password" name="user_Password" class="input-field"
-                       placeholder="הכניסי סיסמה כרצונך על פי הנהלים">
-                <span id="passwordError" class="error-message"></span>
-
-                <p>טופס הצהרת בריאות</p>
-                <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזיני שם פרטי">
-                <span id="fileError" class="error-message"></span>
-
-            </div>
-         </form>
-        {% endblock %}
-
-    {# Footer #}
-        {% block page_body_footer %}
-            <div class="button">
+    <div class="div5">
+    {% block page_body_footer %}
+        <div style="text-align: center;">
+            <a href="{{ return_to_url | default('/Home_Page', true) }}">
+                <button class="btn">{{ return_to_button | default('חזרה למסך הבית', true) }}</button>
+            </a>
             {% block submit %}
-                <button type="submit" id="submit-button" class="btn">{{ submit_button_text }}
-                </button>
-                 {% endblock %}
-                  <a href="{{ return_to_url | default('/Home_Page', true) }}">
-                    <button class="btn">{{ return_to_button | default('חזרה למסך הבית', true) }}
-                    </button>
-                  </a>
-            </div>
-        {% endblock %}
-
-
+                <button type="submit" id="submit-button" class="btn">{{ submit_button_text }}</button>
+            {% endblock %}
+        </div>
+    {% endblock %}
+    </div>
 
     {# Popup #}
         {% block popup %}
@@ -109,57 +81,4 @@
                     </a>
             </div>
         {% endblock %}
-    {% endblock %}
-
-    </body>
-    {# JS #}
-    {% block page_body_js %}
-    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-    {% endblock %}
-</html>
-
-
-
-
-
-
-
-
-
-{##}
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Base</title>#}
-{#    <link rel="stylesheet" href="">#}
-{#</head>#}
-{#<body>#}
-{##}
-{#{% block header %}#}
-{#<header>#}
-{#    <h1>**********************</h1>#}
-{#    <h1>This is Base header</h1>#}
-{#    <h1>**********************</h1>#}
-{#</header>#}
-{#{% endblock %}#}
-{##}
-{#{% include ('navi.html') %}#}
-{##}
-{#{% block main%}#}
-{#<h2>This is the main block</h2>#}
-{#{% endblock %}#}
-{##}
-{#{% block footer%}#}
-{#<footer>#}
-{#    <h1>**********************</h1>#}
-{#    <h1>This is Base footer</h1>#}
-{#    <h1>**********************</h1>#}
-{#</footer>#}
-{#{% endblock %}#}
-{##}
-{#</body>#}
-{#</html>#}
-{##}
-
-
+</div>
