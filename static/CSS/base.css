@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: Gisha, sans-serif;
+    background-color: #b6dcb8;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    text-align: right; /* יישור טקסט לימין */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Add padding to all direct children of body */
+body > * {
+    padding-left: 20px;
+    padding-right: 40px;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+}
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 200px; /* Two columns layout */
+    grid-template-rows: auto auto; /* Two rows layout */
+    gap: 20px;
+    padding: 20px;
+    margin: auto;
+    background-color: #b6dcb8;
+    animation: fadeIn 1s ease-in;
+
+}
+
+.div1 {
+    align-self: center;
+}
+
+h1 {
+    color: rosybrown;
+    font-family: Gisha, sans-serif;
+    font-size: 2rem;
+    margin: auto;
+    text-align: center;
+    justify-content: center; /* Horizontal centering */
+    align-items: center;     /* Vertical centering */
+}
+
+
+img {
+    width: 200px;
+}
+
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: Gisha, sans-serif;
+    color: rosybrown;
+    background-color: #eafbea;
+    border: 2px solid rosybrown;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.btn:hover {
+    background-color: #d9b1a2;
+    color: white;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

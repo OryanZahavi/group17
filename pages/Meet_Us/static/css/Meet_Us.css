@@ -1,37 +1,10 @@
-body {
-    font-family: Gisha, sans-serif;
-    background-color: #b6dcb8;
-    margin: 0;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    color: rosybrown;
-    box-sizing: border-box;
-}
-
-h1 {
-    font-size: 2rem;
-    margin: 0 0 20px 0;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.logo img {
-    width: 80px;
-    margin: 0;
-}
-
 .about-text {
+    font-family: Gisha, sans-serif;
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 20px;
+    text-align: center;
+    color: rosybrown;
 }
 
 .about-text p {
@@ -86,14 +59,6 @@ button a {
 @media (min-width: 768px) {
     body {
         padding: 40px;
-    }
-
-    h1 {
-        font-size: 3rem;
-    }
-
-    .logo img {
-        width: 100px;
     }
 
     .about-text {
