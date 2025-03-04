@@ -97,13 +97,23 @@ def get_classes_by_day(day):
 # פונקציה לרישום משתמש לשיעור
 def register_user_to_class(class_id, user_email):
     cls = classes_collection.find_one({"_id": ObjectId(class_id)})
-    if cls:
-        if len(cls["registered_users"]) < cls["capacity"]:
-            classes_collection.update_one({"_id": ObjectId(class_id)}, {"$push": {"registered_users": user_email}})
-            return "success"
-        else:
-            return "full"
-    return "not_found"
+    if not cls:
+        return "not_found"
+
+    # בדיקה אם המשתמש כבר רשום
+    if user_email in cls["registered_users"]:
+        return "already_registered"
+
+    # בדיקה אם יש מקום פנוי
+    if len(cls["registered_users"]) < cls["capacity"]:
+        classes_collection.update_one(
+            {"_id": ObjectId(class_id)},
+            {"$push": {"registered_users": user_email}}
+        )
+        return "success"
+    else:
+        return "full"
+
 
 # פונקציה לרישום לרשימת המתנה
 def add_to_waitlist(class_id, user_email):

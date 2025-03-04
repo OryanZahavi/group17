@@ -21,11 +21,11 @@
 
     <div class="schedule">
         {% for cls in classes %}
-        <button class="session" data-class-id="{{ cls._id }}" data-time="{{ cls.time }}" data-popup="{{ cls.title }} שעה {{ cls.time }}">
-            <p class="time">{{ cls.time }}</p>
-            <p class="details">{{ cls.title }}</p>
-            <p  id="spots-{{ cls._id }}" class="spots">{{ cls.registered_users|length }}/{{ cls.capacity }} רשומות</p>
-        </button>
+{#        <button class="session" data-class-id="{{ cls._id }}" data-time="{{ cls.time }}" data-popup="{{ cls.title }} שעה {{ cls.time }}">#}
+{#            <p class="time">{{ cls.time }}</p>#}
+{#            <p class="details">{{ cls.title }}</p>#}
+{#            <p  id="spots-{{ cls._id }}" class="spots">{{ cls.registered_users|length }}/{{ cls.capacity }} רשומות</p>#}
+{#        </button>#}
         {% endfor %}
     </div>
     <div class="footer">

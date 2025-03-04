@@ -120,10 +120,12 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
                 alert(data.message);
-                updateSpotsFromServer(sessionId); // עדכון מספר המשתתפים ישירות אחרי הפעולה
-            })
-            .catch(error => console.error("Error:", error));
-    }
+                if (data.status === "success") {
+            updateSpotsFromServer(sessionId);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
 
 
 // מאזינים לכפתורים ומפעילים את הפונקציה המתאימה

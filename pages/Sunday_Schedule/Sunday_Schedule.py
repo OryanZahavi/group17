@@ -14,20 +14,32 @@ Sunday_Schedule = Blueprint(
 # יצירת השיעורים במסד הנתונים (אם הם לא קיימים)
 add_classes_if_not_exist()
 
+#
+# @Sunday_Schedule.route('/Sunday_Schedule')
+# def index():
+#     classes = get_classes_by_day("Sunday")
+#     # מוסיף מספר נרשמים לכל שיעור
+#     for cls in classes:
+#         cls["spots_filled"] = len(cls["registered_users"])  # כמות רשומים
+#     return render_template('Sunday_Schedule.html', classes=classes)
 
 @Sunday_Schedule.route('/Sunday_Schedule')
 def index():
+    user_email = session.get('email')
     classes = get_classes_by_day("Sunday")
-    # מוסיף מספר נרשמים לכל שיעור
+
     for cls in classes:
-        cls["spots_filled"] = len(cls["registered_users"])  # כמות רשומים
+        cls["spots_filled"] = len(cls["registered_users"])
+        cls["user_registered"] = user_email in cls["registered_users"] if user_email else False  # בודק אם המשתמש רשום
+
     return render_template('Sunday_Schedule.html', classes=classes)
+
 
 
 # רישום משתמש לשיעור
 @Sunday_Schedule.route('/Sunday_Schedule/register', methods=['POST'])
 def register():
-    data = request.get_json()  # ← שינוי כדי לקרוא JSON
+    data = request.get_json()
     class_id = data.get('class_id')
     user_email = session.get('email')
 
@@ -39,6 +51,8 @@ def register():
         return jsonify({"status": "success", "message": "הרשמתך לשיעור אושרה!"})
     elif result == "full":
         return jsonify({"status": "full", "message": "השיעור מלא, נוספת לרשימת ההמתנה."})
+    elif result == "already_registered":
+        return jsonify({"status": "error", "message": "את/ה כבר רשומ/ה לשיעור הזה!"})
     else:
         return jsonify({"status": "error", "message": "השיעור לא נמצא."})
 
