@@ -25,11 +25,13 @@
             <span id="passwordError" class="error-message"></span>
 
             <p>משתמשת חדשה? ניתן להירשם <a href="{{ url_for('New_User_Account.new_user_account') }}" class="register-link">כאן</a></p>
-        </div>
+
+            <button type="submit" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
+    </div>
 
     </form>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">
                 {% for category, message in messages %}
@@ -41,9 +43,6 @@
 {% endblock %}
 
 {% block submit %}
-    <a href="/Edit_Details">
-           <button type="submit" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
-    </a>
 {% endblock %}
 
 {# Popup #}

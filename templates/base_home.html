@@ -8,9 +8,7 @@
                       content="flask, lean, skeleton, project, structure, environment, setup, template, fullstack, web, development, app, university, education"/>
             {% endblock %}
             <title>{{ page_head_title_author|default('Ofri & Oryan', true) }}
-
                 | {{ page_head_title|default('part C', true) }}</title>
-
             {% block page_head_css %}
                 <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
             {% endblock %}
