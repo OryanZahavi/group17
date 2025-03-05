@@ -12,20 +12,33 @@
 {# Main#}
 {% block page_body_main %}
     <div class="dates">
-        <a href="/Thursday_Schedule"><button id='4'></button></a>
-        <a href="/Wednesday_Schedule"><button id='3'></button></a>
-        <a href="/Tuesday_Schedule"><button id='2'></button></a>
-        <a href="/Monday_Schedule"><button id='1'></button></a>
-        <a href="/Sunday_Schedule"><button id='0' class="active"></button></a>
+        <a href="/Thursday_Schedule">
+            <button id='4'></button>
+        </a>
+        <a href="/Wednesday_Schedule">
+            <button id='3'></button>
+        </a>
+        <a href="/Tuesday_Schedule">
+            <button id='2'></button>
+        </a>
+        <a href="/Monday_Schedule">
+            <button id='1'></button>
+        </a>
+        <a href="/Sunday_Schedule">
+            <button id='0' class="active"></button>
+        </a>
     </div>
 
     <div class="schedule">
+        {#        עובדדדדד#}
         {% for cls in classes %}
-        <button class="session" data-class-id="{{ cls._id }}" data-time="{{ cls.time }}" data-popup="{{ cls.title }} שעה {{ cls.time }}">
-            <p class="time">{{ cls.time }}</p>
-            <p class="details">{{ cls.title }}</p>
-            <p  id="spots-{{ cls._id }}" class="spots">{{ cls.registered_users|length }}/{{ cls.capacity }} רשומות</p>
-        </button>
+            <button class="session" data-class-id="{{ cls._id }}" data-time="{{ cls.time }}"
+                    data-popup="{{ cls.title }} שעה {{ cls.time }}">
+                <p class="time">{{ cls.time }}</p>
+                <p class="details">{{ cls.title }}</p>
+                <p id="spots-{{ cls._id }}" class="spots">{{ cls.registered_users|length }}/{{ cls.capacity }}
+                    רשומות</p>
+            </button>
         {% endfor %}
     </div>
     <div class="footer">
@@ -35,7 +48,11 @@
 
 {% block submit %}{% endblock %}
 
-{# Popup#}
+
+
+
+
+ Popup
 {% block popup %}
     <div id="popup" class="popup">
         <h2>פרטי שיעור</h2>
