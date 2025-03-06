@@ -9,7 +9,6 @@ import schedule
 import time
 
 
-
 uri = "mongodb+srv://ofriap:Oa2712!@cluster0.vzg9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 # יצירת חיבור למונגו
@@ -18,7 +17,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 # חיבור לדאטהבייס ולקולקשן
 Soul_Studio = client['Soul_Studio']  # שם הדאטהבייס
 users_col = Soul_Studio['users']  # קולקשן של המשתמשים
-classes_collection = Soul_Studio["classes"] # קולקשן של השיעורים
+classes_collection = Soul_Studio["classes"]  # קולקשן של השיעורים
+
 
 # פונקציה להכנסת כמה משתמשים
 def insert_users_test():
@@ -116,84 +116,64 @@ def insert_user(first_name, last_name, birth_date, email, phone_number, password
 
 # --------------------------------- פונקציות לניהול שיעורים --------------------------
 
-# מיפוי ימים לתאריכים
-dates_mapping = {
-    "Sunday": datetime(2025, 3, 2),
-    "Monday": datetime(2025, 3, 3),
-    "Tuesday": datetime(2025, 3, 4),
-    "Wednesday": datetime(2025, 3, 5),
-    "Thursday": datetime(2025, 3, 6)
-}
-
 
 def insert_classes():
     classes = [
-        # יום ראשון
-        {"day": "Sunday", "time": "07:00", "title": "יוגה אשטנגה - מתחילות", "capacity": 10},
-        {"day": "Sunday", "time": "08:00", "title": "יוגה ויניאסה - מתחילות", "capacity": 10},
-        {"day": "Sunday", "time": "18:00", "title": "יוגה אשטנגה - מתקדמות", "capacity": 10},
-        {"day": "Sunday", "time": "19:00", "title": "Power yoga", "capacity": 10},
-        {"day": "Sunday", "time": "20:00", "title": "יוגה ויניאסה - כל הרמות", "capacity": 10},
+        {"day": "Sunday", "title": "יוגה אשטנגה - מתחילות", "capacity": 10, "date": datetime(2025, 3, 2, 7, 0)},
+        {"day": "Sunday", "title": "יוגה ויניאסה - מתחילות", "capacity": 10, "date": datetime(2025, 3, 2, 8, 0)},
+        {"day": "Sunday", "title": "יוגה אשטנגה - מתקדמות", "capacity": 10, "date": datetime(2025, 3, 2, 18, 0)},
+        {"day": "Sunday", "title": "Power yoga", "capacity": 10, "date": datetime(2025, 3, 2, 19, 0)},
+        {"day": "Sunday", "title": "יוגה ויניאסה - כל הרמות", "capacity": 10, "date": datetime(2025, 3, 2, 20, 0)},
 
-        # יום שני
-        {"day": "Monday", "time": "07:00", "title": "Power yoga", "capacity": 10},
-        {"day": "Monday", "time": "08:00", "title": "יוגה קונדליני", "capacity": 10},
-        {"day": "Monday", "time": "18:00", "title": "יוגה ויניאסה - כל הרמות", "capacity": 10},
-        {"day": "Monday", "time": "19:00", "title": "Power yoga", "capacity": 10},
-        {"day": "Monday", "time": "20:00", "title": "שיעור מתיחות", "capacity": 10},
+        {"day": "Monday", "title": "Power yoga", "capacity": 10, "date": datetime(2025, 3, 3, 7, 0)},
+        {"day": "Monday", "title": "יוגה קונדליני", "capacity": 10, "date": datetime(2025, 3, 3, 8, 0)},
+        {"day": "Monday", "title": "יוגה ויניאסה - כל הרמות", "capacity": 10, "date": datetime(2025, 3, 3, 18, 0)},
+        {"day": "Monday", "title": "Power yoga", "capacity": 10, "date": datetime(2025, 3, 3, 19, 0)},
+        {"day": "Monday", "title": "שיעור מתיחות", "capacity": 10, "date": datetime(2025, 3, 3, 20, 0)},
 
-        # יום שלישי
-        {"day": "Tuesday", "time": "07:00", "title": "שיעור נשימות", "capacity": 10},
-        {"day": "Tuesday", "time": "08:00", "title": "יוגה קונדליני", "capacity": 10},
-        {"day": "Tuesday", "time": "10:00", "title": "Power yoga", "capacity": 10},
-        {"day": "Tuesday", "time": "18:00", "title": "יוגה אשטנגה - מתחילות", "capacity": 10},
-        {"day": "Tuesday", "time": "19:00", "title": "יוגה אשטנגה - מתקדמות", "capacity": 10},
+        {"day": "Tuesday", "title": "שיעור נשימות", "capacity": 10, "date": datetime(2025, 3, 4, 7, 0)},
+        {"day": "Tuesday", "title": "יוגה קונדליני", "capacity": 10, "date": datetime(2025, 3, 4, 8, 0)},
+        {"day": "Tuesday", "title": "Power yoga", "capacity": 10, "date": datetime(2025, 3, 4, 10, 0)},
+        {"day": "Tuesday", "title": "יוגה אשטנגה - מתחילות", "capacity": 10, "date": datetime(2025, 3, 4, 18, 0)},
+        {"day": "Tuesday", "title": "יוגה אשטנגה - מתקדמות", "capacity": 10, "date": datetime(2025, 3, 4, 19, 0)},
 
-        # יום רביעי
-        {"day": "Wednesday", "time": "07:00", "title": "Power yoga", "capacity": 10},
-        {"day": "Wednesday", "time": "08:00", "title": "יוגה ויניאסה - מתקדמות", "capacity": 10},
-        {"day": "Wednesday", "time": "09:00", "title": "יוגה אשטנגה - מתחילות", "capacity": 10},
-        {"day": "Wednesday", "time": "19:00", "title": "שיעור מתיחות", "capacity": 10},
-        {"day": "Wednesday", "time": "20:00", "title": "יוגה קונדליני", "capacity": 10},
+        {"day": "Wednesday", "title": "Power yoga", "capacity": 10, "date": datetime(2025, 3, 5, 7, 0)},
+        {"day": "Wednesday", "title": "יוגה ויניאסה - מתקדמות", "capacity": 10, "date": datetime(2025, 3, 5, 8, 0)},
+        {"day": "Wednesday", "title": "יוגה אשטנגה - מתחילות", "capacity": 10, "date": datetime(2025, 3, 5, 9, 0)},
+        {"day": "Wednesday", "title": "שיעור מתיחות", "capacity": 10, "date": datetime(2025, 3, 5, 19, 0)},
+        {"day": "Wednesday", "title": "יוגה קונדליני", "capacity": 10, "date": datetime(2025, 3, 5, 20, 0)},
 
-        # יום חמישי
-        {"day": "Thursday", "time": "07:00", "title": "שיעור נשימות", "capacity": 10},
-        {"day": "Thursday", "time": "08:00", "title": "יוגה אשטנגה - מתחילות", "capacity": 10},
-        {"day": "Thursday", "time": "09:00", "title": "יוגה קונדליני", "capacity": 10},
-        {"day": "Thursday", "time": "17:00", "title": "יוגה ויניאסה - כל הרמות", "capacity": 10},
-        {"day": "Thursday", "time": "18:00", "title": "Power yoga", "capacity": 10},
+        {"day": "Thursday", "title": "שיעור נשימות", "capacity": 10, "date": datetime(2025, 3, 6, 7, 0)},
+        {"day": "Thursday", "title": "יוגה אשטנגה - מתחילות", "capacity": 10, "date": datetime(2025, 3, 6, 8, 0)},
+        {"day": "Thursday", "title": "יוגה קונדליני", "capacity": 10, "date": datetime(2025, 3, 6, 9, 0)},
+        {"day": "Thursday", "title": "יוגה ויניאסה - כל הרמות", "capacity": 10, "date": datetime(2025, 3, 6, 17, 0)},
+        {"day": "Thursday", "title": "Power yoga", "capacity": 10, "date": datetime(2025, 3, 6, 18, 0)}
     ]
 
     for cls in classes:
-        existing_class = classes_collection.find_one({"day": cls["day"], "time": cls["time"]})
+        existing_class = classes_collection.find_one({"day": cls["day"], "date": cls["date"]})
         if not existing_class:
             cls["registered_users"] = []
             cls["waitlist_users"] = []
-
-            # יצירת `datetime` מלא כולל שעה
-            class_date = dates_mapping[cls["day"]].replace(
-                hour=int(cls["time"].split(":")[0]),
-                minute=int(cls["time"].split(":")[1])
-            )
-            cls["date"] = class_date
             classes_collection.insert_one(cls)
 
-    print("✅ השיעורים נוספו בהצלחה עם שעה מדויקת!")
+    print("✅ השיעורים נוספו בהצלחה עם תאריך ושעה מדויקים!")
+
+
 
 # קריאה לפונקציה להוספת השיעורים
 insert_classes()
 # classes_collection.delete_many({})
+# print("🗑️ כל המסמכים בקולקשן נמחקו!")
 
-def update_class_dates():
-    """פונקציה שמעדכנת את התאריכים ומרוקנת את הרשימות של המשתמשים בכל יום חמישי"""
 
-    # מציאת כל השיעורים בקולקשן
-    classes = classes_collection.find({})
+
+def update_sunday_classes():
+    """ מעדכן את התאריך של שיעורי יום ראשון בשבוע קדימה ומרוקן רשימות """
+    classes = classes_collection.find({"day": "Sunday"})  # שולפים את כל השיעורים של יום ראשון
 
     for cls in classes:
-        new_date = cls["date"] + timedelta(days=7)  # הוספת 7 ימים לתאריך
-
-        # עדכון השיעור במסד הנתונים
+        new_date = cls["date"] + timedelta(days=7)  # מוסיפים שבוע
         classes_collection.update_one(
             {"_id": cls["_id"]},  # מזהה השיעור
             {"$set": {
@@ -203,17 +183,174 @@ def update_class_dates():
             }}
         )
 
-    print("🎯 התאריכים עודכנו ורשימות המשתמשים אופסו בהצלחה!")
+    print("🎯 שיעורי יום ראשון עודכנו!")
 
 
-# תזמון הריצה של הפונקציה כל יום חמישי ב-22:00
-schedule.every().thursday.at("22:00").do(update_class_dates)
+def update_monday_classes():
+    """ מעדכן את התאריך של שיעורי יום שני בשבוע קדימה ומרוקן רשימות """
+    classes = classes_collection.find({"day": "Monday"})
 
-print("🔄 המערכת מוכנה! התאריכים יתעדכנו אוטומטית כל יום חמישי בשעה 22:00.")
+    for cls in classes:
+        new_date = cls["date"] + timedelta(days=7)
+        classes_collection.update_one(
+            {"_id": cls["_id"]},
+            {"$set": {"date": new_date, "registered_users": [], "waitlist_users": []}}
+        )
+    print("🎯 שיעורי יום שני עודכנו!")
 
-# while True:
-#     schedule.run_pending()
-#     time.sleep(60)  # בודק כל דקה אם צריך להריץ את הפונקציה
+
+def update_tuesday_classes():
+    """ מעדכן את התאריך של שיעורי יום שלישי בשבוע קדימה ומרוקן רשימות """
+    classes = classes_collection.find({"day": "Tuesday"})
+
+    for cls in classes:
+        new_date = cls["date"] + timedelta(days=7)
+        classes_collection.update_one(
+            {"_id": cls["_id"]},
+            {"$set": {"date": new_date, "registered_users": [], "waitlist_users": []}}
+        )
+    print("🎯 שיעורי יום שלישי עודכנו!")
+
+
+def update_wednesday_classes():
+    """ מעדכן את התאריך של שיעורי יום רביעי בשבוע קדימה ומרוקן רשימות """
+    classes = classes_collection.find({"day": "Wednesday"})
+
+    for cls in classes:
+        new_date = cls["date"] + timedelta(days=7)
+        classes_collection.update_one(
+            {"_id": cls["_id"]},
+            {"$set": {"date": new_date, "registered_users": [], "waitlist_users": []}}
+        )
+    print("🎯 שיעורי יום רביעי עודכנו!")
+
+
+def update_thursday_classes():
+    """ מעדכן את התאריך של שיעורי יום חמישי בשבוע קדימה ומרוקן רשימות """
+    classes = classes_collection.find({"day": "Thursday"})
+
+    for cls in classes:
+        new_date = cls["date"] + timedelta(days=7)
+        classes_collection.update_one(
+            {"_id": cls["_id"]},
+            {"$set": {"date": new_date, "registered_users": [], "waitlist_users": []}}
+        )
+    print("🎯 שיעורי יום חמישי עודכנו!")
+
+
+from datetime import datetime, timedelta
+from bson.objectid import ObjectId
+
+def time_until_class(class_id):
+    """
+    מקבלת ID של שיעור, שולפת את תאריך השיעור מה-DB,
+    ובודקת כמה זמן נשאר עד אליו.
+    מחזירה False אם השיעור כבר עבר, אחרת מחזירה את הזמן שנותר בפורמט קריא.
+    """
+    cls = classes_collection.find_one({"_id": ObjectId(class_id)})  # שליפת שיעור לפי ID
+
+    if not cls:
+        print(f"❌ שגיאה: שיעור עם ID {class_id} לא נמצא!")
+        return None  # אם השיעור לא קיים, מחזירים None
+
+    class_date = cls.get("date")  # שליפת תאריך השיעור
+    if not class_date:
+        print(f"⚠️ שגיאה: לשיעור {class_id} אין שדה 'date'!")
+        return None
+
+    now = datetime.now()  # הזמן הנוכחי
+    time_difference = class_date - now  # מחשבים את ההפרש המלא
+
+    if time_difference.total_seconds() <= 0:
+        return False  # השיעור כבר עבר
+
+    # חישוב ימים, שעות, דקות ושניות
+    days = time_difference.days
+    hours, remainder = divmod(time_difference.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    return {
+        "timeLeft": f"נותרו {days} ימים, {hours} שעות, {minutes} דקות, {seconds} שניות",
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds
+    }
+
+# דוגמה לשימוש:
+# class_id = "67c96a489c9c494eda9bd5f7"  # דוגמה ל-ID של שיעור
+# result = time_until_class(class_id)
+#
+# if result:
+#     print(f"⏳ זמן שנותר לשיעור: {result['timeLeft']}")
+# else:
+#     print("❌ השיעור כבר עבר!")
+#
+#
+
+
+
+
+
+
+
+
+
+
+def get_class_status(class_id):
+    cls = classes_collection.find_one({"_id": ObjectId(class_id)})
+
+    if not cls:
+        return None  # השיעור לא נמצא
+
+    registered_users = cls.get("registered_users", [])
+    capacity = cls.get("capacity", 10)
+    class_date = cls.get("date")  # תאריך השיעור מהדאטהבייס
+
+    # **אם `class_date` ריק, נציג הודעת שגיאה**
+    if not class_date:
+        print("❌ שגיאה: השדה `date` לא נמצא במסד הנתונים!")
+        return {
+            "classId": class_id,
+            "status": "error",
+            "message": "⏳ נתוני השיעור חסרים!",
+            "datetime": None
+        }
+
+    # 📌 הדפסת זמן למטרות דיבאגינג
+    now = datetime.now()  # משתמשים בזמן המקומי של המחשב
+    time_difference = class_date - now  # מחשבים הפרש מלא
+
+    # חישוב ימים, שעות, דקות ושניות
+    days = time_difference.days
+    hours, remainder = divmod(time_difference.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    # 📌 הדפסת נתונים לזיהוי בעיות
+    print(f"📅 תאריך שיעור: {class_date}")
+    print(f"⏳ עכשיו: {now}")
+    print(f"📏 הפרש זמן: {days} ימים, {hours} שעות, {minutes} דקות, {seconds} שניות")
+
+    # אם השיעור כבר עבר
+    if time_difference.total_seconds() <= 0:
+        return {
+            "classId": class_id,
+            "status": "expired",
+            "message": "⏳ זמן הביטול עבר!",
+            "datetime": class_date.isoformat(),
+            "timeLeft": f"עבר לפני {-days} ימים, {-hours} שעות, {-minutes} דקות, {-seconds} שניות"
+        }
+
+    return {
+        "classId": class_id,
+        "spotsLeft": capacity - len(registered_users),
+        "spotsFilled": len(registered_users),
+        "capacity": capacity,
+        "datetime": class_date.isoformat(),
+        "status": "available",
+        "timeLeft": f"נותרו {days} ימים, {hours} שעות, {minutes} דקות, {seconds} שניות"
+    }
+
 
 
 ###############################################################
@@ -266,59 +403,6 @@ def cancel_registration(class_id, user_email):
 
 
 # פונקציה להבאת סטטוס שיעור (כמה מקומות נשארו) עובד !!!!!!!!!!!
-
-
-
-
-def get_class_status(class_id):
-    cls = classes_collection.find_one({"_id": ObjectId(class_id)})
-
-    if not cls:
-        return None  # השיעור לא נמצא
-
-    registered_users = cls.get("registered_users", [])
-    capacity = cls.get("capacity", 10)
-    class_date = cls.get("date")  # תאריך השיעור מהדאטהבייס
-
-    # **פתרון: אם `class_date` ריק, ניתן לו ערך ברירת מחדל**
-    if not class_date:
-        print("❌ שגיאה: השדה `date` לא נמצא במסד הנתונים!")
-        return {
-            "classId": class_id,
-            "status": "error",
-            "message": "⏳ נתוני השיעור חסרים!",
-            "datetime": None
-        }
-
-    # 📌 הדפסת זמן למטרות דיבאגינג
-    print(f"📅 class_date: {class_date}, סוג הנתון: {type(class_date)}")
-    print(f"⏳ עכשיו (זמן מקומי של המחשב): {datetime.now()}")
-
-    now = datetime.now()  # משתמשים בזמן המקומי של המחשב
-    time_difference = (class_date - now).total_seconds() / 3600  # מחשבים את ההפרש בשעות
-    print(f"🕒 time_difference: {time_difference} שעות")
-
-    if time_difference <= 0:
-        return {
-            "classId": class_id,
-            "status": "expired",
-            "message": "⏳ זמן הביטול עבר!",
-            "datetime": class_date.isoformat()
-        }
-
-    return {
-        "classId": class_id,
-        "spotsLeft": capacity - len(registered_users),
-        "spotsFilled": len(registered_users),
-        "capacity": capacity,
-        "datetime": class_date.isoformat(),
-        "status": "available"
-    }
-
-
-
-
-
 
 
 

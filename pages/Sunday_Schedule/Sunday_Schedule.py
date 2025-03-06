@@ -1,6 +1,9 @@
 from flask import Blueprint, render_template, request, jsonify, session
-from db_functions import insert_classes, get_classes_by_day, register_user_to_class, add_to_waitlist, \
-    cancel_registration, get_class_status, can_cancel_class, update_class_dates
+from db_functions import  get_classes_by_day, register_user_to_class, add_to_waitlist, \
+    cancel_registration, get_class_status, can_cancel_class, update_sunday_classes, classes_collection, time_until_class
+import schedule
+import time
+from bson.objectid import ObjectId
 
 # הגדרת ה-Blueprint
 Sunday_Schedule = Blueprint(
@@ -11,9 +14,6 @@ Sunday_Schedule = Blueprint(
     template_folder='templates'
 )
 
-# יצירת השיעורים במסד הנתונים (אם הם לא קיימים)
-insert_classes()
-update_class_dates()
 
 @Sunday_Schedule.route('/Sunday_Schedule')
 def index():
@@ -21,7 +21,20 @@ def index():
     # מוסיף מספר נרשמים לכל שיעור
     for cls in classes:
         cls["spots_filled"] = len(cls["registered_users"])  # כמות רשומים
+        print(f"📌 מספר השיעורים המועברים ל-HTML: {len(classes)}")
+
     return render_template('Sunday_Schedule.html', classes=classes)
+
+
+@Sunday_Schedule.route('/Sunday_Schedule/time_until/<class_id>', methods=['GET'])
+def get_time_until_class(class_id):
+    result = time_until_class(class_id)
+    if result is None:
+        return jsonify({"error": "שיעור לא נמצא"}), 404
+    if result is False:
+        return jsonify({"expired": True, "message": "⏳ זמן השיעור עבר"}), 200
+
+    return jsonify(result)
 
 
 # רישום משתמש לשיעור- עובד!!
@@ -56,8 +69,9 @@ def class_status(class_id):
         "spotsFilled": class_data.get("spotsFilled", 0),
         "capacity": class_data.get("capacity", 10),
         "spotsLeft": class_data.get("capacity", 10) - class_data.get("spotsFilled", 0),
-        "datetime": class_data.get("date")  # מחזירים גם את זמן השיעור
+        "datetime": class_data.get("datetime")  # מחזירים גם את זמן השיעור
     })
+
 
 # הוספה לרשימת המתנה
 @Sunday_Schedule.route('/Sunday_Schedule/waitlist', methods=['POST'])
@@ -74,6 +88,7 @@ def waitlist():
         return jsonify({"status": "success", "message": "נוספת לרשימת ההמתנה!"})
     else:
         return jsonify({"status": "error", "message": "השיעור לא נמצא."})
+
 
 # ביטול הרשמה עם בדיקת זמן
 @Sunday_Schedule.route('/Sunday_Schedule/cancel', methods=['POST'])
@@ -98,6 +113,23 @@ def cancel():
         return jsonify({"status": "success", "message": "ההרשמה שלך בוטלה בהצלחה!"})
     else:
         return jsonify({"status": "error", "message": "לא נמצאה הרשמה לשיעור זה."})
+
+
+
+# תזמון עדכון ימי ראשון בלבד
+schedule.every().thursday.at("22:00").do(update_sunday_classes)
+
+print("🔄 עדכון ימי ראשון יתבצע כל יום חמישי ב-22:00.")
+
+# while True:
+#     schedule.run_pending()
+#     time.sleep(60)
+#
+
+
+
+
+
 
 # # ביטול הרשמה
 # @Sunday_Schedule.route('/Sunday_Schedule/cancel', methods=['POST'])
