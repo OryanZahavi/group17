@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, session
 from db_functions import get_classes_by_day, register_user_to_class, add_to_waitlist, \
-    cancel_registration, get_class_status, can_cancel_class, update_thursday_classes, classes_collection, time_until_class
-import schedule
-import time
+    get_class_status, can_cancel_class, classes_collection, \
+    time_until_class, is_user_registered, cancel_registration
 from bson.objectid import ObjectId
 
 # הגדרת ה-Blueprint
@@ -18,7 +17,6 @@ Thursday_Schedule = Blueprint(
 @Thursday_Schedule.route('/Thursday_Schedule')
 def index():
     classes = get_classes_by_day("Thursday")
-    # מוסיף מספר נרשמים לכל שיעור
     for cls in classes:
         cls["spots_filled"] = len(cls["registered_users"])  # כמות רשומים
         print(f"📌 מספר השיעורים המועברים ל-HTML: {len(classes)}")
@@ -37,7 +35,6 @@ def get_time_until_class(class_id):
     return jsonify(result)
 
 
-# רישום משתמש לשיעור
 @Thursday_Schedule.route('/Thursday_Schedule/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -65,15 +62,17 @@ def class_status(class_id):
     if not class_data:
         return jsonify({"error": "Class not found"}), 404
 
+    user_registered = is_user_registered(class_id)
+
     return jsonify({
         "spotsFilled": class_data.get("spotsFilled", 0),
         "capacity": class_data.get("capacity", 10),
         "spotsLeft": class_data.get("capacity", 10) - class_data.get("spotsFilled", 0),
-        "datetime": class_data.get("datetime")  # מחזירים גם את זמן השיעור
+        "datetime": class_data.get("datetime"),
+        "userRegistered": user_registered
     })
 
 
-# הוספה לרשימת המתנה
 @Thursday_Schedule.route('/Thursday_Schedule/waitlist', methods=['POST'])
 def waitlist():
     data = request.get_json()
@@ -90,36 +89,33 @@ def waitlist():
         return jsonify({"status": "error", "message": "השיעור לא נמצא."})
 
 
-# ביטול הרשמה עם בדיקת זמן
+@Thursday_Schedule.route('/Thursday_Schedule/cancel_status/<class_id>', methods=['GET'])
+def cancel_status(class_id):
+    """ מחזירה סטטוס ביטול השיעור למשתמשת המחוברת """
+    result = can_cancel_class(class_id)
+    return jsonify(result)
+
+
 @Thursday_Schedule.route('/Thursday_Schedule/cancel', methods=['POST'])
 def cancel():
     data = request.get_json()
     class_id = data.get('class_id')
-    user_email = session.get('email')
 
-    if not user_email:
-        return jsonify({"status": "error", "message": "משתמש לא מחובר"})
+    print(f"🔹 בקשת ביטול התקבלה! Class ID: {class_id}")
 
-    cancel_status = can_cancel_class(class_id, user_email)
+    cancel_status = can_cancel_class(class_id)
+    print(f"🔸 סטטוס ביטול: {cancel_status}")
 
-    if cancel_status["status"] == "too_late":
-        return jsonify({"status": "error", "message": cancel_status["message"]})
+    if cancel_status["status"] in ["error", "too_late", "not_registered"]:
+        return jsonify(cancel_status), 403
 
     if cancel_status["status"] == "late_cancel":
-        return jsonify({"status": "warning", "message": cancel_status["message"]})  # התרעה לפני חיוב
+        return jsonify(cancel_status), 200
 
-    result = cancel_registration(class_id, user_email)
+    result = cancel_registration(class_id)
+    print(f"🔹 תוצאת ביטול בפועל: {result}")
+
     if result == "success":
-        return jsonify({"status": "success", "message": "ההרשמה שלך בוטלה בהצלחה!"})
+        return jsonify({"status": "success", "message": "✅ ההרשמה שלך בוטלה בהצלחה!"}), 200
     else:
-        return jsonify({"status": "error", "message": "לא נמצאה הרשמה לשיעור זה."})
-
-
-# תזמון עדכון ימי חמישי בלבד
-schedule.every().thursday.at("22:00").do(update_thursday_classes)
-
-print("🔄 עדכון ימי חמישי יתבצע כל יום חמישי ב-22:00.")
-
-# while True:
-#     schedule.run_pending()
-#     time.sleep(60)
+        return jsonify({"status": "error", "message": "❌ שגיאה בביטול ההרשמה"}), 500

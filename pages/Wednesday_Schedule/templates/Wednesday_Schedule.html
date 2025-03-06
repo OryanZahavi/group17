@@ -30,41 +30,28 @@
         </a>
     </div>
 
-<div class="schedule">
-    <button class="session" data-time="07:00" data-day-offset="3" data-popup="Power yoga שעה 7:00">
-        <p class="time">07:00</p>
-        <p class="details">Power yoga</p>
-        <p class="spots">4/10 רשומות</p>
-    </button>
-    <button class="session" data-time="08:00" data-day-offset="3" data-popup="יוגה ויניאסה - מתקדמות שעה 8:00">
-        <p class="time">08:00</p>
-        <p class="details">יוגה ויניאסה - מתקדמות</p>
-        <p class="spots">10/10 רשומות</p>
-    </button>
-    <button class="session" data-time="09:00" data-day-offset="3" data-popup="יוגה אשטנגה - מתחילות שעה 9:00">
-        <p class="time">09:00</p>
-        <p class="details">יוגה אשטנגה - מתחילות</p>
-        <p class="spots">5/10 רשומות</p>
-    </button>
-    <button class="session" data-time="19:00" data-day-offset="3" data-popup="שיעור מתיחות שעה 19:00">
-        <p class="time">19:00</p>
-        <p class="details">שיעור מתיחות</p>
-        <p class="spots">10/10 רשומות</p>
-    </button>
-    <button class="session" data-time="20:00" data-day-offset="3" data-popup="יוגה קונדליני שעה 20:00">
-        <p class="time">20:00</p>
-        <p class="details">יוגה קונדליני</p>
-        <p class="spots">9/10 רשומות</p>
-    </button>
-</div>
-
+    <div class="schedule">
+        {#        עובדדדדד#}
+        {% for cls in classes %}
+            <button class="session" data-class-id="{{ cls._id }}" data-time="{{ cls.time }}"
+                    data-popup="{{ cls.title }} שעה {{ cls.time }}">
+                <p class="time">{{ cls.date.strftime('%H:%M') }}</p>
+                <p class="details">{{ cls.title }}</p>
+                <p id="spots-{{ cls._id }}" class="spots">{{ cls.registered_users|length }}/{{ cls.capacity }}
+                    רשומות</p>
+            </button>
+        {% endfor %}
+    </div>
     <div class="footer">
         <p>להרשמה לשיעור/ רשימת המתנה/ ביטול רישום – לחצי על השיעור</p>
     </div>
-
 {% endblock %}
 
 {% block submit %}{% endblock %}
+
+
+
+
 
 {# Popup#}
 {% block popup %}
@@ -76,15 +63,19 @@
         <button id="cancel-btn" class="popup-btn">ביטול הרשמה</button>
         <button id="close-popup" class="popup-btn">סגור</button>
     </div>
-    <!-- תוצאה לאחר לחיצה -->
-    <div id="result-popup" class="popup hidden">
-        <p id="result-message"></p>
+ <!-- פופאפ ביטול הרשמה -->
+    <div id="cancel-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h2>את בטוחה שתרצי לבטל?</h2>
+            <p id="cancel-message"></p>
+            <button id="confirm-cancel-btn" class="popup-btn">בצע ביטול</button>
+            <button id="close-cancel-popup" class="popup-btn">סגור</button>
+        </div>
     </div>
-    <!-- חלון ביטול -->
-    <div id="cancel-result-popup" class="popup hidden">
-        <p id="cancel-result-message"></p>
-        <button id="final-cancel-btn" class="popup-btn hidden">ביטול שיעור</button>
-    </div>
+
+    <!-- שכבת רקע נפרדת לכל פופאפ -->
+    <div class="overlay" id="popup-overlay" style="display: none;"></div>
+    <div class="overlay" id="cancel-overlay" style="display: none;"></div>
 {% endblock %}
 
 {# JS#}
@@ -96,56 +87,3 @@
 
 
 
-
-{######################################}
-{#{% extends "Schedule.html" %}#}
-{##}
-{#{% block Sunday %}#}
-{#    <button id='0'></button>#}
-{#{% endblock %}#}
-{##}
-{#        {% block Wednesday %}#}
-{#        <button id='3' class="active"></button>#}
-{#        {% endblock %}#}
-{##}
-{#{% block Schedule %}#}
-{#<div class="schedule">#}
-{#    <button class="session" data-time="07:00" data-day-offset="3" data-popup="Power yoga שעה 7:00">#}
-{#        <p class="time">07:00</p>#}
-{#        <p class="details">Power yoga</p>#}
-{#        <p class="spots">4/10 רשומות</p>#}
-{#    </button>#}
-{#    <button class="session" data-time="08:00" data-day-offset="3" data-popup="יוגה ויניאסה - מתקדמות שעה 8:00">#}
-{#        <p class="time">08:00</p>#}
-{#        <p class="details">יוגה ויניאסה - מתקדמות</p>#}
-{#        <p class="spots">10/10 רשומות</p>#}
-{#    </button>#}
-{#    <button class="session" data-time="09:00" data-day-offset="3" data-popup="יוגה אשטנגה - מתחילות שעה 9:00">#}
-{#        <p class="time">09:00</p>#}
-{#        <p class="details">יוגה אשטנגה - מתחילות</p>#}
-{#        <p class="spots">5/10 רשומות</p>#}
-{#    </button>#}
-{#    <button class="session" data-time="19:00" data-day-offset="3" data-popup="שיעור מתיחות שעה 19:00">#}
-{#        <p class="time">19:00</p>#}
-{#        <p class="details">שיעור מתיחות</p>#}
-{#        <p class="spots">10/10 רשומות</p>#}
-{#    </button>#}
-{#    <button class="session" data-time="20:00" data-day-offset="3" data-popup="יוגה קונדליני שעה 20:00">#}
-{#        <p class="time">20:00</p>#}
-{#        <p class="details">יוגה קונדליני</p>#}
-{#        <p class="spots">9/10 רשומות</p>#}
-{#    </button>#}
-{#</div>#}
-{#{% endblock %}#}
-{##}
-{#{% block popup1 %}#}
-{#    <a href="/Wednesday_Schedule.html"></a>#}
-{#{% endblock %}#}
-{##}
-{#{% block popup2 %}#}
-{#    <a href="/Wednesday_Schedule.html"></a>#}
-{#{% endblock %}#}
-{##}
-{#{% block popup3 %}#}
-{#    <a href="/Wednesday_Schedule.html"></a>#}
-{#{% endblock %}#}

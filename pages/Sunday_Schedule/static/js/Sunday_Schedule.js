@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const closePopup = document.getElementById('close-popup');
     let selectedSession;
 
+
     overlay.addEventListener('click', closePopupHandler);
     closePopup.addEventListener('click', closePopupHandler);
 
@@ -53,73 +54,59 @@ document.addEventListener("DOMContentLoaded", function () {
         popup.style.display = 'none';
         overlay.style.display = 'none';
     }
+
 // ##########################################################################
 
 
-
     scheduleButtons.forEach(button => {
-    button.addEventListener('click', async () => {
-        const classId = button.dataset.classId; // מזהה השיעור
-        const response = await fetch(`/Sunday_Schedule/time_until/${classId}`);
-        const data = await response.json();
+        button.addEventListener('click', async () => {
+            const classId = button.dataset.classId; // מזהה השיעור
 
-        selectedSession = button;
-        popupContent.innerText = button.dataset.popup;
-        registerBtn.style.display = 'block';
-        waitlistBtn.style.display = 'block';
-        cancelBtn.style.display = 'block';
+            // שליפת זמן שנותר לשיעור
+            const timeResponse = await fetch(`/Sunday_Schedule/time_until/${classId}`);
+            const timeData = await timeResponse.json();
 
-        if (data.expired) {
-            popupContent.innerText = '⏳ זמן השיעור עבר!';
+            // שליפת סטטוס השיעור והאם המשתמשת רשומה
+            const statusResponse = await fetch(`/Sunday_Schedule/class_status/${classId}`);
+            const statusData = await statusResponse.json();
+
+            selectedSession = button;
+            popupContent.innerText = button.dataset.popup;
+
+            // בהתחלה מסתירים את כל הכפתורים
             registerBtn.style.display = 'none';
             waitlistBtn.style.display = 'none';
             cancelBtn.style.display = 'none';
-        } else {
-            popupContent.innerText += `\n🕒 זמן נותר: ${data.timeLeft.days} ימים, ${data.timeLeft.hours} שעות, ${data.timeLeft.minutes} דקות`;
-        }
 
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
+            // אם השיעור כבר עבר
+            if (timeData.expired) {
+                popupContent.innerText = '⏳ זמן השיעור עבר!';
+            } else {
+                popupContent.innerText += `\n🕒 ${timeData.timeLeft}`;
+
+                // בודקים האם המשתמשת רשומה לשיעור
+                const userRegistered = statusData.userRegistered;
+                const spotsLeft = statusData.spotsLeft;
+
+                if (userRegistered) {
+                    // אם המשתמשת רשומה לשיעור - הצג ביטול וסגירה
+                    cancelBtn.style.display = 'block';
+                } else {
+                    // אם המשתמשת לא רשומה
+                    if (spotsLeft > 0) {
+                        // אם יש מקום בשיעור - הצג הרשמה וסגירה
+                        registerBtn.style.display = 'block';
+                    } else {
+                        // אם אין מקום - הצג כניסה להמתנה וסגירה
+                        waitlistBtn.style.display = 'block';
+                    }
+                }
+            }
+
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
     });
-});
-
-
-    // scheduleButtons.forEach(button => {
-    //     button.addEventListener('click', () => {
-    //         selectedSession = button;
-    //         const sessionId = button.dataset.classId;
-    //
-    //         popupContent.innerText = button.dataset.popup;
-    //         registerBtn.style.display = 'block';
-    //         waitlistBtn.style.display = 'none';  // בהתחלה מסתירים את כפתור רשימת ההמתנה
-    //         cancelBtn.style.display = 'block';
-    //
-    //         fetch(`/Sunday_Schedule/class_status/${sessionId}`)
-    //             .then(response => {
-    //                 if (!response.ok) {
-    //                     throw new Error("Failed to fetch class status");
-    //                 }
-    //                 return response.json();
-    //             })
-    //             .then(data => {
-    //                 if (data.spotsLeft !== undefined) {
-    //                     if (data.spotsLeft > 0) {
-    //                         waitlistBtn.style.display = 'none'; // אם יש מקום פנוי - מסתירים רשימת המתנה
-    //                     } else {
-    //                         registerBtn.style.display = 'none'; // השיעור מלא - מסתירים כפתור הרשמה
-    //                         waitlistBtn.style.display = 'block'; // מציגים את כפתור רשימת ההמתנה
-    //                     }
-    //                 } else {
-    //                     console.error("Invalid response format:", data);
-    //                 }
-    //             })
-    //             .catch(error => console.error("Error fetching class status:", error));
-    //
-    //
-    //         popup.style.display = 'block';
-    //         overlay.style.display = 'block';
-    //     });
-    // });
 
 
 // עובד!! 5.3
@@ -168,39 +155,68 @@ document.addEventListener("DOMContentLoaded", function () {
         closePopupHandler();
     });
 
-    cancelBtn.addEventListener("click", () => {
+
+    // איתור רכיבי הפופאפ לביטול הרשמה
+    const cancelPopup = document.getElementById('cancel-popup');
+    const cancelMessage = document.getElementById('cancel-message');
+    const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+    const closeCancelPopup = document.getElementById('close-cancel-popup');
+
+    // ✅ טיפול בלחיצה על כפתור ביטול הרשמה
+    cancelBtn.addEventListener("click", async () => {
+        console.log("❌ שגיאה: אין שיעור נבחר.");
         if (!selectedSession) return;
 
-        const sessionId = selectedSession.dataset.classId;
+        const classId = selectedSession.dataset.classId;
+        console.log(`📡 שליחת בקשת סטטוס ביטול עבור שיעור ID: ${classId}`);
 
+        // בקשת סטטוס ביטול מהשרת
+        const response = await fetch(`/Sunday_Schedule/cancel_status/${classId}`);
+        const cancelData = await response.json();
+        console.log("✅ קיבלנו תשובה משרת הסטטוס:", cancelData);
+        // קביעת ההודעה בהתאם למידע שהתקבל מהשרת
+        cancelMessage.innerText = cancelData.message;
+
+        // הצגת הפופאפ
+        cancelPopup.style.display = 'block';
+        overlay.style.display = 'block';
+
+        // האזנה ללחיצה על כפתור הביטול הסופי
+        confirmCancelBtn.onclick = () => handleCancelClass(classId);
+    });
+
+    // סגירת פופאפ הביטול
+    closeCancelPopup.addEventListener("click", () => {
+        cancelPopup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
+
+    function handleCancelClass(classId) {
         fetch(`/Sunday_Schedule/cancel`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({class_id: sessionId})
+            body: JSON.stringify({class_id: classId})
         })
             .then(response => response.json())
             .then(data => {
-                if (data.status === "error") {
-                    alert(data.message);
-                } else if (data.status === "warning") {
-                    const confirmPayment = confirm("שימי לב: ביטול כרוך בתשלום. האם לבטל?");
-                    if (confirmPayment) {
-                        sendRequest("/Sunday_Schedule/cancel", sessionId);
-                    }
-                } else if (data.status === "success") {
-                    alert(data.message);
-                    updateSpotsFromServer(sessionId);
+                alert(data.message); // הצגת הודעה מהשרת
+
+                if (data.status === "success") {
+                    // 🔴 תחילה סגירת הפופאפ של הביטול
+                    cancelPopup.style.display = 'none';
+
+                    // 🔴 עיכוב קצר של 300ms ואז סגירת הפופאפ הראשי
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                        overlay.style.display = 'none';
+                    }, 300);
+
+                    // 🔄 עדכון מספר המשתמשות בשיעור
+                    updateSpotsFromServer(classId);
                 }
             })
-            .catch(error => console.error("Error processing cancellation:", error));
-    });
-
-
-// cancelBtn.addEventListener('click', () => {
-//     sendRequest('/cancel', selectedSession.dataset.classId);
-//     closePopupHandler();
-// });
-
+            .catch(error => console.error("❌ שגיאה בביטול:", error));
+    }
 
 })
 ;
