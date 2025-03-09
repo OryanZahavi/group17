@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const submitButton = document.getElementById("submit-button");
+    const form = document.getElementById("user-registration-form"); // Get the form element
+
     // Regular expression to allow only English letters
     const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;
 
@@ -59,8 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
             lastNameError.classList.remove("visible"); // Hide the error message
             lastNameInput.classList.remove("error"); // Remove error style
         }
-
-
 
          // אימות תאריך לידה
         const birthDateInput = document.getElementById("birthDate");
@@ -184,7 +184,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
-            popup.style.display = "block"; // מציג את הפופ-אפ
+            //popup.style.display = "block"; // מציג את הפופ-אפ
+           form.submit(); // Programmatically submit the form
+
         }
 
     });

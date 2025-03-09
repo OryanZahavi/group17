@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_home.html" %}
 
 {% set page_head_title = 'New_User_Account' %}
 
@@ -13,7 +13,7 @@
 {% block page_body_header_content__main_menu %}{% endblock %}
 {#main#}
 {% block page_body_main %}
-    <form action="/register" method="POST" enctype="multipart/form-data">
+    <form id="user-registration-form" action="/register" method="POST" enctype="multipart/form-data">
         <div class="grid-container_1">
             <p>שם פרטי</p>
             <input type="text" id="firstName" name="first_name" class="input-field" placeholder="הזיני שם פרטי" required>
@@ -43,20 +43,42 @@
             <input type="file" id="Hfile" name="health_form" class="input-field">
             <span id="fileError" class="error-message"></span>
 
+            <button type="submit" form="user-registration-form" class="btn" >מאשרת פרטים</button>
+
         </div>
     </form>
 {% endblock %}
-
-{% block submit %}
-      <button type="submit" class="btn">מאשרת פרטים</button>
-{% endblock %}
-
-
 
 {# Popup #}
 {% set return_to_button = 'חזרה למסך הכניסה' %}
 
 {% set return_to_url= "/Entry_Screen"  %}
+
+
+
+{#{% block page_body_footer%}#}
+{#    <div style="text-align: center;">#}
+{#        <a href="{{ return_to_url | default('/Entry_Screen', true) }}">#}
+{#            <button class="btn">{{ return_to_button | default('חזרה למסך הכניסה', true) }}</button>#}
+{#        </a>#}
+{#        <a>#}
+{#           <button type="submit" form="user-registration-form" class="btn" id="submit-button">מאשרת פרטים</button>#}
+{#        </a>#}
+{#    </div>#}
+{# {% endblock %}#}
+{##}
+{# Popup #}
+{#{% block popup %}#}
+{#    <div id="popup" class="popup">#}
+{#        <p>{{ "הרישום התבצע בהצלחה" }}</p>#}
+{#        <p>{{ "כעת ניתן להתחבר ממסך הכניסה" }}</p>#}
+{#        <a href="/Entry_Screen">#}
+{#            <button class="btn">חזרה למסך הכניסה</button>#}
+{#        </a>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
 
 {# JS #}
 {% block page_body_js %}

@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f117dfae-6f6e-4f59-9c62-f77bf6295556" name="Changes" comment="new base temp&#10;reedited all formats using the new base">
+    <list default="true" id="f117dfae-6f6e-4f59-9c62-f77bf6295556" name="Changes" comment="Entry screen FiX">
+      <change beforePath="$PROJECT_DIR$/.idea/group17.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/group17.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Contact_Us/Contact_Us.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Contact_Us/Contact_Us.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Entry_Screen/templates/Entry_Screen.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Entry_Screen/templates/Entry_Screen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Home_Page/templates/Home_Page.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Home_Page/templates/Home_Page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Sunday_Schedule/templates/Sunday_Schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Sunday_Schedule/templates/Sunday_Schedule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/New_User_Account/New_User_Account.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/New_User_Account/New_User_Account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/New_User_Account/static/js/New_User_Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/New_User_Account/static/js/New_User_Account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/New_User_Account/templates/New_User_Account.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/New_User_Account/templates/New_User_Account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,28 +50,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Flask server.Flask (app.py).executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;My__New__Branch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/oryan/Documents/GitHub/group17/app.py&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Flask server.Flask (app.py).executor": "Run",
+    "Python.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "My__New__Branch",
+    "last_opened_file_path": "C:/Users/oryan/Documents/GitHub/group17/app.py",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mongo&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\oryan\Documents\GitHub\group17" />
@@ -89,7 +92,7 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.13" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -133,7 +136,12 @@
       <workItem from="1737119195894" duration="2218000" />
       <workItem from="1737227513397" duration="9050000" />
       <workItem from="1741040371639" duration="30866000" />
-      <workItem from="1741129822576" duration="530000" />
+      <workItem from="1741129822576" duration="2066000" />
+      <workItem from="1741258878915" duration="116000" />
+      <workItem from="1741259009778" duration="2788000" />
+      <workItem from="1741262112743" duration="12609000" />
+      <workItem from="1741463356824" duration="2084000" />
+      <workItem from="1741465470919" duration="8199000" />
     </task>
     <task id="LOCAL‎-00003" summary="new base temp&#10;reedited all formats using the new base">
       <option name="closed" value="true" />
@@ -143,7 +151,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1741102019206</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="Entry screen FiX">
+      <option name="closed" value="true" />
+      <created>1741130645247</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741130645247</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +181,8 @@
     <MESSAGE value="Generic Js For all Days&#10;working timer&#10;when full - waite list&#10;when not full - just enroll" />
     <MESSAGE value="all days connected to one js and one cs&#10;all days are leveled&#10;old days js deleted" />
     <MESSAGE value="new base temp&#10;reedited all formats using the new base" />
-    <option name="LAST_COMMIT_MESSAGE" value="new base temp&#10;reedited all formats using the new base" />
+    <MESSAGE value="Entry screen FiX" />
+    <option name="LAST_COMMIT_MESSAGE" value="Entry screen FiX" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -185,7 +202,7 @@
     <SUITE FILE_PATH="coverage/group17$group17.coverage" NAME="group17 Coverage Results" MODIFIED="1740645791651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/group17$Entry_Screen.coverage" NAME="Entry_Screen Coverage Results" MODIFIED="1741040008779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pages/Entry_Screen" />
     <SUITE FILE_PATH="coverage/group17$app.coverage" NAME="app Coverage Results" MODIFIED="1741040386645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/group17$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1741130349711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/group17$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1741472482050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/group17$Home_Page.coverage" NAME="Home_Page Coverage Results" MODIFIED="1740644695871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pages/Home_Page" />
     <SUITE FILE_PATH="coverage/group17$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1740645874319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\oryan\Documents\GitHub\group17" />
   </component>

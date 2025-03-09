@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from db_functions import insert_user ,user_exists # ייבוא פונקציה להכנסת משתמשים
+from db_functions import insert_user, user_exists # ייבוא פונקציה להכנסת משתמשים
 
 # יצירת ה-Blueprint
 New_User_Account = Blueprint(
