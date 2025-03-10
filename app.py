@@ -5,6 +5,7 @@ import json
 from db_functions import *
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False  # לתמיכה בעברית
 app.secret_key = '123'
 # app.config.from_pyfile('settings.py')
 #
@@ -197,15 +198,15 @@ app.register_blueprint(log_out)
 #     degrees=degrees,
 #
 #
-# ###############in class-final#################
-@app.route('/index')
-@app.route('/home')
-@app.route('/')
-def home_page():
-    return render_template('index.html')
-#
-#
-# @app.route('/fetch_page')
+# # ###############in class-final#################
+# @app.route('/index')
+# @app.route('/home')
+# @app.route('/')
+# def home_page():
+#     return render_template('index.html')
+# #
+# #
+# # @app.route('/fetch_page')
 # def fetch_page_func():
 #     return render_template('fetch_example.html')
 #

@@ -6,6 +6,10 @@
 <script src="{{ url_for('static', filename='js/base.js') }}"></script>
 {% endblock %}
 
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+{% endblock %}
+
 <div class="grid-container">
 
     <div class="div1">
@@ -17,11 +21,9 @@
             {% endblock %}
             <title>{{ page_head_title_author|default('Ofri & Oryan', true) }} | {{ page_head_title|default('part C', true) }}</title>
 
-            {% block page_head_css %}
-                <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-            {% endblock %}
 
-            <h1>{{ page_body_header|default('part C', true) }}</h1>
+
+            <h1>{{ page_body_header|default('Soul Studio', true) }}</h1>
 
     {% endblock %}
     </div>
@@ -35,9 +37,7 @@
     </div>
 
     <div class="div3">
-    {% block page_body_main %}
-
-    {% endblock %}
+    {% block page_body_main %}    {% endblock %}
     </div>
 
     <div class="div4">
@@ -58,26 +58,35 @@
     {% endblock %}
     </div>
 
-
     <div class="div5">
     {% block page_body_footer %}
         <div style="text-align: center;">
-            <a href="{{ return_to_url | default('/Home_Page', true) }}">
-                <button class="btn">{{ return_to_button | default('חזרה למסך הבית', true) }}</button>
-            </a>
-            {% block submit %}
-            {% endblock %}
+            <a href="{{ return_to_url | default('/Home_Page', true) }}" class="btn">{{ return_to_button | default('חזרה למסך הבית', true) }}</a>
+            {% block submit %} {% endblock %}
         </div>
     {% endblock %}
     </div>
 
+    {#Display flash messages#}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="flash-{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     {# Popup #}
-        {% block popup %}
-            <div id="popup" class="popup">
-                    <p>{{ success_message }}</p>
-                    <a href="/Home_Page">
-                        <button class="btn">חזרה לדף הבית</button>
-                    </a>
-            </div>
-        {% endblock %}
+    {% block popup %}
+        <div id="popup" class="popup" style="display: none;">
+                <p>ההרשמה בוצעה בהצלחה!</p>
+                <a href="{{ url_for('Home_Page.index') }}">
+                    <button class="btn">חזרה לדף הבית</button>
+                </a>
+        </div>
+    {% endblock %}
+
 </div>
+

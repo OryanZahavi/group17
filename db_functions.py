@@ -20,7 +20,7 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 Soul_Studio = client['Soul_Studio']  # שם הדאטהבייס
 users_col = Soul_Studio['users']  # קולקשן של המשתמשים
 classes_collection = Soul_Studio["classes"]  # קולקשן של השיעורים
-
+inquiries_col = Soul_Studio["inquiries"] # קולקשיין של הפניות
 
 # פונקציה להכנסת כמה משתמשים
 def insert_users_test():
@@ -63,7 +63,7 @@ def insert_users_test():
         }
     ]
     result = users_col.insert_many(users)  # הכנסת הנתונים
-    print(f"Inserted IDs: {result.inserted_ids}")  # הדפסת ה-IDs שנוספו
+    print("Inserted IDs: {result.inserted_ids}")  # הדפסת ה-IDs שנוספו
 
 
 # קריאה לפונקציה כדי להכניס את הנתונים
@@ -116,6 +116,29 @@ def insert_user(first_name, last_name, birth_date, email, phone_number, password
     return str(result.inserted_id)  # מחזיר את ה-ID של המשתמש החדש
 
 
+from datetime import datetime
+def get_user_data(email):
+    user = users_col.find_one({"email": email})
+    if user:
+        # סידור של התאריך
+        birth_date = user.get("birth_date")
+        if birth_date:
+            # Assuming birth_date is in ISO format (YYYY-MM-DD)
+            formatted_birth_date = datetime.strptime(birth_date, "%Y-%m-%d").strftime("%d-%m-%Y")
+        else:
+            formatted_birth_date = ""
+
+        return {
+            "first_name": user.get("first_name"),
+            "last_name": user.get("last_name"),
+            "birth_date": formatted_birth_date,
+            "email": user.get("email"),
+            "phone_number": user.get("phone_number"),
+            "health_file": user.get("health_file")
+        }
+    return None
+
+
 # --------------------------------- פונקציות לניהול שיעורים --------------------------
 
 #  פונקציה ראשונית להכנסת משתמשים ------
@@ -162,9 +185,8 @@ def insert_classes():
 
     print("✅ השיעורים נוספו בהצלחה עם תאריך ושעה מדויקים!")
 
-
+# פקודות ליצירה ומחיקת שיעורים ידנית
 # קריאה לפונקציה להוספת השיעורים ומחיקה ----
-
 # insert_classes() # אחרי הכנסה ראשונית אין צורך להפעיל בשנית
 # classes_collection.delete_many({})
 # print("🗑️ כל המסמכים בקולקשן נמחקו!")
@@ -421,3 +443,14 @@ def can_cancel_class(class_id):
         return {"status": "late_cancel", "message": "⚠️ ביטול כרוך בתשלום, מאחר והזמן הנותר קטן מ-7 שעות."}
 
     return {"status": "allowed", "message": "ביטול אפשרי ללא תשלום"}
+
+def insert_inquiry (first_name, last_name, email, phone_number,description):
+     inquiry_data ={
+         "firstName": first_name,
+         "lastName": last_name,
+         "email": email,
+         "phoneNumber": phone_number,
+         "description": description
+         }
+     inquiries_col.insert_one(inquiry_data)
+     return ()

@@ -14,6 +14,10 @@
             {% endblock %}
         {% endblock %}
     </head>
+    {# JS #}
+    {% block page_body_js %}
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    {% endblock %}
 
     <body>
     {% block page_body_content %}
@@ -32,7 +36,6 @@
                 {% endif %}
         {% endblock %}
 
-
     {# Header #}
         {% block page_body_header %}
             <div class="header-container">
@@ -40,9 +43,6 @@
                 <h1>{{ page_body_header|default('part C', true) }}</h1>
             </div>
         {% endblock %}
-
-
-
 
     {# Main #}
         {% block page_body_main %}
@@ -96,8 +96,6 @@
             </div>
         {% endblock %}
 
-
-
     {# Popup #}
         {% block popup %}
             <div id="popup" class="popup">
@@ -110,54 +108,5 @@
     {% endblock %}
 
     </body>
-    {# JS #}
-    {% block page_body_js %}
-    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-    {% endblock %}
+
 </html>
-
-
-
-
-
-
-
-
-
-{##}
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Base</title>#}
-{#    <link rel="stylesheet" href="">#}
-{#</head>#}
-{#<body>#}
-{##}
-{#{% block header %}#}
-{#<header>#}
-{#    <h1>**********************</h1>#}
-{#    <h1>This is Base header</h1>#}
-{#    <h1>**********************</h1>#}
-{#</header>#}
-{#{% endblock %}#}
-{##}
-{#{% include ('navi.html') %}#}
-{##}
-{#{% block main%}#}
-{#<h2>This is the main block</h2>#}
-{#{% endblock %}#}
-{##}
-{#{% block footer%}#}
-{#<footer>#}
-{#    <h1>**********************</h1>#}
-{#    <h1>This is Base footer</h1>#}
-{#    <h1>**********************</h1>#}
-{#</footer>#}
-{#{% endblock %}#}
-{##}
-{#</body>#}
-{#</html>#}
-{##}
-
-

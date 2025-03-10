@@ -1,3 +1,4 @@
+import time
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from db_functions import insert_user, user_exists # ייבוא פונקציה להכנסת משתמשים
 
@@ -39,6 +40,9 @@ def register():
     session['user_name'] = first_name
 
     flash("ההרשמה בוצעה בהצלחה!", "success")
+
+    time.sleep(3)  # השהייה של 3 שניות
+
     return redirect(url_for('Home_Page.index'))
 
 @New_User_Account.route('/log_out')

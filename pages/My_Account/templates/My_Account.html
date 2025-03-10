@@ -8,27 +8,26 @@
 {# Header #}
 {% set page_body_header ='פרטי החשבון שלי' %}
 
-
 {# Main#}
 {% block page_body_main %}
     <div class="grid-container_1">
         <p>שם פרטי:</p>
-        <span id="display_FirstName"></span>
+        <span>{{ user_data.first_name }}</span>
 
         <p>שם משפחה:</p>
-        <span id="display_LastName"></span>
+        <span>{{ user_data.last_name }}</span>
 
         <p>תאריך לידה:</p>
-        <span id="display_BirthDate"></span>
+        <span>{{ user_data.birth_date }}</span>
 
         <p>דואר אלקטרוני:</p>
-        <span id="display_Email"></span>
+        <span>{{ user_data.email }}</span>
 
         <p>מס' פלאפון:</p>
-        <span id="display_Phone"></span>
+        <span>{{ user_data.phone_number }}</span>
 
         <p>הצהרת בריאות:</p>
-        <span id="display_File"></span>
+        <span>{{ user_data.health_file }}</span>
     </div>
 {% endblock %}
 
@@ -48,58 +47,3 @@
 {% block page_body_js %}
     <script src="{{ url_for('My_Account.static', filename='js/My_Account.js') }}"></script>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-{######################################}
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>My_Account</title>#}
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/My_Account.css') }}">#}
-{#</head>#}
-{#<body>#}
-{#<div class="header-container">#}
-{#    <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">#}
-{#    <h1>פרטי החשבון שלי</h1>#}
-{##}
-{#</div>#}
-{##}
-{#<div class="grid-container_1">#}
-{#    <p>שם פרטי:</p>#}
-{#    <span id="display_FirstName"></span>#}
-{##}
-{#    <p>שם משפחה:</p>#}
-{#    <span id="display_LastName"></span>#}
-{##}
-{#    <p>תאריך לידה:</p>#}
-{#    <span id="display_BirthDate"></span>#}
-{##}
-{#    <p>דואר אלקטרוני:</p>#}
-{#    <span id="display_Email"></span>#}
-{##}
-{#    <p>מס' פלאפון:</p>#}
-{#    <span id="display_Phone"></span>#}
-{##}
-{#    <p>הצהרת בריאות:</p>#}
-{#    <span id="display_File"></span>#}
-{#</div>#}
-{#<span class="button">#}
-{#    <a href="/Edit_Details">#}
-{#        <button class="btn">עריכת פרטים</button>#}
-{#    </a>#}
-{##}
-{#    <a href="/Home_Page">#}
-{#        <button class="btn">חזרה למסך הבית</button>#}
-{#    </a>#}
-{#</span>#}
-{#<script src="{{ url_for('static', filename='js/Edit_Details.js') }}"></script>#}
-{#</body>#}
-{#</html>#}

@@ -9,10 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const submitButton = document.getElementById("submit-button");
+    const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;     // Regular expression to allow only English letters
     const form = document.getElementById("user-registration-form"); // Get the form element
-
-    // Regular expression to allow only English letters
-    const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל

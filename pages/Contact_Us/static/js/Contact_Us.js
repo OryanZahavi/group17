@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const submitButton = document.getElementById("submit-button");
     const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;
+    const form = document.getElementById("user-inquiry-form"); // Get the form element
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל
@@ -113,7 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
-            popup.style.display = "block"; // מציג את הפופ-אפ
+            // popup.style.display = "block"; // מציג את הפופ-אפ
+           form.submit(); // Programmatically submit the form
+
         }
     });
 
