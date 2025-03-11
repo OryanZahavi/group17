@@ -138,7 +138,29 @@ def get_user_data(email):
         }
     return None
 
+def update_user_data(email, updated_data):
+    """Update user data in the database."""
+    try:
+        result = users_col.update_one(
+            {"email": email},  # Find the user by email
+            {"$set": updated_data}  # Update with new data
+        )
+        return result.modified_count > 0  # Return True if at least one document was modified
+    except Exception as e:
+        print(f"Error updating user data: {e}")
+        return False
 
+def update_user_password(email, new_password):
+    """Update the user's password in the database."""
+    try:
+        result = users_col.update_one(
+            {"email": email},
+            {"$set": {"password": new_password}}  # Replace with hashed password in production
+        )
+        return result.modified_count > 0  # Return True if at least one document was modified
+    except Exception as e:
+        print(f"Error updating password: {e}")
+        return False
 # --------------------------------- פונקציות לניהול שיעורים --------------------------
 
 #  פונקציה ראשונית להכנסת משתמשים ------

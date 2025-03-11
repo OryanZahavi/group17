@@ -66,6 +66,17 @@ app.register_blueprint(My_Account)
 from pages.log_out.log_out import log_out
 app.register_blueprint(log_out)
 
+from pages.Edit_Password.Edit_Password import Edit_Password
+app.register_blueprint(Edit_Password)
+
+
+import os
+
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit file size to 16MB
+
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
 
 
 #################################

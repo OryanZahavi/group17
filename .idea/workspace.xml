@@ -4,33 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f117dfae-6f6e-4f59-9c62-f77bf6295556" name="Changes" comment="Entry screen FiX">
+    <list default="true" id="f117dfae-6f6e-4f59-9c62-f77bf6295556" name="Changes" comment="שליחת פניה למאגר עובדת&#10;הצגת נתוני משתמש בעמוד הפרטים עובד&#10;&#10;מחיקת קבצים של התרגולים&#10;&#10;תיקון מיקום כפתור ביצירת קשר&#10;&#10;תיקון קו תחתון בין הכפתורים">
+      <change afterPath="$PROJECT_DIR$/pages/Edit_Password/Edit_Password.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Edit_Password/static/css/Edit_Password.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Edit_Password/static/js/Edit_Password.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Edit_Password/templates/Edit_Password.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Contact_Us/Contact_Us.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Contact_Us/Contact_Us.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Contact_Us/static/css/Contact_Us.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Contact_Us/static/css/Contact_Us.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Contact_Us/static/js/Contact_Us.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Contact_Us/static/js/Contact_Us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Contact_Us/templates/Contact_Us.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Contact_Us/templates/Contact_Us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Entry_Screen/Entry_Screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Entry_Screen/Entry_Screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/My_Account/My_Account.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/My_Account/My_Account.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/My_Account/static/js/My_Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/My_Account/static/js/My_Account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Edit_Details/Edit_Details.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Edit_Details/Edit_Details.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Edit_Details/templates/Edit_Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Edit_Details/templates/Edit_Details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/My_Account/templates/My_Account.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/My_Account/templates/My_Account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/New_User_Account/New_User_Account.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/New_User_Account/New_User_Account.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/New_User_Account/static/js/New_User_Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/New_User_Account/static/js/New_User_Account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/New_User_Account/templates/New_User_Account.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/New_User_Account/templates/New_User_Account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/CSS/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/CSS/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Block_example.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_lecture.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contacts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/fetch_example.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/get_post_example.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mongodb_lecture.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +25,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
         <option value="CSS File" />
       </list>
     </option>
@@ -71,28 +58,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Flask server.Flask (app.py).executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;My__New__Branch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/oryan/Documents/GitHub/group17/app.py&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Flask server.Flask (app.py).executor": "Run",
+    "Python.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "My__New__Branch",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/oryan/Documents/GitHub/group17/app.py",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mongo&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\oryan\Documents\GitHub\group17" />
@@ -163,7 +151,8 @@
       <workItem from="1741262112743" duration="12609000" />
       <workItem from="1741463356824" duration="2084000" />
       <workItem from="1741465470919" duration="8199000" />
-      <workItem from="1741620026278" duration="21799000" />
+      <workItem from="1741620026278" duration="22258000" />
+      <workItem from="1741713943177" duration="5620000" />
     </task>
     <task id="LOCAL‎-00003" summary="new base temp&#10;reedited all formats using the new base">
       <option name="closed" value="true" />
@@ -181,7 +170,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1741130645247</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎-00005" summary="שליחת פניה למאגר עובדת&#10;הצגת נתוני משתמש בעמוד הפרטים עובד&#10;&#10;מחיקת קבצים של התרגולים&#10;&#10;תיקון מיקום כפתור ביצירת קשר&#10;&#10;תיקון קו תחתון בין הכפתורים">
+      <option name="closed" value="true" />
+      <created>1741646958540</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741646958540</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +201,8 @@
     <MESSAGE value="all days connected to one js and one cs&#10;all days are leveled&#10;old days js deleted" />
     <MESSAGE value="new base temp&#10;reedited all formats using the new base" />
     <MESSAGE value="Entry screen FiX" />
-    <option name="LAST_COMMIT_MESSAGE" value="Entry screen FiX" />
+    <MESSAGE value="שליחת פניה למאגר עובדת&#10;הצגת נתוני משתמש בעמוד הפרטים עובד&#10;&#10;מחיקת קבצים של התרגולים&#10;&#10;תיקון מיקום כפתור ביצירת קשר&#10;&#10;תיקון קו תחתון בין הכפתורים" />
+    <option name="LAST_COMMIT_MESSAGE" value="שליחת פניה למאגר עובדת&#10;הצגת נתוני משתמש בעמוד הפרטים עובד&#10;&#10;מחיקת קבצים של התרגולים&#10;&#10;תיקון מיקום כפתור ביצירת קשר&#10;&#10;תיקון קו תחתון בין הכפתורים" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -224,7 +222,7 @@
     <SUITE FILE_PATH="coverage/group17$group17.coverage" NAME="group17 Coverage Results" MODIFIED="1740645791651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/group17$Entry_Screen.coverage" NAME="Entry_Screen Coverage Results" MODIFIED="1741040008779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pages/Entry_Screen" />
     <SUITE FILE_PATH="coverage/group17$app.coverage" NAME="app Coverage Results" MODIFIED="1741040386645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/group17$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1741631067390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/group17$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1741715177516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/group17$Home_Page.coverage" NAME="Home_Page Coverage Results" MODIFIED="1740644695871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pages/Home_Page" />
     <SUITE FILE_PATH="coverage/group17$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1740645874319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\oryan\Documents\GitHub\group17" />
   </component>
