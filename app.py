@@ -1,16 +1,10 @@
-from flask import Flask, render_template
-from flask import session
-from flask import request
-import json
-from db_functions import *
+from flask import Flask
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False  # לתמיכה בעברית
 app.secret_key = '123'
-# app.config.from_pyfile('settings.py')
-#
-# ##### Pages
-#
+
+
 ## Contact_Us
 from pages.Contact_Us.Contact_Us import Contact_Us
 app.register_blueprint(Contact_Us)

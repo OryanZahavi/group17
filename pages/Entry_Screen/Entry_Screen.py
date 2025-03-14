@@ -27,11 +27,3 @@ def entry_screen():
         return redirect(url_for('Entry_Screen.Entry_Screen'))
 
     return render_template('Entry_Screen.html')
-
-
-#
-# # Ensure you have a logout route to clear the session
-# @Entry.route('/logout')
-# def logout():
-#     session.pop('user_email', None)
-#     return redirect(url_for('Entry.index'))

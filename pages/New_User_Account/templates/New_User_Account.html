@@ -55,32 +55,6 @@
 
 {% set return_to_url= "/Entry_Screen"  %}
 
-
-
-{#{% block page_body_footer%}#}
-{#    <div style="text-align: center;">#}
-{#        <a href="{{ return_to_url | default('/Entry_Screen', true) }}">#}
-{#            <button class="btn">{{ return_to_button | default('חזרה למסך הכניסה', true) }}</button>#}
-{#        </a>#}
-{#        <a>#}
-{#           <button type="submit" form="user-registration-form" class="btn" id="submit-button">מאשרת פרטים</button>#}
-{#        </a>#}
-{#    </div>#}
-{# {% endblock %}#}
-{##}
-{# Popup #}
-{#{% block popup %}#}
-{#    <div id="popup" class="popup">#}
-{#        <p>{{ "הרישום התבצע בהצלחה" }}</p>#}
-{#        <p>{{ "כעת ניתן להתחבר ממסך הכניסה" }}</p>#}
-{#        <a href="/Entry_Screen">#}
-{#            <button class="btn">חזרה למסך הכניסה</button>#}
-{#        </a>#}
-{#    </div>#}
-{#{% endblock %}#}
-
-
-
 {# JS #}
 {% block page_body_js %}
     <script src="{{ url_for('New_User_Account.static', filename='js/New_User_Account.js') }}"></script>

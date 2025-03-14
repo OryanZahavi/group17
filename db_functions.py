@@ -3,11 +3,8 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import os
 from werkzeug.utils import secure_filename
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 from bson.objectid import ObjectId
-import schedule
-import time
-
 
 
 uri = "mongodb+srv://ofriap:Oa2712!@cluster0.vzg9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
