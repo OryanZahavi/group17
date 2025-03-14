@@ -4,35 +4,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const days = ['חמישי', 'רביעי', 'שלישי', 'שני', 'ראשון'];
 
-    function calculateWeekStart() {
+        function calculateWeekStart() {
         const now = new Date();
-        const currentDay = now.getDay();
-        if (currentDay === 4 && now.getHours() >= 22) {
-            now.setDate(now.getDate() + 1);
+        const currentDay = now.getDay(); // 0 (Sun) - 6 (Sat)
+        const currentHour = now.getHours();
+
+        // If it's Thursday after 10 PM or later in the week, jump to next week
+        if (
+            (currentDay === 4 && currentHour >= 22) || // Thu after 10 PM
+            currentDay >= 5 // Fri/Sat
+        ) {
+            // Jump to next Sunday
+            const daysUntilNextSunday = currentDay === 0 ? 7 : 7 - currentDay;
+            now.setDate(now.getDate() + daysUntilNextSunday);
+        } else {
+            // Jump to current Sunday
+            const daysSinceLastSunday = currentDay === 0 ? 0 : currentDay;
+            now.setDate(now.getDate() - daysSinceLastSunday);
         }
-        const firstDayOfWeek = new Date(now);
-        firstDayOfWeek.setDate(firstDayOfWeek.getDate() - currentDay);
-        return firstDayOfWeek;
+
+        // Reset time to avoid timezone issues
+        now.setHours(0, 0, 0, 0);
+        return now;
     }
 
     function updateDates() {
         const weekStart = calculateWeekStart();
         const weekDates = [];
+
+        // Generate Sun-Thu dates
         for (let i = 0; i < 5; i++) {
             const date = new Date(weekStart);
             date.setDate(weekStart.getDate() + i);
             weekDates.push(date);
         }
+
+        // Reverse to show Thu first
         const reversedWeekDates = weekDates.reverse();
+
+        // Update buttons
         const buttons = document.querySelectorAll('.dates button');
         buttons.forEach((button, index) => {
             const formattedDate = reversedWeekDates[index].toLocaleDateString('he-IL', {
-                day: 'numeric', month: 'long',
+                day: 'numeric', month: 'long'
             });
             button.innerHTML = `${formattedDate}<br>${days[index]}`;
             button.dataset.date = reversedWeekDates[index].toISOString().split('T')[0];
         });
     }
+
 
     updateDates();
 

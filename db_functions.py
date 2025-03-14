@@ -1,4 +1,3 @@
-import pymongo
 from flask import session
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -264,9 +263,60 @@ def update_classes(day=None):
         print(f"🎯 שיעורי יום {day} עודכנו!")
 
 
-#  להפעיל ביום חמישי בשעה 19:00 לאיפוס רשימות הרשמה והמתנה ועדכון התאריכים
+#  יופעל ביום חמישי בשעה לאחר השיעור האחרון לאיפוס רשימות הרשמה והמתנה ועדכון התאריכים
 
-# update_classes()  # יעדכן את כל הימים
+def get_last_thursday_class():
+    """
+    Fetch the most recent Thursday class from the database.
+    """
+    pipeline = [
+        {
+            "$addFields": {
+                "weekday": {"$dayOfWeek": "$date"}  # MongoDB: Sunday=1, Monday=2, ..., Saturday=7
+            }
+        },
+        {
+            "$match": {
+                "weekday": 5  # Thursday is 5 in MongoDB's $dayOfWeek
+            }
+        },
+        {
+            "$sort": {"date": -1}  # Sort by date descending (most recent first)
+        },
+        {
+            "$limit": 1  # Get only the most recent Thursday class
+        }
+    ]
+
+    result = list(classes_collection.aggregate(pipeline))
+    if result:
+        return result[0]["date"]  # Return the date of the most recent Thursday class
+    return None
+
+
+def check_and_update():
+    """
+    Check if an update is needed and perform it. Recheck after updating.
+    """
+    while True:
+        last_thursday_class = get_last_thursday_class()
+
+        if last_thursday_class:
+            last_thursday_class = last_thursday_class.replace(tzinfo=None)  # Remove timezone info if present
+            today = datetime.now()
+
+            if today > last_thursday_class:
+                update_classes()
+            else:
+                print("No further updates are needed.")
+                break  # Exit the loop if no update is needed
+        else:
+            print("No Thursday classes found in the database.")
+            break  # Exit the loop if no Thursday classes exist
+
+# Main logic
+check_and_update()
+
 
 #  פונקציה שמחזירה כמה זמן נשאר עוד עד לשיעור מסויים ------
 
