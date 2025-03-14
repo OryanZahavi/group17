@@ -5,7 +5,7 @@
     margin-bottom: 20px;
     text-align: right;
     gap: 10px;
-    width: 350px; /* מתן רוחב קבוע לשדות */
+    width: 320px; /* מתן רוחב קבוע לשדות */
     justify-self: center;
 }
 
@@ -24,6 +24,7 @@
     font-size: 14px;
     color: rosybrown;
 }
+
 /* עיצוב הכפתור "כניסה" */
 input[type="submit"] {
     width: 150px; /* קיצור רוחב הכפתור */

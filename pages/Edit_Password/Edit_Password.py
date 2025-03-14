@@ -15,7 +15,7 @@ def index():
     if request.method == 'POST':
         user_email = session.get('email')
         if not user_email:
-            return redirect(url_for('Entry_Screen.index'))  # Redirect to login if not logged in
+            return redirect(url_for('Entry_Screen.Entry_Screen'))  # Redirect to login if not logged in
 
         old_password = request.form.get('old_password')
         new_password = request.form.get('new_password')

@@ -53,6 +53,7 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 800px;
+    justify-self: center;
 }
 
 /* עיצוב הלוגו */
@@ -81,7 +82,7 @@ h1 {
 }
 
 /* עיצוב הקונטיינר של הכפתורים */
-.grid-container {
+.grid-container-btn {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* שני טורים */
     gap: 20px;
@@ -90,6 +91,7 @@ h1 {
     margin-top: 20px;
     margin-bottom: 30px;
     justify-content: center;
+
 }
 
 /* כפתור ממורכז בטור שלם */
@@ -135,7 +137,7 @@ h1 {
 
 /* התאמות למסכים קטנים */
 @media (max-width: 600px) {
-    .grid-container {
+    .grid-container-btn {
         grid-template-columns: 1fr; /* כל הכפתורים בטור אחד */
     }
 }
@@ -149,8 +151,8 @@ h1 {
         width: 180px;
     }
 
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
+    .grid-container-btn {
+        /*grid-template-columns: repeat(2, 1fr);*/
         gap: 30px;
     }
 
@@ -174,39 +176,7 @@ h1 {
         width: 200px;
     }
 
-    .grid-container {
+    .grid-container-btn {
         max-width: 600px;
     }
-}
-
-.logout-link {
-    color: #d38b8b; /* צבע כמו Schedule */
-    font-family: Gisha, sans-serif;
-    font-weight: bold; /* טקסט מודגש */
-    text-decoration: none; /* מסיר קו תחתון */
-    font-size: 18px; /* שינוי גודל הפונט (מותאם אישית) */
-    transition: color 0.3s ease-in-out; /* אפקט מעבר חלק */
-    margin-right: auto; /* מצמיד לצד שמאל */
-}
-
-/* שינוי צבע בעת מעבר עם העכבר */
-.logout-link:hover {
-    color: #3a4a3f; /* אפור כהה כמו בטקסט של הלוגו */
-    text-decoration: underline; /* מוסיף קו תחתון רק כשעוברים עם העכבר */
-}
-
-/* עיצוב כפתור התחברי */
-.login-button {
-    color: #d38b8b; /* אותו צבע כמו התנתקי */
-    font-family: Gisha, sans-serif;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-    margin-right: auto;
-}
-
-.login-button:hover {
-    color: #3a4a3f;
-    text-decoration: underline;
 }

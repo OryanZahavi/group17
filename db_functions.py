@@ -117,26 +117,42 @@ def insert_user(first_name, last_name, birth_date, email, phone_number, password
 
 
 from datetime import datetime
+
+
 def get_user_data(email):
     user = users_col.find_one({"email": email})
     if user:
-        # סידור של התאריך
         birth_date = user.get("birth_date")
+        formatted_birth_date_ymd = ""
+        formatted_birth_date_dmy = ""
+
         if birth_date:
-            # Assuming birth_date is in ISO format (YYYY-MM-DD)
-            formatted_birth_date = datetime.strptime(birth_date, "%Y-%m-%d").strftime("%d-%m-%Y")
-        else:
-            formatted_birth_date = ""
+            try:
+                # Try parsing as YYYY-MM-DD
+                date_obj = datetime.strptime(birth_date, "%Y-%m-%d")
+                formatted_birth_date_ymd = date_obj.strftime("%Y-%m-%d")
+                formatted_birth_date_dmy = date_obj.strftime("%d-%m-%Y")
+            except ValueError:
+                try:
+                    # If that fails, try parsing as DD-MM-YYYY
+                    date_obj = datetime.strptime(birth_date, "%d-%m-%Y")
+                    formatted_birth_date_ymd = date_obj.strftime("%Y-%m-%d")
+                    formatted_birth_date_dmy = date_obj.strftime("%d-%m-%Y")
+                except ValueError:
+                    # If both fail, leave as empty strings
+                    pass
 
         return {
             "first_name": user.get("first_name"),
             "last_name": user.get("last_name"),
-            "birth_date": formatted_birth_date,
+            "birth_date": formatted_birth_date_ymd,  # For Edit Details (YYYY-MM-DD)
+            "birth_date_display": formatted_birth_date_dmy,  # For My Account (DD-MM-YYYY)
             "email": user.get("email"),
             "phone_number": user.get("phone_number"),
             "health_file": user.get("health_file")
         }
     return None
+
 
 def update_user_data(email, updated_data):
     """Update user data in the database."""

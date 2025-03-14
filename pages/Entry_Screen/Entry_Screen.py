@@ -13,7 +13,6 @@ def entry_screen():
         email = request.form.get("user_Email")  # קבלת האימייל מהטופס
         password = request.form.get("user_Password")  # קבלת הסיסמה מהטופס
         user = authenticate_user(email, password)  # בדיקת התחברות
-
         if user :
             # שמירת המשתמש ב-Session
             session['user_id'] = str(user['_id'])
@@ -25,7 +24,7 @@ def entry_screen():
             return redirect(url_for('Home_Page.index'))  # העברה לדף הבית
 
         flash("שם משתמש או סיסמה שגויים", "error")  # הודעת שגיאה
-        return redirect(url_for('Entry_Screen.entry_screen'))
+        return redirect(url_for('Entry_Screen.Entry_Screen'))
 
     return render_template('Entry_Screen.html')
 

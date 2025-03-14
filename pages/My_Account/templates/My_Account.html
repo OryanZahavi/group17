@@ -18,7 +18,7 @@
         <span>{{ user_data.last_name }}</span>
 
         <p>תאריך לידה:</p>
-        <span>{{ user_data.birth_date }}</span>
+        <span>{{ user_data.birth_date_display }}</span>
 
         <p>דואר אלקטרוני:</p>
         <span>{{ user_data.email }}</span>
@@ -34,11 +34,11 @@
 
 {# Footer #}
 {% block submit %}
-    <a href="/Edit_Password">
-        <button class="btn">שינוי סיסמה</button>
-    </a>
     <a href="/Edit_Details">
         <button class="btn">עריכת פרטים</button>
+    </a>
+    <a href="/Edit_Password">
+        <button class="btn">שינוי סיסמה</button>
     </a>
 {% endblock %}
 

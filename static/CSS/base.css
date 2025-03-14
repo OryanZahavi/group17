@@ -23,25 +23,34 @@ body > * {
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto 200px; /* Two columns layout */
-    grid-template-rows: auto auto; /* Two rows layout */
+    grid-template-columns: 200px auto 100px; /* Two columns layout */
+    grid-template-rows: auto auto auto; /* Two rows layout */
     gap: 20px;
     padding: 20px;
-    margin: auto;
     background-color: #b6dcb8;
     animation: fadeIn 1s ease-in;
+    direction: rtl;
 
 }
 
 .div1 {
     align-self: center;
+    justify-content: center;
+
 }
+
+.div4 {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
 
 h1 {
     color: rosybrown;
     font-family: Gisha, sans-serif;
     font-size: 2rem;
-    margin: auto;
     text-align: center;
     justify-content: center; /* Horizontal centering */
     align-items: center;     /* Vertical centering */
@@ -98,6 +107,38 @@ img {
     border-radius: 4px;
 }
 
+
+.logout-link {
+    color: #d38b8b; /* צבע כמו Schedule */
+    font-family: Gisha, sans-serif;
+    font-weight: bold; /* טקסט מודגש */
+    text-decoration: none; /* מסיר קו תחתון */
+    font-size: 18px; /* שינוי גודל הפונט (מותאם אישית) */
+    transition: color 0.3s ease-in-out; /* אפקט מעבר חלק */
+    margin-right: auto; /* מצמיד לצד שמאל */
+}
+
+/* שינוי צבע בעת מעבר עם העכבר */
+.logout-link:hover {
+    color: #3a4a3f; /* אפור כהה כמו בטקסט של הלוגו */
+    text-decoration: underline; /* מוסיף קו תחתון רק כשעוברים עם העכבר */
+}
+
+/* עיצוב כפתור התחברי */
+.login-button {
+    color: #d38b8b; /* אותו צבע כמו התנתקי */
+    font-family: Gisha, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    margin-right: auto;
+}
+
+.login-button:hover {
+    color: #3a4a3f;
+    text-decoration: underline;
+}
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {

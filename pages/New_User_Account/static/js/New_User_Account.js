@@ -180,9 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
-            //popup.style.display = "block"; // מציג את הפופ-אפ
            form.submit(); // Programmatically submit the form
 
         }

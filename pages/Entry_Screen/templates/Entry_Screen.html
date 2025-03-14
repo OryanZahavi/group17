@@ -9,43 +9,30 @@
 {# Header #}
 {% set page_body_header ='ברוכה הבאה לסטודיו סול' %}
 
-{# Navigation #}
-{% block page_body_header_content__main_menu %}{% endblock %}
 
 {# Main #}
 {% block page_body_main %}
-   <form action="{{ url_for('Entry_Screen.entry_screen') }}" method="POST">
-    <div class="grid_Container_1">
-            <p>דואר אלקטרוני</p>
-            <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני" required>
-            <span id="emailError" class="error-message"></span>
+   <form id="user-entry-form" action="{{ url_for('Entry_Screen.entry_screen') }}" method="POST">
+        <div class="grid_Container_1">
+                <p>דואר אלקטרוני</p>
+                <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני" required>
+                <span id="emailError" class="error-message"></span>
 
-            <p>סיסמה</p>
-            <input type="password" id="password" name="user_Password" class="input-field" placeholder="הזיני סיסמה" required>
-            <span id="passwordError" class="error-message"></span>
+                <p>סיסמה</p>
+                <input type="password" id="password" name="user_Password" class="input-field" placeholder="הזיני סיסמה" required>
+                <span id="passwordError" class="error-message"></span>
 
-            <p>משתמשת חדשה? ניתן להירשם <a href="{{ url_for('New_User_Account.new_user_account') }}" class="register-link">כאן</a></p>
-
-            <button type="submit" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
-    </div>
-
-    </form>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% for category, message in messages %}
-                    <p class="flash-{{ category }}">{{ message }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
+                <p>משתמשת חדשה? ניתן להירשם <a href="{{ url_for('New_User_Account.new_user_account') }}" class="register-link">כאן</a></p>
+        </div>
+   </form>
 {% endblock %}
 
 {% block submit %}
+        <button type="submit" id="submit-button" name= form="user-entry-form" class="btn" onclick="console.log('🔹 נלחץ!')">כניסה</button>
 {% endblock %}
 
-{# Popup #}
-{% block popup %}{% endblock %}
+{% block  login%}
+{% endblock %}
 
 {# JS #}
 {% block page_body_js %}

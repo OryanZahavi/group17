@@ -36,8 +36,9 @@ def register():
         return redirect(url_for('New_User_Account.new_user_account'))
 
     # שמירת המשתמש ב-Session
-    session['user_id'] = user_id
     session['user_name'] = first_name
+    session['email'] = email
+    session['logged_in'] = True
 
     flash("ההרשמה בוצעה בהצלחה!", "success")
 

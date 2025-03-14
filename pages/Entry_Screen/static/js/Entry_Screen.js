@@ -4,11 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailError = document.getElementById("emailError");
     const passwordInput = document.getElementById("password");
     const passwordError = document.getElementById("passwordError");
-    // const submitButton = document.querySelector("input[type='submit']"); // בחירת הכפתור הנכון
-
+    const submitButton = document.getElementById("submit-button");
     // form.addEventListener("submit", function (event) {
     //     let isValid = true;
-    form.addEventListener("submit", function (event) {
+    submitButton.addEventListener("click", function (event) {
         event.preventDefault();  // מונע שליחה רגילה
          let isValid = true;
 
@@ -32,15 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // אימות סיסמה
         const passwordValue = passwordInput.value.trim();
-        const passwordValidation = validatePassword(passwordValue);
 
         if (!passwordValue) {
             passwordError.textContent = "יש להזין סיסמה.";
-            passwordError.classList.add("visible");
-            passwordInput.classList.add("error");
-            isValid = false;
-        } else if (!passwordValidation.valid) {
-            passwordError.textContent = passwordValidation.errorMessage;
             passwordError.classList.add("visible");
             passwordInput.classList.add("error");
             isValid = false;
@@ -78,23 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function isValidEmail(email) {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(email);
-    }
-
-    // פונקציה לאימות סיסמה
-    function validatePassword(password) {
-        if (password.length < 6) {
-            return {valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות 6 תווים."};
-        }
-        if (!/[A-Z]/.test(password)) {
-            return {valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות אות גדולה באנגלית."};
-        }
-        if (!/[0-9]/.test(password)) {
-            return {valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות מספר אחד."};
-        }
-        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            return {valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות סימן מיוחד (כמו !, @, #)."};
-        }
-        return {valid: true, errorMessage: ""};
     }
 
 });

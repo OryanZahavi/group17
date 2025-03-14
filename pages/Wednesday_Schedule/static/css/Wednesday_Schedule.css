@@ -29,6 +29,7 @@ body {
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px; /* הוספת רווח בין הכפתורים לשיעורים */
+    direction: ltr;
 }
 
 .dates button {

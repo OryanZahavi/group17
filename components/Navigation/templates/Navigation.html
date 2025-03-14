@@ -7,7 +7,6 @@
         'החשבון שלי': url_for('My_Account.index'),
         'קצת עלינו': url_for('Meet_Us.index'),
         'לוח שיעורים': url_for('Sunday_Schedule.index'),
-        'mongo': '/mongodb_lecture'
     }
 %}
 
@@ -19,11 +18,4 @@
             </a>
         </li>
     {% endfor %}
-{##}
-{#    {% if session.get('user_name') %}#}
-{#        <li><a href="{{ url_for('log_out.log_out_func') }}">התנתקי</a></li>#}
-{#    {% else %}#}
-{#        <li><a href="{{ url_for('New_User_Account.new_user_account') }}">הרשמה</a></li>#}
-{#        <li><a href="{{ url_for('Entry_Screen.index') }}">כניסה</a></li>#}
-{#    {% endif %}#}
 </ul>

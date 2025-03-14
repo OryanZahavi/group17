@@ -10,138 +10,52 @@
 
 {# Main#}
 {% block page_body_main %}
-    <form id="edit-details-form" action="/update" method="POST">
+    <form id="edit-details-form" action="/update" method="POST" enctype="multipart/form-data">
         <div class="grid-container_1">
             <div class="field-container">
                 <p>שם פרטי:</p>
-                <input type="text" name="first_name" value="{{ user_data.first_name }}" required>
+                <input type="text" id="firstName" name="first_name" class="input-field" value="{{ user_data.first_name }}" required>
+                <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>
             </div>
 
             <div class="field-container">
                 <p>שם משפחה:</p>
-                <input type="text" name="last_name" value="{{ user_data.last_name }}" required>
+                <input type="text" id="lastName" name="last_name" class="input-field" value="{{ user_data.last_name }}" required>
+                <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>
             </div>
 
             <div class="field-container">
                 <p>תאריך לידה:</p>
-                <input type="date" name="birth_date" value="{{ user_data.birth_date }}" required>
+                <input type="date" id="birthDate" name="birth_date" class="input-field" value="{{ user_data.birth_date }}" required>
+                <span id="birthDateError" class="error-message"></span>
             </div>
 
             <div class="field-container">
                 <p>דואר אלקטרוני:</p>
-                <input type="email" name="email" value="{{ user_data.email }}" required>
+                <input type="email" id="email" name="email" class="input-field" value="{{ user_data.email }}" required>
+                <span id="emailError" class="error-message"></span>
             </div>
 
             <div class="field-container">
                 <p>מס' פלאפון:</p>
-                <input type="tel" name="phone_number" value="{{ user_data.phone_number }}" required>
+                <input type="tel" id="phoneNumber" name="phone_number" value="{{ user_data.phone_number }}" required>
+                <span id="phoneNumberError" class="error-message"></span>
             </div>
 
             <div class="field-container">
                 <p>הצהרת בריאות:</p>
-                <input type="file" name="health_file">
+                <input type="file" id="Hfile" name="health_form" class="input-field">
+                <span id="fileError" class="error-message"></span>
             </div>
 
-            <button type="submit" class="btn">שמור שינויים</button>
         </div>
     </form>
+{% endblock %}
+
+{% block submit %}
+        <button type="submit" id="submit-button" form="edit-details-form" class="btn" >שמור שינויים</button>
 {% endblock %}
 
 {% block page_body_js %}
     <script src="{{ url_for('Edit_Details.static', filename='js/Edit_Details.js') }}"></script>
 {% endblock %}
-
-
-
-{#{% extends "base.html" %}#}
-{##}
-{#{% set page_head_title = 'Edit_Details' %}#}
-{#{% block page_head_css %}#}
-{#    <link rel="stylesheet" href="{{ url_for('Edit_Details.static', filename='css/Edit_Details.css') }}">#}
-{#{% endblock %}#}
-{##}
-{# Header #}
-{#{% set page_body_header ='עריכת חשבון' %}#}
-{##}
-{# Footer #}
-{#{% set submit_button_text = "מאשרת שינויים" %}#}
-{##}
-{# Popup #}
-{#{% set success_message = "השינויים נקלטו בהצלחה!" %}#}
-{##}
-{# JS #}
-{#{% block page_body_js %}#}
-{#    <script src="{{ url_for('Edit_Details.static', filename='js/Edit_Details.js') }}"></script>#}
-{#{% endblock %}#}
-{##}
-{#{% block css %}#}
-{#	 <link rel="stylesheet" href="{{ url_for('Edit_Details.static', filename='css/Edit_Details.css') }}"><title></title>#}
-{#{% endblock %}#}
-{##}
-{############# before base - its goog! ############}
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{##}
-{#<body>#}
-{#    {% block header %}#}
-{#            <h1>עריכת חשבון</h1>#}
-{#    {% endblock %}#}
-{##}
-{#    {% block page_body_main %}#}
-{#        <div class="grid-container_1">#}
-{#            <p>שם פרטי</p>#}
-{#            <input type="text" id="firstName" name="user_FirstName" class="input-field" placeholder="הזיני שם פרטי">#}
-{#            <span id="firstNameError" class="error-message">יש להזין שם פרטי.</span>#}
-{##}
-{#            <p>שם משפחה</p>#}
-{#            <input type="text" id="lastName" name="user_LastName" class="input-field" placeholder="הזיני שם משפחה">#}
-{#            <span id="lastNameError" class="error-message">יש להזין שם משפחה.</span>#}
-{##}
-{#            <p>תאריך לידה</p>#}
-{#            <input type="date" id="birthDate" name="user_Date" class="input-field" placeholder="הזיני תאריך">#}
-{#            <span id="birthDateError" class="error-message"></span>#}
-{##}
-{#            <p>דואר אלקטרוני</p>#}
-{#            <input type="text" id="email" name="user_Email" class="input-field" placeholder="הזיני כתובת דואר אלקטרוני ">#}
-{##}
-{#            <span id="emailError" class="error-message"></span>#}
-{##}
-{#            <p>מס' פלאפון</p>#}
-{#            <input type="tel" id="phoneNumber" name="user_PhoneNumber" placeholder="050-1234567">#}
-{#            <span id="phoneNumberError" class="error-message"></span>#}
-{##}
-{#            <p>סיסמה</p>#}
-{#            <input type="password" id="password" name="user_Password" class="input-field"#}
-{#                   placeholder="הכניסי סיסמה כרצונך על פי הנהלים">#}
-{#            <span id="passwordError" class="error-message"></span>#}
-{##}
-{#            <p>טופס הצהרת בריאות</p>#}
-{#            <input type="file" id="Hfile" name="user_Health" class="input-field" placeholder="הזיני שם פרטי">#}
-{#            <span id="fileError" class="error-message"></span>#}
-{#        </div>#}
-{#    {% endblock %}#}
-{##}
-{#<!-- כפתורים למסך הירוק -->#}
-{#<div class="green-screen-buttons">#}
-{#    {% block submit %}#}
-{#    <button id="submit-button" class="btn">מאשרת שינויים</button>#}
-{#    {% endblock %}#}
-{#</div>#}
-{##}
-{#<!-- חלון פופ-אפ -->#}
-{#<div id="popup" class="popup">#}
-{##}
-{#    {% block popup_window %}#}
-{#          <p>השינויים נקלטו</p>#}
-{#    {% endblock %}#}
-{##}
-{#    <a href="/Home_Page">#}
-{#        <button id="home-button" class="btn">חזרה לדף הבית</button>#}
-{#    </a>#}
-{#</div>#}
-{##}
-{##}
-{#</body>#}
-{#</html>#}
-{##}
-{##}

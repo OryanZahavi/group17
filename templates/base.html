@@ -3,7 +3,6 @@
  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/base.css') }}">
 
 {% block page_body_js %}
-<script src="{{ url_for('static', filename='js/base.js') }}"></script>
 {% endblock %}
 
 {% block page_head_css %}
@@ -13,6 +12,14 @@
 <div class="grid-container">
 
     <div class="div1">
+    {% block page_body_header %}
+            <div class="header-container">
+                <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
+            </div>
+    {% endblock %}
+    </div>
+
+    <div class="div2">
     {% block page_head %}
             {% block page_head_meta %}
                 <meta charset="UTF-8"/>
@@ -24,16 +31,14 @@
     {% endblock %}
     </div>
 
-    <div class="div2">
-    {% block page_body_header %}
-            <div class="header-container">
-                <img src="{{ url_for ('static', filename='images/Company_Logo.jpeg') }} " alt="CompanyLogo">
-            </div>
-    {% endblock %}
-    </div>
-
     <div class="div3">
-    {% block page_body_main %}    {% endblock %}
+    {% block  login%}
+        {% if session.get('user_name') %}
+            <a href="{{ url_for('log_out.log_out_func') }}" class="logout-link">התנתקי</a>
+        {% else %}
+            <a href="{{ url_for('Entry_Screen.entry_screen') }}" class="login-button">התחברי</a>
+        {% endif %}
+    {% endblock %}
     </div>
 
     <div class="div4">
@@ -55,15 +60,10 @@
     </div>
 
     <div class="div5">
-    {% block page_body_footer %}
-        <div style="text-align: center;">
-            <a href="{{ return_to_url | default('/Home_Page', true) }}" class="btn">{{ return_to_button | default('חזרה למסך הבית', true) }}</a>
-            {% block submit %} {% endblock %}
-        </div>
-    {% endblock %}
+    {% block page_body_main %}    {% endblock %}
     </div>
 
-    {#Display flash messages#}
+    <div class="div6">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul class="flash-messages">
@@ -73,6 +73,23 @@
             </ul>
         {% endif %}
     {% endwith %}
+    </div>
+
+    <div class="div7">
+
+    </div>
+
+    <div class="div8">
+    {% block page_body_footer %}
+        <div style="text-align: center;">
+            {% block submit %} {% endblock %}
+            <a href="{{ return_to_url | default('/Home_Page', true) }}" class="btn">{{ return_to_button | default('חזרה למסך הבית', true) }}</a>
+        </div>
+    {% endblock %}
+    </div>
+
+    {#Display flash messages#}
+
 
     {# Popup #}
     {% block popup %}

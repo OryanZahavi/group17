@@ -53,38 +53,6 @@ input.error {
     outline: none;
 }
 
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid rosybrown;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    text-align: center;
-    width: 90%;
-    max-width: 300px;
-}
-
-.popup button {
-    background-color: #8b5d5d;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
-    display: block;
-    width: 100%;
-}
-
-.popup button:hover {
-    background-color: #a67575;
-}
 
 /* Responsive Styles */
 
@@ -99,7 +67,7 @@ input.error {
 /* Large screens (desktops) */
 @media (min-width: 1000px) {
     .grid-container_1 {
-        grid-template-columns: 180px 300px 2fr;
+        grid-template-columns: 1fr 1fr;
         gap: 15px;
         justify-self:center ;
     }

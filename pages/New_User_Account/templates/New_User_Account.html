@@ -42,11 +42,12 @@
             <p>טופס הצהרת בריאות</p>
             <input type="file" id="Hfile" name="health_form" class="input-field">
             <span id="fileError" class="error-message"></span>
-
-            <button type="submit" form="user-registration-form" class="btn" >מאשרת פרטים</button>
-
         </div>
     </form>
+{% endblock %}
+
+{% block submit %}
+       <button type="submit" id="submit-button" form="user-registration-form" class="btn" >מאשרת פרטים</button>
 {% endblock %}
 
 {# Popup #}

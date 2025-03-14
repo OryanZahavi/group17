@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
         birthDate: document.querySelector("input[name='user_Date']"),
         email: document.querySelector("input[name='user_Email']"),
         phone: document.querySelector("input[name='user_Phone']"),
-        password: document.querySelector("input[name='user_Password']"),
     };
 
+
+    const form = document.getElementById("edit-details-form"); // Get the form element
     const submitButton = document.getElementById("submit-button");
-    // Regular expression to allow only English letters
-    const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;
+    const lettersOnlyPattern = /^[A-Za-z\u0590-\u05FF]+$/;     // Regular expression to allow only English letters
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // מונע שליחה של הטופס כברירת מחדל
@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
             lastNameError.classList.remove("visible"); // Hide the error message
             lastNameInput.classList.remove("error"); // Remove error style
         }
-
 
 
          // אימות תאריך לידה
@@ -131,28 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // // אימות סיסמה
-        const passwordInput = document.getElementById("password");
-        const passwordError = document.getElementById("passwordError");
-        const passwordValue = passwordInput.value.trim();
-
-        const passwordValidation = validatePassword(passwordValue);
-
-        if (!passwordValue) {
-            passwordError.textContent = "יש להזין סיסמה.";
-            passwordError.classList.add("visible");
-            passwordInput.classList.add("error");
-            isValid = false;
-        } else if (!passwordValidation.valid) {
-            passwordError.textContent = passwordValidation.errorMessage;
-            passwordError.classList.add("visible");
-            passwordInput.classList.add("error");
-            isValid = false;
-        } else {
-            passwordError.classList.remove("visible");
-            passwordInput.classList.remove("error");
-        }
-
         //אימות קובץ
         // File input verification
         const fileInput = document.getElementById("Hfile");
@@ -184,7 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // אם הכל תקין - מציג את הפופ-אפ
         if (isValid) {
-            popup.style.display = "block"; // מציג את הפופ-אפ
+            form.submit(); // Programmatically submit the form
+
         }
 
     });
@@ -215,20 +193,4 @@ document.addEventListener("DOMContentLoaded", function () {
         return phonePattern.test(phone);
     }
 
-    // פונקציה לאימות סיסמה
-    function validatePassword(password) {
-        if (password.length < 6) {
-            return { valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות 6 תווים." };
-        }
-        if (!/[A-Z]/.test(password)) {
-            return { valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות אות גדולה באנגלית." };
-        }
-        if (!/[0-9]/.test(password)) {
-            return { valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות מספר אחד." };
-        }
-        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            return { valid: false, errorMessage: "הסיסמה חייבת להכיל לפחות סימן מיוחד (כמו !, @, #)." };
-        }
-        return { valid: true, errorMessage: "" };
-    }
 });
