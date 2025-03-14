@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@cluster0.vzg9o.mongodb.net">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.53">
+    <root id="1">
+      <ServerVersion>8.0.5</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="Soul_Studio">
+      <LastIntrospectionLocalTimestamp>2025-03-10.19:53:32</LastIntrospectionLocalTimestamp>
+    </schema>
+    <schema id="3" parent="1" name="sample_mflix"/>
+    <schema id="4" parent="1" name="admin"/>
+    <schema id="5" parent="1" name="local"/>
+    <table id="6" parent="2" name="classes"/>
+    <table id="7" parent="2" name="inquiries"/>
+    <table id="8" parent="2" name="users"/>
+    <column id="9" parent="6" name="_id">
+      <Position>1</Position>
+      <StoredType>ObjectId|12s</StoredType>
+    </column>
+    <column id="10" parent="6" name="capacity">
+      <Position>1</Position>
+      <StoredType>Int32|4s</StoredType>
+    </column>
+    <column id="11" parent="6" name="registered_users">
+      <Position>1</Position>
+      <StoredType>list|4999545s</StoredType>
+    </column>
+    <column id="12" parent="6" name="title">
+      <Position>2</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="13" parent="6" name="date">
+      <Position>2</Position>
+      <StoredType>ISODate|91s</StoredType>
+    </column>
+    <column id="14" parent="6" name="day">
+      <Position>3</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="15" parent="6" name="waitlist_users">
+      <Position>3</Position>
+      <StoredType>list|4999545s</StoredType>
+    </column>
+    <index id="16" parent="6" name="_id_">
+      <ColNames>_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <column id="17" parent="8" name="_id">
+      <Position>1</Position>
+      <StoredType>ObjectId|12s</StoredType>
+    </column>
+    <column id="18" parent="8" name="email">
+      <Position>1</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="19" parent="8" name="first_name">
+      <Position>2</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="20" parent="8" name="birth_date">
+      <Position>2</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="21" parent="8" name="health_file">
+      <Position>3</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="22" parent="8" name="last_name">
+      <Position>4</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="23" parent="8" name="password">
+      <Position>5</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <column id="24" parent="8" name="phone_number">
+      <Position>6</Position>
+      <StoredType>String|12s</StoredType>
+    </column>
+    <index id="25" parent="8" name="_id_">
+      <ColNames>_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+  </database-model>
+</dataSource>
